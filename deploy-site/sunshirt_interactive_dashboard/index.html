@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tailong 男士防晒衣爆品特征与新品趋势</title>
+  <style>
+    :root {
+      --bg:#071018; --panel:#101923; --panel2:#172433; --line:#29455f;
+      --text:#f6fbff; --muted:#a9bac8; --blue:#1167d8; --cyan:#21b8ff;
+      --green:#008975; --lime:#97f274; --red:#ff3f34; --gold:#ffbd45;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; font-family:Arial,"Microsoft YaHei",sans-serif; color:var(--text);
+      background:linear-gradient(180deg,#061327 0,#071018 340px,#071018 100%);
+      letter-spacing:0;
+    }
+    header {
+      position:sticky; top:0; z-index:30; border-bottom:1px solid var(--line);
+      background:rgba(7,16,24,.94); backdrop-filter:blur(10px);
+    }
+    .bar {
+      max-width:1440px; margin:0 auto; padding:14px 22px; display:flex;
+      justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap;
+    }
+    h1 { margin:0; font-size:clamp(22px,3vw,40px); font-weight:900; }
+    .nav { display:flex; gap:8px; flex-wrap:wrap; }
+    .nav a, button, select, input {
+      border:1px solid var(--line); background:var(--panel2); color:var(--text);
+      border-radius:6px; min-height:38px; padding:0 12px; font:inherit; text-decoration:none;
+    }
+    button { cursor:pointer; font-weight:800; }
+    main { max-width:1440px; margin:0 auto; padding:22px; }
+    section { scroll-margin-top:82px; }
+    .lead {
+      display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:10px; margin-bottom:18px;
+    }
+    .metric {
+      border:1px solid var(--line); background:var(--panel); border-left:5px solid var(--cyan);
+      border-radius:8px; padding:14px;
+    }
+    .metric span { color:var(--muted); font-size:13px; }
+    .metric strong { display:block; font-size:26px; margin:5px 0; }
+    .chapter {
+      border:1px solid var(--line); border-radius:10px; background:var(--panel);
+      margin-bottom:22px; overflow:hidden;
+    }
+    .chapter-head {
+      padding:18px 20px; display:grid; grid-template-columns:1fr auto; gap:12px;
+      align-items:center; border-bottom:1px solid var(--line);
+    }
+    .chapter.hot .chapter-head { background:linear-gradient(90deg,#003b88,#0f2b55); }
+    .chapter.new .chapter-head { background:linear-gradient(90deg,#00685d,#093b37); }
+    h2 { margin:0; font-size:clamp(24px,4vw,46px); font-weight:900; }
+    .sub { color:var(--muted); font-size:14px; margin-top:6px; }
+    .pill {
+      display:inline-flex; align-items:center; min-height:28px; border-radius:5px; padding:0 9px;
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.25); font-weight:800;
+      white-space:nowrap;
+    }
+    .framework {
+      background:#fff; padding:10px; border-bottom:1px solid var(--line);
+    }
+    .framework img { width:100%; display:block; border-radius:6px; }
+    .inside { padding:18px; }
+    .split { display:grid; grid-template-columns:.9fr 1.1fr; gap:18px; align-items:start; }
+    .box {
+      background:#0b121a; border:1px solid var(--line); border-radius:8px; padding:16px;
+    }
+    .box h3 { margin:0 0 12px; font-size:18px; }
+    .summary { display:grid; gap:10px; margin:0; padding:0; list-style:none; }
+    .summary li {
+      background:var(--panel2); border:1px solid var(--line); border-radius:6px;
+      padding:10px 12px; line-height:1.45;
+    }
+    .bars { display:grid; gap:9px; }
+    .row { display:grid; grid-template-columns:96px 1fr 34px; gap:10px; align-items:center; font-size:13px; }
+    .track { height:12px; background:#071018; border-radius:3px; overflow:hidden; }
+    .fill { height:100%; background:var(--cyan); }
+    .chapter.new .fill { background:var(--lime); }
+    .samples { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-top:18px; }
+    .card {
+      background:#0b121a; border:1px solid var(--line); border-radius:8px; overflow:hidden;
+      display:flex; flex-direction:column; min-height:100%;
+    }
+    .photo { aspect-ratio:4/3; background:#f3f5f7; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .photo img { width:100%; height:100%; object-fit:contain; }
+    .body { padding:12px; display:grid; gap:8px; }
+    .meta { display:flex; justify-content:space-between; gap:8px; color:var(--muted); font-size:12px; }
+    .name { display:flex; justify-content:space-between; gap:8px; font-weight:900; }
+    .price { color:var(--lime); white-space:nowrap; }
+    .tags { display:flex; flex-wrap:wrap; gap:5px; min-height:28px; }
+    .tag { border:1px solid var(--line); border-radius:4px; padding:3px 6px; color:#dce8f2; font-size:12px; }
+    .points { font-size:13px; color:#deebf5; line-height:1.45; display:grid; gap:4px; min-height:74px; }
+    .open { margin-top:auto; border-color:var(--cyan); background:transparent; }
+    .control {
+      display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; margin:18px 0;
+    }
+    .filters { display:flex; gap:8px; flex-wrap:wrap; }
+    .grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .modal {
+      position:fixed; inset:0; display:none; z-index:50; background:rgba(0,0,0,.8);
+      padding:22px; overflow:auto;
+    }
+    .modal.show { display:block; }
+    .modal-panel { max-width:1180px; margin:0 auto; background:var(--panel); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+    .modal-head { position:sticky; top:0; background:var(--panel); border-bottom:1px solid var(--line); padding:14px 16px; display:flex; justify-content:space-between; gap:12px; align-items:center; }
+    .modal-content { display:grid; grid-template-columns:.72fr 1.28fr; gap:16px; padding:16px; }
+    .detail-img { background:#fff; border-radius:6px; overflow:auto; max-height:720px; }
+    .detail-img img { width:100%; display:block; }
+    .details { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; align-content:start; }
+    .detail-box { background:#0b121a; border:1px solid var(--line); border-radius:6px; padding:12px; }
+    .detail-box h3 { margin:0 0 8px; color:var(--cyan); font-size:14px; }
+    .detail-box ul { margin:0; padding-left:18px; color:#e0edf6; }
+    .empty { grid-column:1/-1; border:1px dashed var(--line); border-radius:8px; padding:34px; text-align:center; color:var(--muted); }
+    @media (max-width:1080px) {
+      .split,.modal-content { grid-template-columns:1fr; }
+      .samples,.grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+      .lead { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width:720px) {
+      main { padding:14px; }
+      .chapter-head,.control { grid-template-columns:1fr; }
+      .samples,.grid,.details,.lead { grid-template-columns:1fr; }
+      .filters select,.filters input { width:100%; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div>
+        <h1>男士防晒衣爆品特征与新品趋势</h1>
+        <div class="sub">按你的框架展示：先爆品特征，再新品趋势；图片来自对应 ASIN 主页图与 A+ 页面</div>
+      </div>
+      <nav class="nav">
+        <a href="#hot">爆品特征</a>
+        <a href="#new">新品趋势</a>
+        <a href="#library">产品库</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="lead" id="claims"></div>
+
+    <section class="chapter hot" id="hot">
+      <div class="chapter-head">
+        <div><h2>爆品特征示意图</h2><div class="sub">TOP20爆品共性：从卖点、版型、细节、面料到视觉策略</div></div>
+        <span class="pill">先看爆品共性</span>
+      </div>
+      <div class="framework"><img id="hotFramework" alt="爆品特征示意图" /></div>
+      <div class="inside">
+        <div class="split">
+          <div class="box"><h3>企划结论</h3><ul class="summary" id="hotSummary"></ul></div>
+          <div class="box"><h3>高频爆品特征</h3><div class="bars" id="hotBars"></div></div>
+        </div>
+        <div class="samples" id="hotSamples"></div>
+      </div>
+    </section>
+
+    <section class="chapter new" id="new">
+      <div class="chapter-head">
+        <div><h2>新品趋势示意图</h2><div class="sub">近一年新品共性：日常化、场景细分、防护升级、面料舒适升级</div></div>
+        <span class="pill">再看新品方向</span>
+      </div>
+      <div class="framework"><img id="newFramework" alt="新品趋势示意图" /></div>
+      <div class="inside">
+        <div class="split">
+          <div class="box"><h3>趋势结论</h3><ul class="summary" id="newSummary"></ul></div>
+          <div class="box"><h3>新品变化信号</h3><div class="bars" id="newBars"></div></div>
+        </div>
+        <div class="samples" id="newSamples"></div>
+      </div>
+    </section>
+
+    <section id="library">
+      <div class="chapter">
+        <div class="chapter-head">
+          <div><h2>产品图片与拆解库</h2><div class="sub">可按部门需要筛选产品，点击查看主页图与 A+ 图</div></div>
+          <span class="pill" id="count"></span>
+        </div>
+        <div class="inside">
+          <div class="control">
+            <div class="filters">
+              <input id="q" placeholder="搜索品牌 / ASIN / 特征" />
+              <select id="kind"><option value="">爆品+新品</option><option>爆品</option><option>新品</option></select>
+              <select id="brand"><option value="">全部品牌</option></select>
+              <select id="style"><option value="">全部款式</option></select>
+              <select id="price"><option value="">全部价格带</option></select>
+              <select id="tag"><option value="">全部特征</option></select>
+            </div>
+          </div>
+          <div class="grid" id="grid"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div><div class="name" id="modalTitle"></div><div class="sub" id="modalSub"></div></div>
+        <button id="closeModal">关闭</button>
+      </div>
+      <div class="modal-content">
+        <div class="detail-img"><img id="modalImg" alt="商品详情图" /></div>
+        <div class="details" id="modalDetails"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DATA = {"framework": {"hot": "assets/framework_hot_features.png", "new": "assets/framework_new_trends.png"}, "products": [{"kind": "爆品", "asin": "B0CJF41XNX", "brand": "Roadbox", "rank": 1, "price": 14.99, "priceBucket": "$10-15", "rating": "4.7/2734", "sales": 959.7, "style": "连帽款", "homeImage": "assets/爆品_B0CJF41XNX_home.png", "detailImage": "assets/爆品_B0CJF41XNX_detail.png", "fit": ["基于图片判断：", "连帽宽松版", "长袖带拇指孔", "腋下留量大"], "design": ["基于图片判断：", "轻量连帽", "拇指孔护手", "插肩袖线"], "function": ["高倍防晒", "速干透气", "四向弹力", "可机洗"], "fabric": ["九成聚酯", "一成氨纶", "网眼针织", "轻薄快干"], "newness": ["低价连帽款", "拇指孔完整", "氨纶弹力明确", "环保背书突出"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔", "弹力面料", "分区透气", "低价切入"]}, {"kind": "爆品", "asin": "B096B61J7R", "brand": "baleaf", "rank": 2, "price": 19.99, "priceBucket": "$15-20", "rating": "4.6/32480", "sales": 786.8, "style": "连帽款", "homeImage": "assets/爆品_B096B61J7R_home.png", "detailImage": "assets/爆品_B096B61J7R_detail.png", "fit": ["基于图片判断：", "圆领基础款", "直筒宽松版", "插肩长袖"], "design": ["基于图片判断：", "无帽更日常", "无感领标", "平缝肩袖"], "function": ["高倍防晒", "轻薄速干", "吸湿排汗", "柔软透气"], "fabric": ["全聚酯面料", "轻量快干", "柔软触感", "透气排湿"], "newness": ["老链接强信任", "圆领基础标杆", "评价量最大", "无摩擦卖点强"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "弹力面料", "日常外穿"]}, {"kind": "爆品", "asin": "B083WCPYJS", "brand": "MAGCOMSEN", "rank": 3, "price": 9.99, "priceBucket": "$10以下", "rating": "4.6/3070", "sales": 607.9, "style": "连帽款", "homeImage": "assets/爆品_B083WCPYJS_home.png", "detailImage": "assets/爆品_B083WCPYJS_detail.png", "fit": ["基于图片判断：", "连帽修身版", "插肩长袖", "圆弧下摆"], "design": ["基于图片判断：", "轻薄连帽", "无抽绳设计", "插肩分割"], "function": ["高倍防晒", "轻量舒适", "快干排湿", "凉爽透气"], "fabric": ["全聚酯面料", "轻薄透气", "快干排湿", "微弹未明确"], "newness": ["极低价连帽", "黑色基础主推", "冲浪视觉强", "对比款清晰"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "低价切入"]}, {"kind": "爆品", "asin": "B0DQL1BR3T", "brand": "G Gradual", "rank": 4, "price": 14.98, "priceBucket": "$10-15", "rating": "4.6/955", "sales": 607, "style": "长袖款", "homeImage": "assets/爆品_B0DQL1BR3T_home.png", "detailImage": "assets/爆品_B0DQL1BR3T_detail.png", "fit": ["基于图片判断：", "圆领长袖款", "常规合身版", "插肩袖结构"], "design": ["基于图片判断：", "袖侧反光点", "腋下反光点", "胸前小标"], "function": ["高倍防晒", "吸湿排汗", "轻薄透气", "快干凉爽"], "fabric": ["全聚酯面料", "超软轻量", "透气快干", "吸湿排汗"], "newness": ["反光点突出", "渐变色更运动", "新品增长快", "安全场景明确"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "反光细节", "视觉差异"]}, {"kind": "爆品", "asin": "B0BXC9S2M7", "brand": "NORTHYARD", "rank": 5, "price": 16.99, "priceBucket": "$15-20", "rating": "4.6/2263", "sales": 601.1, "style": "连帽款", "homeImage": "assets/爆品_B0BXC9S2M7_home.png", "detailImage": "assets/爆品_B0BXC9S2M7_detail.png", "fit": ["基于图片判断：", "连帽宽松版", "长袖防晒款", "插肩袖结构"], "design": ["基于图片判断：", "轻量连帽", "侧身反光点", "腋下反光点"], "function": ["高倍防晒", "快干透气", "四向弹力", "减少摩擦"], "fabric": ["八八聚酯", "一二弹性纤维", "超软快干", "轻量透气"], "newness": ["类目第一背书", "连帽加反光", "弹力比例明确", "大码覆盖到四加"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "反光细节", "弹力面料"]}, {"kind": "爆品", "asin": "B0BRKXLQ63", "brand": "Roadbox", "rank": 6, "price": 14.99, "priceBucket": "$10-15", "rating": "4.6/8563", "sales": 553.2, "style": "连帽款", "homeImage": "assets/爆品_B0BRKXLQ63_home.png", "detailImage": "assets/爆品_B0BRKXLQ63_detail.png", "fit": ["基于图片判断：", "连帽自然版", "长袖宽松款", "插肩袖线"], "design": ["基于图片判断：", "轻薄连帽", "胸前小标", "无标签领口"], "function": ["高倍防晒", "透气快干", "轻量舒适", "护颈防晒"], "fabric": ["聚酯防晒布", "比例未明确", "轻薄透气", "吸湿快干"], "newness": ["Roadbox老款承接", "颜色矩阵最宽", "批量优惠明显", "连帽基础稳定"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护"]}, {"kind": "爆品", "asin": "B087J9WMB9", "brand": "Boladeci", "rank": 7, "price": 9.98, "priceBucket": "$10以下", "rating": "4.6/3975", "sales": 460.2, "style": "连帽款", "homeImage": "assets/爆品_B087J9WMB9_home.png", "detailImage": "assets/爆品_B087J9WMB9_detail.png", "fit": ["基于图片判断：", "圆领长袖款", "宽松直筒版", "插肩袖结构"], "design": ["基于图片判断：", "无标外观", "印刷领标", "平整袖口"], "function": ["高倍防晒", "轻薄透气", "快干面料", "微弹活动"], "fabric": ["全聚酯面料", "轻薄透气", "快干微弹", "防皱易洗"], "newness": ["极低价圆领", "无帽纯色基础", "印刷领标", "防皱易护理"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "低价切入"]}, {"kind": "爆品", "asin": "B0C9D6VTTH", "brand": "NORTHYARD", "rank": 8, "price": 19.99, "priceBucket": "$15-20", "rating": "4.6/2212", "sales": 323.7, "style": "长袖款", "homeImage": "assets/爆品_B0C9D6VTTH_home.png", "detailImage": "assets/爆品_B0C9D6VTTH_detail.png", "fit": ["基于图片判断：", "圆领长袖款", "常规运动版", "插肩袖结构"], "design": ["基于图片判断：", "袖侧反光点", "腋下反光点", "胸前小标"], "function": ["高倍防晒", "快干透气", "四向弹力", "减少摩擦"], "fabric": ["八八聚酯", "一二弹性纤维", "柔软轻量", "吸湿快干"], "newness": ["圆领反光款", "弹力比例明确", "运动安全定位", "客单更高"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "反光细节", "弹力面料"]}, {"kind": "爆品", "asin": "B0DSKTL8PB", "brand": "G Gradual", "rank": 9, "price": 14.99, "priceBucket": "$10-15", "rating": "4.5/511", "sales": 319.8, "style": "短袖款", "homeImage": "assets/爆品_B0DSKTL8PB_home.png", "detailImage": "assets/爆品_B0DSKTL8PB_detail.png", "fit": ["基于图片判断：", "圆领短袖款", "常规宽松版", "插肩袖结构"], "design": ["基于图片判断：", "渐变拼色", "袖侧反光点", "胸前山形标"], "function": ["高倍防晒", "吸湿排汗", "轻薄凉爽", "快干透气"], "fabric": ["全聚酯面料", "超软透气", "轻量快干", "吸湿排汗"], "newness": ["短袖渐变款", "夏季清爽定位", "短袖带反光", "新款跑量快"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "反光细节", "视觉差异"]}, {"kind": "爆品", "asin": "B087JSZ16L", "brand": "Boladeci", "rank": 10, "price": 9.98, "priceBucket": "$10以下", "rating": "4.7/1378", "sales": 301.2, "style": "连帽款", "homeImage": "assets/爆品_B087JSZ16L_home.png", "detailImage": "assets/爆品_B087JSZ16L_detail.png", "fit": ["基于图片判断：", "连帽长袖款", "宽松舒适版", "插肩袖结构"], "design": ["基于图片判断：", "防晒连帽", "拇指孔护手", "印刷领标"], "function": ["高倍防晒", "四向弹力", "轻薄快干", "亲肤舒适"], "fabric": ["全聚酯面料", "柔软轻量", "四向弹力", "吸湿快干"], "newness": ["低价全防护", "连帽拇指孔齐", "无大标设计", "好评率更高"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔", "弹力面料", "低价切入"]}, {"kind": "爆品", "asin": "B09YRGCMLH", "brand": "Willit", "rank": 11, "price": 14.99, "priceBucket": "$10-15", "rating": "4.6/4076", "sales": 286.7, "style": "短袖款", "homeImage": "assets/爆品_B09YRGCMLH_home.png", "detailImage": "assets/爆品_B09YRGCMLH_detail.png", "fit": ["基于图片判断：", "圆领短袖款", "宽松水上版", "插肩袖结构"], "design": ["基于图片判断：", "胸前小标", "平缝拼接", "纯色和印花"], "function": ["高倍防晒", "湿后仍防晒", "不吸水厚重", "快干排湿"], "fabric": ["全聚酯面料", "轻量快干", "不易吸水", "亲肤舒适"], "newness": ["水上短袖定位", "湿后仍防晒", "环保背书", "短袖防摩擦"], "tags": ["高倍防晒", "快干排湿", "宽松版型"]}, {"kind": "爆品", "asin": "B0DQC8QTPL", "brand": "4ucycling", "rank": 12, "price": 9.99, "priceBucket": "$10以下", "rating": "4.6/614", "sales": 261.7, "style": "连帽款", "homeImage": "assets/爆品_B0DQC8QTPL_home.png", "detailImage": "assets/爆品_B0DQC8QTPL_detail.png", "fit": ["基于图片判断：", "圆领短袖款", "宽松直筒版", "插肩袖结构"], "design": ["基于图片判断：", "侧腰反光点", "纯色多色", "无帽简洁"], "function": ["高倍防晒", "轻薄透气", "快干面料", "反光安全"], "fabric": ["聚酯防晒布", "比例未明确", "轻量透气", "可机洗"], "newness": ["最低价短袖", "侧腰反光点", "基础纯色", "轻量耐洗"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "反光细节", "低价切入"]}, {"kind": "爆品", "asin": "B08YWSPS51", "brand": "isnowood", "rank": 13, "price": 9.49, "priceBucket": "$10以下", "rating": "4.7/3630", "sales": 245.6, "style": "连帽款", "homeImage": "assets/爆品_B08YWSPS51_home.png", "detailImage": "assets/爆品_B08YWSPS51_detail.png", "fit": ["基于图片判断：", "连帽长袖款", "自然宽松版", "插肩袖结构"], "design": ["基于图片判断：", "帽子护颈", "拇指孔护手", "无感领标"], "function": ["高倍防晒", "透气快干", "吸湿排汗", "头手防护"], "fabric": ["聚酯防晒布", "比例未明确", "万针工艺", "透气快干"], "newness": ["头手全防护", "万针工艺表达", "服务承诺明显", "钓鱼场景强"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔"]}, {"kind": "爆品", "asin": "B0DMSDQ7HG", "brand": "Roadbox", "rank": 14, "price": 9.35, "priceBucket": "$10以下", "rating": "4.6/799", "sales": 214.3, "style": "短袖款", "homeImage": "assets/爆品_B0DMSDQ7HG_home.png", "detailImage": "assets/爆品_B0DMSDQ7HG_detail.png", "fit": ["基于图片判断：", "圆领短袖款", "两件组合装", "宽松运动版"], "design": ["基于图片判断：", "双色套装", "胸前小标", "平缝拼接"], "function": ["高倍防晒", "快干排湿", "轻薄透气", "四向弹力"], "fabric": ["全聚酯面料", "含回收材料", "轻量透气", "吸湿快干"], "newness": ["两件装组合", "单价锚点低", "回收材料背书", "短袖补货属性"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "弹力面料", "套装组合"]}, {"kind": "爆品", "asin": "B07S49P312", "brand": "Willit", "rank": 15, "price": 16.14, "priceBucket": "$15-20", "rating": "4.5/14732", "sales": 181, "style": "连帽款", "homeImage": "assets/爆品_B07S49P312_home.png", "detailImage": "assets/爆品_B07S49P312_detail.png", "fit": ["基于图片判断：", "连帽宽松版", "高领护颈口", "拇指孔长袖"], "design": ["基于图片判断：", "三片式连帽", "拇指孔护手", "无标签领口"], "function": ["高倍防晒", "冷感透气", "吸湿快干", "轻量舒适"], "fabric": ["全聚酯面料", "高透气快干", "凉感轻量", "吸湿排汗"], "newness": ["高领帽护颈", "老品评价沉淀", "冷感表达强", "日常穿着友好"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔", "日常外穿"]}, {"kind": "爆品", "asin": "B08Z31CGYG", "brand": "WELIGU", "rank": 16, "price": 26.99, "priceBucket": "$25以上", "rating": "4.6/4287", "sales": 178.9, "style": "连帽款", "homeImage": "assets/爆品_B08Z31CGYG_home.png", "detailImage": "assets/爆品_B08Z31CGYG_detail.png", "fit": ["基于图片判断：", "连帽长袖款", "宽松防晒版", "带拇指孔"], "design": ["基于图片判断：", "印花图案强", "帽子护颈", "拇指孔护手"], "function": ["高倍防晒", "超软快干", "轻量透气", "全方位防护"], "fabric": ["全聚酯面料", "柔软快干", "弹性提升", "透气轻量"], "newness": ["印花识别强", "大码到五加", "高客单印花", "钓鱼礼品属性"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔", "视觉差异"]}, {"kind": "爆品", "asin": "B0BX5S7X87", "brand": "TELALEO", "rank": 17, "price": 23.99, "priceBucket": "$20-25", "rating": "4.6/2731", "sales": 175.5, "style": "连帽款", "homeImage": "assets/爆品_B0BX5S7X87_home.png", "detailImage": "assets/爆品_B0BX5S7X87_detail.png", "fit": ["基于图片判断：", "三件连帽款", "紧身贴合版", "长袖拇指孔"], "design": ["基于图片判断：", "三色组合装", "连帽护颈", "拇指孔护手"], "function": ["高倍防晒", "透气轻薄", "快干排湿", "帽孔全防护"], "fabric": ["全聚酯面料", "轻薄柔软", "透气快干", "排湿降温"], "newness": ["三件装超值", "紧身连帽款", "套装色实用", "单件价最低"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔", "套装组合"]}, {"kind": "爆品", "asin": "B0CRRT3VPT", "brand": "Palmyth", "rank": 18, "price": 21.9, "priceBucket": "$20-25", "rating": "4.7/1752", "sales": 169.3, "style": "连帽款", "homeImage": "assets/爆品_B0CRRT3VPT_home.png", "detailImage": "assets/爆品_B0CRRT3VPT_detail.png", "fit": ["基于图片判断：", "圆领长袖款", "宽松钓鱼版", "插肩袖结构"], "design": ["基于图片判断：", "背部大印花", "袖部图案条", "钓鱼主题强"], "function": ["高倍防晒", "轻薄透气", "快干排湿", "钓鱼场景"], "fabric": ["防晒面料", "成分未明确", "轻量快干", "透气排湿"], "newness": ["钓鱼图案垂类", "背部大印花", "礼品属性强", "海钓人群精准"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "视觉差异"]}, {"kind": "爆品", "asin": "B0BXCBDZ8C", "brand": "NORTHYARD", "rank": 19, "price": 16.99, "priceBucket": "$15-20", "rating": "4.5/1724", "sales": 163.9, "style": "连帽款", "homeImage": "assets/爆品_B0BXCBDZ8C_home.png", "detailImage": "assets/爆品_B0BXCBDZ8C_detail.png", "fit": ["基于图片判断：", "圆领短袖款", "常规运动版", "直筒下摆"], "design": ["基于图片判断：", "袖侧条纹", "胸前小标", "纯色简洁"], "function": ["高倍防晒", "四向弹力", "轻薄快干", "平缝舒适"], "fabric": ["八八聚酯", "一二弹性纤维", "超软轻量", "吸湿快干"], "newness": ["短袖弹力款", "白色基础耐卖", "袖侧条纹识别", "品牌矩阵承接"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "弹力面料"]}, {"kind": "爆品", "asin": "B08LCW2TX5", "brand": "LAFROI", "rank": 20, "price": 19.99, "priceBucket": "$15-20", "rating": "4.6/18110", "sales": 160.2, "style": "长袖款", "homeImage": "assets/爆品_B08LCW2TX5_home.png", "detailImage": "", "fit": ["基于图片判断：", "紧身压缩版", "圆领长袖款", "插肩袖结构"], "design": ["基于图片判断：", "单袖大印花", "撞色拼接强", "袖口品牌字"], "function": ["高倍防晒", "肌肉支撑", "轻量快干", "多运动适用"], "fabric": ["八成尼龙", "二成氨纶", "高弹压缩", "排湿透气"], "newness": ["压缩版型独立", "尼龙氨纶高弹", "单袖图案强", "搏击水上两用"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "弹力面料", "视觉差异"]}, {"kind": "新品", "asin": "B0DX5PCX5M", "brand": "NORTHYARD", "rank": 21, "price": 21.99, "priceBucket": "$20-25", "rating": "4.7/575", "sales": 160, "style": "长袖款", "homeImage": "assets/新品_B0DX5PCX5M_home.png", "detailImage": "assets/新品_B0DX5PCX5M_detail.png", "fit": ["常规直筒版", "长袖圆领", "后背拼网眼", "运动宽松感"], "design": ["背部鱼图印花", "后背透气片", "无领标设计", "平锁缝减少磨"], "function": ["高倍防晒", "快干排湿", "背部强透气", "钓鱼航海场景"], "fabric": ["前片涤氨混纺", "后片网眼涤氨", "四向弹力", "轻薄快干"], "newness": ["新面料：背网眼", "新视觉：海钓图", "新卖点：分区透气", "新场景：航海钓鱼"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "弹力面料", "分区透气", "视觉差异"]}, {"kind": "新品", "asin": "B0DQWR54D4", "brand": "Roadbox", "rank": 24, "price": 8.49, "priceBucket": "$10以下", "rating": "4.6/322", "sales": 145.1, "style": "短袖款", "homeImage": "assets/新品_B0DQWR54D4_home.png", "detailImage": "assets/新品_B0DQWR54D4_detail.png", "fit": ["短袖圆领", "微宽松版", "插肩袖结构", "基础泳衫版"], "design": ["反光袖标", "撞色包边", "平锁缝线", "圆领防磨"], "function": ["高倍防晒", "快干透气", "反光安全", "亲民低价"], "fabric": ["全涤面料", "轻薄快干", "四向弹力", "柔软贴肤"], "newness": ["新价格：低价款", "新视觉：撞色线", "新功能：反光标", "新场景：冲浪"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "反光细节", "弹力面料", "低价切入"]}, {"kind": "新品", "asin": "B0DP6PRB7K", "brand": "PINSPARK", "rank": 25, "price": 18.99, "priceBucket": "$15-20", "rating": "4.6/433", "sales": 144.8, "style": "连帽款", "homeImage": "assets/新品_B0DP6PRB7K_home.png", "detailImage": "assets/新品_B0DP6PRB7K_detail.png", "fit": ["连帽长袖", "面罩一体", "略宽松版", "户外包覆版"], "design": ["防晒面罩", "拇指孔袖口", "侧边网眼", "隐藏拉链袋"], "function": ["高倍防晒", "遮脸护颈", "防虫防尘", "夏季通风"], "fabric": ["全涤面料", "排湿快干", "侧片透气", "冷感触感"], "newness": ["新款式：带面罩", "新功能：拇指孔", "新细节：拉链袋", "新颜色：荧光绿"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔", "分区透气"]}, {"kind": "新品", "asin": "B0DRY2QZPZ", "brand": "Pudolla", "rank": 27, "price": 14.99, "priceBucket": "$10-15", "rating": "4.5/545", "sales": 133.1, "style": "连帽款", "homeImage": "assets/新品_B0DRY2QZPZ_home.png", "detailImage": "assets/新品_B0DRY2QZPZ_detail.png", "fit": ["连帽长袖", "钓鱼宽松版", "插肩活动袖", "遮颈版型"], "design": ["拇指孔袖口", "迷彩图案", "无领标设计", "平锁缝线"], "function": ["高倍防晒", "护手护颈", "快干排湿", "钓鱼场景强"], "fabric": ["全涤面料", "轻薄透气", "快干排汗", "柔软不闷"], "newness": ["新视觉：户外迷彩", "新功能：护手帽", "新场景：钓鱼", "新价格：中低价"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔", "低价切入", "视觉差异"]}, {"kind": "新品", "asin": "B0F2N96RC9", "brand": "Runhit", "rank": 28, "price": 14.99, "priceBucket": "$10-15", "rating": "4.7/539", "sales": 116.7, "style": "长袖款", "homeImage": "assets/新品_B0F2N96RC9_home.png", "detailImage": "assets/新品_B0F2N96RC9_detail.png", "fit": ["长袖圆领", "宽松直筒", "基础运动版", "袖长覆盖足"], "design": ["侧腰反光点", "圆领无束缚", "平锁缝减少磨", "简洁小标识"], "function": ["高倍防晒", "快干排湿", "反光安全", "全天舒适"], "fabric": ["全涤面料", "再生材料卖点", "轻量透气", "柔软弹力"], "newness": ["新卖点：环保材", "新功能：反光点", "新款式：极简", "新价格：中低价"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "反光细节", "弹力面料", "低价切入"]}, {"kind": "新品", "asin": "B0F2FWBK16", "brand": "Runhit", "rank": 29, "price": 14.99, "priceBucket": "$10-15", "rating": "4.6/486", "sales": 113.4, "style": "连帽款", "homeImage": "assets/新品_B0F2FWBK16_home.png", "detailImage": "assets/新品_B0F2FWBK16_detail.png", "fit": ["轻薄连帽版", "长袖遮颈", "宽松活动版", "户外运动版"], "design": ["连帽护颈", "拇指孔袖口", "网眼透气孔", "平锁缝线"], "function": ["高倍防晒", "头颈手防护", "快干透气", "热天不闷"], "fabric": ["全涤面料", "再生材料卖点", "轻量快干", "透气排湿"], "newness": ["新功能：帽拇指孔", "新卖点：环保材", "新包装：在品包装", "新价格：低价"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔", "分区透气", "低价切入"]}, {"kind": "新品", "asin": "B0FXX6NTNW", "brand": "COOFANDY", "rank": 31, "price": 9.98, "priceBucket": "$10以下", "rating": "4.6/67", "sales": 104.2, "style": "短袖款", "homeImage": "assets/新品_B0FXX6NTNW_home.png", "detailImage": "assets/新品_B0FXX6NTNW_detail.png", "fit": ["短袖圆领", "日常恤版", "常规宽松", "可外穿版"], "design": ["下摆侧开叉", "无大标设计", "短袖简洁版", "休闲化外观"], "function": ["高倍防晒", "快干透气", "水陆两穿", "日常可搭配"], "fabric": ["锦纶氨纶混纺", "弹力更明显", "轻薄高性能", "机洗易护理"], "newness": ["新面料：锦氨", "新款式：日常恤", "新细节：侧开叉", "新价格：折扣强"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "弹力面料", "日常外穿", "低价切入"]}, {"kind": "新品", "asin": "B0GL5LMGVQ", "brand": "G Gradual", "rank": 32, "price": 16.99, "priceBucket": "$15-20", "rating": "4.9/32", "sales": 96, "style": "短袖款", "homeImage": "assets/新品_B0GL5LMGVQ_home.png", "detailImage": "assets/新品_B0GL5LMGVQ_detail.png", "fit": ["短袖圆领", "宽松常规版", "沙滩运动版", "大码覆盖宽"], "design": ["纯色小标识", "圆领不勒脖", "下摆自然垂", "简洁可外穿"], "function": ["高倍防晒", "快干排湿", "不易摩擦", "多场景通用"], "fabric": ["涤氨混纺", "高弹不束缚", "轻薄快干", "柔软贴肤"], "newness": ["新面料：涤氨", "新色系：低饱和", "新卖点：不磨肤", "新场景：水陆两穿"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "日常外穿", "视觉差异"]}, {"kind": "新品", "asin": "B0F761XL19", "brand": "Quiksilver", "rank": 33, "price": 20, "priceBucket": "$20-25", "rating": "4.5/141", "sales": 94.7, "style": "短袖款", "homeImage": "assets/新品_B0F761XL19_home.png", "detailImage": "assets/新品_B0F761XL19_detail.png", "fit": ["短袖圆领", "品牌基础版", "常规贴身", "冲浪恤版型"], "design": ["胸前品牌图", "平锁缝防磨", "热带图案可选", "短袖易搭配"], "function": ["高倍防晒", "四向弹力", "排湿快干", "品牌信任感"], "fabric": ["涤纶氨纶混纺", "柔软轻量", "弹力较好", "机洗易护理"], "newness": ["新视觉：品牌图案", "新价格：高客单", "新卖点：品牌背书", "新场景：冲浪"], "tags": ["高倍防晒", "快干排湿", "宽松版型", "弹力面料", "视觉差异"]}, {"kind": "新品", "asin": "B0DR5MJ2DZ", "brand": "Roadbox", "rank": 34, "price": 14.99, "priceBucket": "$10-15", "rating": "4.6/302", "sales": 91, "style": "长袖款", "homeImage": "assets/新品_B0DR5MJ2DZ_home.png", "detailImage": "assets/新品_B0DR5MJ2DZ_detail.png", "fit": ["长袖圆领", "渐变修身版", "插肩活动袖", "水上运动版"], "design": ["渐变色设计", "撞色下摆线", "平锁缝线", "圆领无领标"], "function": ["高倍防晒", "快干透气", "四向弹力", "显瘦视觉"], "fabric": ["防晒涤纶", "轻薄快干", "弹力舒适", "机洗易护理"], "newness": ["新颜色：渐变", "新视觉：海滩感", "新卖点：显瘦", "新价格：中价"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "弹力面料", "视觉差异"]}, {"kind": "新品", "asin": "B0G7D4V17Z", "brand": "G Gradual", "rank": 39, "price": 23.99, "priceBucket": "$20-25", "rating": "1.0/1", "sales": 79.8, "style": "短袖款", "homeImage": "assets/新品_B0G7D4V17Z_home.png", "detailImage": "assets/新品_B0G7D4V17Z_detail.png", "fit": ["短袖圆领", "常规宽松版", "插肩袖结构", "活动空间大"], "design": ["短袖渐变色", "平锁缝线", "无领标设计", "袖山拼接线"], "function": ["高倍防晒", "快干排湿", "减少摩擦", "休闲运动兼容"], "fabric": ["全涤面料", "高密针织", "轻量快干", "柔软不磨"], "newness": ["新颜色：军绿渐变", "新视觉：动感色", "新卖点：大活动量", "新价格：偏高"], "tags": ["高倍防晒", "快干排湿", "宽松版型", "日常外穿", "视觉差异"]}, {"kind": "新品", "asin": "B0DNZHNH8J", "brand": "COOFANDY", "rank": 40, "price": 14.99, "priceBucket": "$10-15", "rating": "4.6/321", "sales": 78.1, "style": "短袖款", "homeImage": "assets/新品_B0DNZHNH8J_home.png", "detailImage": "assets/新品_B0DNZHNH8J_detail.png", "fit": ["短袖圆领", "宽松运动版", "插肩袖结构", "日常可外穿"], "design": ["细纹理面料", "平锁拼缝", "无领标设计", "简洁纯色"], "function": ["高倍防晒", "快干不闷", "水陆两穿", "运动休闲兼顾"], "fabric": ["涤纶氨纶混纺", "弹性高", "轻薄透气", "机洗易护理"], "newness": ["新面料：高氨纶", "新款式：外穿恤", "新卖点：休闲化", "新价格：中价"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "弹力面料", "日常外穿"]}, {"kind": "新品", "asin": "B0G7D53PJ5", "brand": "G Gradual", "rank": 41, "price": 14.99, "priceBucket": "$10-15", "rating": "4.4/44", "sales": 72.1, "style": "短袖款", "homeImage": "assets/新品_B0G7D53PJ5_home.png", "detailImage": "assets/新品_B0G7D53PJ5_detail.png", "fit": ["短袖圆领", "常规宽松", "插肩活动袖", "沙滩运动版"], "design": ["面料大图前置", "渐变色款", "平锁缝线", "小标低调"], "function": ["高倍防晒", "快干排湿", "轻量不闷", "动感配色"], "fabric": ["全涤面料", "高密针织", "轻薄快干", "排湿透气"], "newness": ["新视觉：面料首图", "新颜色：渐变黑蓝", "新卖点：轻量快干", "新价格：低中价"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "视觉差异"]}, {"kind": "新品", "asin": "B0G7158935", "brand": "BOOJO", "rank": 43, "price": 8.99, "priceBucket": "$10以下", "rating": "4.5/118", "sales": 70.4, "style": "连帽款", "homeImage": "assets/新品_B0G7158935_home.png", "detailImage": "assets/新品_B0G7158935_detail.png", "fit": ["连帽长袖", "宽松防晒版", "拇指孔袖", "大码覆盖"], "design": ["无抽绳连帽", "拇指孔护手", "插肩袖结构", "纯色极简"], "function": ["高倍防晒", "护颈护手", "快干透气", "低价拉新"], "fabric": ["全涤面料", "轻薄透气", "快干排湿", "夏季不闷"], "newness": ["新价格：极低价", "新款式：纯色帽衫", "新功能：护手", "新色系：基础色"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔", "低价切入"]}, {"kind": "新品", "asin": "B0DWWZXQNN", "brand": "Pudolla", "rank": 45, "price": 14.99, "priceBucket": "$10-15", "rating": "4.7/303", "sales": 69, "style": "长袖款", "homeImage": "assets/新品_B0DWWZXQNN_home.png", "detailImage": "assets/新品_B0DWWZXQNN_detail.png", "fit": ["长袖圆领", "宽松直筒", "插肩袖结构", "轻量防晒版"], "design": ["简洁小标识", "平锁缝线", "无领标设计", "袖口基础收边"], "function": ["高倍防晒", "快干透气", "抗滑袖口", "多尺码覆盖"], "fabric": ["全涤面料", "轻薄柔软", "排湿快干", "透气不闷"], "newness": ["新卖点：抗滑袖口", "新款式：基础长袖", "新价格：低价", "新尺码：宽覆盖"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "低价切入"]}, {"kind": "新品", "asin": "B0DZLZZSBH", "brand": "Pudolla", "rank": 49, "price": 14.99, "priceBucket": "$10-15", "rating": "4.5/210", "sales": 64.3, "style": "短袖款", "homeImage": "assets/新品_B0DZLZZSBH_home.png", "detailImage": "assets/新品_B0DZLZZSBH_detail.png", "fit": ["短袖圆领", "经典宽松版", "插肩袖结构", "基础运动恤"], "design": ["胸前山形标", "平锁拼缝", "侧标小织唛", "简洁纯色"], "function": ["高倍防晒", "四向弹力", "快干排湿", "大码覆盖"], "fabric": ["全涤面料", "轻量透气", "柔软快干", "弹力舒适"], "newness": ["新款式：基础短袖", "新卖点：大码", "新视觉：小户外标", "新价格：中低价"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "弹力面料", "低价切入"]}, {"kind": "新品", "asin": "B0FCBL9JBM", "brand": "Roadbox", "rank": 50, "price": 9.99, "priceBucket": "$10以下", "rating": "4.6/291", "sales": 62.5, "style": "长袖款", "homeImage": "assets/新品_B0FCBL9JBM_home.png", "detailImage": "assets/新品_B0FCBL9JBM_detail.png", "fit": ["长袖宽松版", "圆领插肩袖", "大码覆盖", "户外活动版"], "design": ["袖部反光点", "平锁缝线", "无领标设计", "细网纹表面"], "function": ["高倍防晒", "排汗透气", "低价引流", "反光安全"], "fabric": ["防晒涤纶", "超软轻量", "快干排汗", "透气舒适"], "newness": ["新价格：低价引流", "新功能：反光点", "新卖点：超软", "新场景：户外健身"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "反光细节", "低价切入"]}, {"kind": "新品", "asin": "B0F75SQTG6", "brand": "Quiksilver", "rank": 52, "price": 32, "priceBucket": "$25以上", "rating": "4.6/136", "sales": 57.4, "style": "长袖款", "homeImage": "assets/新品_B0F75SQTG6_home.png", "detailImage": "", "fit": ["长袖圆领", "品牌常规版", "不贴身剪裁", "冲浪防晒版"], "design": ["胸前大标识", "平锁缝防磨", "纯色户外风", "袖长足够"], "function": ["高倍防晒", "四向弹力", "排湿快干", "品牌溢价"], "fabric": ["涤纶氨纶混纺", "柔软轻量", "弹力较好", "机洗易护理"], "newness": ["新价格：最高客单", "新卖点：品牌溢价", "新视觉：大标识", "新场景：冲浪"], "tags": ["高倍防晒", "快干排湿", "宽松版型", "弹力面料"]}, {"kind": "新品", "asin": "B0GGS7PSBY", "brand": "G Gradual", "rank": 53, "price": 23.99, "priceBucket": "$20-25", "rating": "4.7/41", "sales": 56.6, "style": "连帽款", "homeImage": "assets/新品_B0GGS7PSBY_home.png", "detailImage": "assets/新品_B0GGS7PSBY_detail.png", "fit": ["连帽长袖", "宽松防晒版", "插肩袖结构", "拇指孔袖"], "design": ["拇指孔袖口", "袖部反光点", "轻薄连帽", "无抽绳设计"], "function": ["高倍防晒", "快干透气", "护颈护手", "反光安全"], "fabric": ["全涤面料", "轻薄透气", "排湿快干", "柔软不闷"], "newness": ["新功能：帽拇指孔", "新功能：反光点", "新价格：偏高", "新色系：大地色"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "连帽防护", "拇指孔", "反光细节"]}, {"kind": "新品", "asin": "B0G6K2PMJC", "brand": "GEEK LIGHTING", "rank": 55, "price": 19.99, "priceBucket": "$15-20", "rating": "4.6/61", "sales": 54, "style": "短袖款", "homeImage": "assets/新品_B0G6K2PMJC_home.png", "detailImage": "assets/新品_B0G6K2PMJC_detail.png", "fit": ["短袖圆领", "三件套基础版", "常规宽松", "训练恤版型"], "design": ["多件组合图", "圆领基础款", "无大标识", "平直下摆"], "function": ["高倍防晒", "快干透气", "三件高性价比", "运动日常两用"], "fabric": ["全涤面料", "轻量快干", "透气排湿", "柔软舒适"], "newness": ["新包装：三件装", "新价格：低件单", "新卖点：轮换穿", "新色组：浅色组"], "tags": ["高倍防晒", "快干排湿", "轻薄透气", "宽松版型", "日常外穿", "低价切入", "套装组合"]}], "topTags": [{"name": "高倍防晒", "value": 20}, {"name": "快干排湿", "value": 20}, {"name": "轻薄透气", "value": 19}, {"name": "宽松版型", "value": 19}, {"name": "连帽防护", "value": 14}, {"name": "拇指孔", "value": 6}, {"name": "弹力面料", "value": 8}, {"name": "分区透气", "value": 1}, {"name": "反光细节", "value": 5}, {"name": "日常外穿", "value": 2}, {"name": "低价切入", "value": 5}, {"name": "视觉差异", "value": 5}, {"name": "套装组合", "value": 2}], "newTags": [{"name": "高倍防晒", "value": 20}, {"name": "快干排湿", "value": 20}, {"name": "轻薄透气", "value": 17}, {"name": "宽松版型", "value": 19}, {"name": "连帽防护", "value": 5}, {"name": "拇指孔", "value": 5}, {"name": "弹力面料", "value": 9}, {"name": "分区透气", "value": 3}, {"name": "反光细节", "value": 4}, {"name": "日常外穿", "value": 5}, {"name": "低价切入", "value": 10}, {"name": "视觉差异", "value": 7}, {"name": "套装组合", "value": 1}], "claims": [{"k": "市场体量", "v": "315万件+", "n": "近一年销量"}, {"k": "同比增速", "v": "+22.7%", "n": "需求仍在增长"}, {"k": "主推价格", "v": "$15.99-19.99", "n": "效率优先带"}, {"k": "新品款效", "v": "0.43", "n": "谨慎可进"}], "hotSummary": ["核心公式：高倍防晒 + 轻薄透气 + 快干排汗 + 多场景适用 + 日常化视觉", "版型主流：圆领基础款与连帽全防护款双线并行", "细节逻辑：防护覆盖、活动自由、低摩擦、日常化", "面料主流：聚酯快干体系，弹力、凉感、环保是升级点"], "newSummary": ["新品主线：日常UPF T恤化、户外全防护化、低价/套装化", "款式更新：短袖和低Logo外穿款增加，弱化传统冲浪衣感", "功能更新：连帽、拇指孔、面罩、反光点强化场景差异", "面料更新：弹力化、环保化、后背网眼/分区透气"]};
+    const $ = id => document.getElementById(id);
+    const state = {q:'',kind:'',brand:'',style:'',price:'',tag:''};
+    const uniq = arr => [...new Set(arr.filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),'zh-CN'));
+
+    function init() {
+      $('hotFramework').src = DATA.framework.hot;
+      $('newFramework').src = DATA.framework.new;
+      $('claims').innerHTML = DATA.claims.map(c => `<div class="metric"><span>${c.k}</span><strong>${c.v}</strong><span>${c.n}</span></div>`).join('');
+      $('hotSummary').innerHTML = DATA.hotSummary.map(x => `<li>${x}</li>`).join('');
+      $('newSummary').innerHTML = DATA.newSummary.map(x => `<li>${x}</li>`).join('');
+      bars('hotBars', DATA.topTags, false);
+      bars('newBars', DATA.newTags, true);
+      samples('hotSamples', DATA.products.filter(p=>p.kind==='爆品').slice(0,4));
+      samples('newSamples', DATA.products.filter(p=>p.kind==='新品').slice(0,4));
+      fill('brand', uniq(DATA.products.map(p=>p.brand)));
+      fill('style', uniq(DATA.products.map(p=>p.style)));
+      fill('price', uniq(DATA.products.map(p=>p.priceBucket)));
+      fill('tag', uniq(DATA.products.flatMap(p=>p.tags)));
+      ['q','kind','brand','style','price','tag'].forEach(id => $(id).addEventListener(id==='q'?'input':'change', () => {state[id]=$(id).value.trim(); render();}));
+      $('closeModal').addEventListener('click', close);
+      $('modal').addEventListener('click', e => { if(e.target.id==='modal') close(); });
+      document.addEventListener('keydown', e => { if(e.key==='Escape') close(); });
+      render();
+    }
+    function fill(id, values) {
+      const el=$(id);
+      values.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v; el.appendChild(o); });
+    }
+    function bars(id, rows, isNew) {
+      const max = Math.max(...rows.map(r=>r.value), 1);
+      $(id).innerHTML = rows.map(r => `<div class="row"><div>${r.name}</div><div class="track"><div class="fill" style="width:${Math.round(r.value/max*100)}%"></div></div><div>${r.value}</div></div>`).join('');
+    }
+    function text(p) { return [p.asin,p.brand,p.kind,p.style,p.priceBucket,...p.tags,...p.fit,...p.design,...p.function,...p.fabric,...p.newness].join(' '); }
+    function filtered() {
+      return DATA.products.filter(p => {
+        if(state.kind && p.kind!==state.kind) return false;
+        if(state.brand && p.brand!==state.brand) return false;
+        if(state.style && p.style!==state.style) return false;
+        if(state.price && p.priceBucket!==state.price) return false;
+        if(state.tag && !p.tags.includes(state.tag)) return false;
+        if(state.q && !text(p).toLowerCase().includes(state.q.toLowerCase())) return false;
+        return true;
+      }).sort((a,b)=>a.kind.localeCompare(b.kind,'zh-CN') || a.rank-b.rank);
+    }
+    function samples(id, rows) { $(id).innerHTML = rows.map(card).join(''); bindOpen(); }
+    function render() {
+      const rows = filtered();
+      $('count').textContent = `当前显示 ${rows.length} 个产品`;
+      $('grid').innerHTML = rows.length ? rows.map(card).join('') : '<div class="empty">没有符合筛选条件的产品</div>';
+      bindOpen();
+    }
+    function bindOpen() { document.querySelectorAll('[data-open]').forEach(b => b.onclick = () => open(b.dataset.open)); }
+    function card(p) {
+      const pts=[...p.function.slice(0,2),...p.newness.slice(0,2)].slice(0,4);
+      return `<article class="card">
+        <div class="photo"><img src="${p.homeImage}" alt="${p.brand} ${p.asin} 主页图" loading="lazy"></div>
+        <div class="body">
+          <div class="meta"><span>${p.asin}</span><span>${p.kind}</span></div>
+          <div class="name"><span>${p.brand}</span><span class="price">$${p.price || '-'}</span></div>
+          <div class="meta"><span>${p.style}</span><span>${p.priceBucket}</span></div>
+          <div class="tags">${p.tags.slice(0,5).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          <div class="points">${pts.map(x=>`<div>· ${x}</div>`).join('')}</div>
+          <button class="open" data-open="${p.asin}|${p.kind}">查看图片与拆解</button>
+        </div>
+      </article>`;
+    }
+    function open(key) {
+      const [asin,kind]=key.split('|');
+      const p=DATA.products.find(x=>x.asin===asin && x.kind===kind);
+      if(!p) return;
+      $('modalTitle').innerHTML = `<span>${p.brand} / ${p.asin}</span><span class="pill">${p.kind}</span>`;
+      $('modalSub').textContent = `${p.style} · $${p.price || '-'} · ${p.priceBucket} · ${p.rating || ''}`;
+      $('modalImg').src = p.detailImage || p.homeImage;
+      const blocks=[['版型',p.fit],['设计细节',p.design],['功能卖点',p.function],['面料',p.fabric],[p.kind==='新品'?'新品方向':'差异/启发',p.newness],['识别标签',p.tags]];
+      $('modalDetails').innerHTML = blocks.map(([t,items])=>`<div class="detail-box"><h3>${t}</h3><ul>${(items.length?items:['未明确提及']).map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+      $('modal').classList.add('show');
+    }
+    function close() { $('modal').classList.remove('show'); $('modalImg').src=''; }
+    init();
+  </script>
+</body>
+</html>

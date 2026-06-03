@@ -1,0 +1,1263 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tailong 男士防晒衣市场调研报告</title>
+  <style>
+    :root {
+      --paper: #f6f8f4;
+      --panel: #ffffff;
+      --ink: #142234;
+      --muted: #627080;
+      --line: #d8e0e5;
+      --navy: #0d2d53;
+      --teal: #18716b;
+      --blue: #2a78a8;
+      --orange: #df8a24;
+      --soft-blue: #eaf3f7;
+      --soft-teal: #e8f3ef;
+      --soft-orange: #fff1dd;
+      --shadow: 0 18px 44px rgba(18, 34, 52, .10);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(13,45,83,.045) 1px, transparent 1px),
+        linear-gradient(rgba(13,45,83,.045) 1px, transparent 1px),
+        var(--paper);
+      background-size: 36px 36px;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(246, 248, 244, .92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .topbar-inner {
+      width: min(1280px, calc(100% - 36px));
+      margin: 0 auto;
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      color: var(--navy);
+      white-space: nowrap;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      font-size: 13px;
+      color: #314354;
+    }
+
+    .nav a {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      padding: 7px 10px;
+      border-radius: 6px;
+    }
+
+    .page {
+      width: min(1280px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 640px;
+      display: grid;
+      grid-template-columns: minmax(0, .95fr) minmax(420px, 1.05fr);
+      gap: 34px;
+      align-items: center;
+      padding: 54px 0 32px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 36px;
+      height: 3px;
+      background: var(--orange);
+    }
+
+    h1, h2, h3 { line-height: 1.12; letter-spacing: 0; }
+
+    h1 {
+      margin: 18px 0;
+      font-size: clamp(36px, 6vw, 76px);
+      color: var(--navy);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 4.2vw, 54px);
+      color: var(--navy);
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      color: #102947;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: 0 0 22px;
+      color: #394a59;
+      font-size: 18px;
+    }
+
+    .hero-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image {
+      border-radius: 7px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .hero-image img { aspect-ratio: 4 / 3; object-fit: cover; }
+
+    .caption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--teal);
+      border-radius: 8px;
+      padding: 14px;
+      box-shadow: 0 10px 28px rgba(18,34,52,.05);
+    }
+
+    .metric b {
+      display: block;
+      color: var(--navy);
+      font-size: 28px;
+      line-height: 1.05;
+      margin-bottom: 6px;
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .subsection {
+      margin-top: 22px;
+    }
+
+    .subsection-title {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin: 0 0 14px;
+      color: var(--navy);
+      font-size: 24px;
+      font-weight: 900;
+    }
+
+    .subsection-title small {
+      color: var(--teal);
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .funnel {
+      display: grid;
+      gap: 10px;
+    }
+
+    .funnel-row {
+      display: grid;
+      grid-template-columns: minmax(160px, .85fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+    }
+
+    .funnel-row strong {
+      color: #102947;
+      font-size: 14px;
+    }
+
+    .funnel-row .bar {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 6px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .note-box {
+      border: 1px solid #f0b45d;
+      background: #fff4df;
+      border-radius: 8px;
+      padding: 16px;
+      color: #6b4313;
+      font-weight: 700;
+    }
+
+    .driver-card {
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .driver-card a {
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .visual-card {
+      margin: 0;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .feature-cloud span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: #102947;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .dense-table th,
+    .dense-table td {
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .route-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .route-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--teal);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(18,34,52,.05);
+    }
+
+    .insight-band {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .insight-band .statement {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 132px;
+    }
+
+    .insight-band .statement h3 {
+      color: #fff !important;
+    }
+
+    .insight-band .statement:nth-child(2) { background: #173b5a; }
+    .insight-band .statement:nth-child(3) { background: #2f2b1e; }
+
+    .audience-cards,
+    .scene-cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .scene-cards { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+    .persona-card,
+    .scene-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(18,34,52,.05);
+    }
+
+    .persona-card img,
+    .scene-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    .persona-card .body,
+    .scene-card .body {
+      padding: 14px;
+    }
+
+    .rankline {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .num {
+      color: var(--blue);
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 6px 0;
+    }
+
+    .essence {
+      border-left: 4px solid var(--orange);
+      background: var(--soft-orange);
+      padding: 10px;
+      margin: 10px 0;
+      color: #5c3b12;
+      font-size: 13px;
+    }
+
+    .product-deep {
+      background: #071018;
+      color: #edf7ff;
+      border-radius: 10px;
+      padding: 18px;
+      border: 1px solid #24445f;
+      box-shadow: 0 18px 44px rgba(7,16,24,.20);
+    }
+
+    .product-deep .subsection-title,
+    .product-deep h2,
+    .product-deep h3 {
+      color: #f5fbff;
+    }
+
+    .product-deep .section-note,
+    .product-deep .caption {
+      color: #a8bece;
+    }
+
+    .product-deep .metric,
+    .product-panel {
+      background: #101b25;
+      border-color: #2a4b66;
+      color: #edf7ff;
+    }
+
+    .product-deep .metric b {
+      color: #8fe7ff;
+    }
+
+    .interactive-products-section {
+      padding-bottom: 8px;
+    }
+
+    .interactive-products-frame {
+      display: block;
+      width: 100%;
+      height: 1180px;
+      min-height: 860px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: #f6f9fb;
+      box-shadow: var(--shadow);
+    }
+
+    .product-panel {
+      border: 1px solid #2a4b66;
+      border-radius: 8px;
+      padding: 14px;
+    }
+
+    .product-panel ul {
+      margin: 0;
+      padding-left: 18px;
+      color: #d7e8f5;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .product-card {
+      background: #0b151e;
+      border: 1px solid #24445f;
+      border-radius: 8px;
+      overflow: hidden;
+      color: #edf7ff;
+    }
+
+    .product-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: contain;
+      background: #f6f8f4;
+    }
+
+    .product-card .body {
+      padding: 12px;
+    }
+
+    .product-card .meta-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      color: #9eb5c5;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    .product-card .price {
+      color: #7bf0a7;
+      font-weight: 900;
+    }
+
+    .product-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 8px 0;
+    }
+
+    .product-tags span {
+      border: 1px solid #315a78;
+      border-radius: 4px;
+      padding: 3px 6px;
+      color: #d7e8f5;
+      font-size: 11px;
+    }
+
+    .product-card details {
+      border-top: 1px solid #24445f;
+      padding-top: 8px;
+      margin-top: 8px;
+      color: #d7e8f5;
+      font-size: 12px;
+    }
+
+    .section {
+      padding: 44px 0;
+      scroll-margin-top: 86px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .55fr);
+      gap: 28px;
+      align-items: end;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--navy);
+      margin-bottom: 22px;
+    }
+
+    .section-note {
+      margin: 0;
+      color: #405160;
+    }
+
+    .grid { display: grid; gap: 16px; }
+    .cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+    .card {
+      background: rgba(255,255,255,.88);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(18,34,52,.06);
+    }
+
+    .card.teal { background: linear-gradient(180deg, #fff, var(--soft-teal)); }
+    .card.blue { background: linear-gradient(180deg, #fff, var(--soft-blue)); }
+    .card.orange { background: linear-gradient(180deg, #fff, var(--soft-orange)); }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 9px;
+      border-radius: 5px;
+      background: var(--soft-blue);
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .proof-list {
+      margin: 0;
+      padding-left: 18px;
+      color: #344656;
+    }
+
+    .proof-list li + li { margin-top: 7px; }
+
+    .chart-strip {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    figure.chart {
+      margin: 0;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    figure.chart img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: contain;
+      background: #fff;
+      padding: 8px;
+    }
+
+    figure.chart figcaption {
+      border-top: 1px solid var(--line);
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 13px;
+      min-height: 58px;
+    }
+
+
+
+    .brand-product {
+      min-width: 126px;
+      display: grid;
+      gap: 6px;
+      align-items: start;
+    }
+
+    .brand-product img {
+      width: 112px;
+      height: 112px;
+      object-fit: contain;
+      background: #f6f8fb;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px;
+    }
+
+    .brand-product b {
+      display: block;
+      font-size: 12px;
+      color: var(--navy);
+      line-height: 1.25;
+    }
+
+    .brand-product span {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    .brand-product-pair {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      min-width: 238px;
+    }
+
+    .scenario-table,
+    .brand-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      display: table;
+      box-shadow: 0 12px 30px rgba(18,34,52,.05);
+    }
+
+    th, td {
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: var(--navy);
+      color: #fff;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .bar-list { display: grid; gap: 10px; }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 150px minmax(0,1fr) 70px;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .track {
+      height: 12px;
+      background: #e5ecef;
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .fill {
+      display: block;
+      height: 100%;
+      width: var(--w);
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .report-image {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .report-image img {
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    .opportunity {
+      display: grid;
+      grid-template-columns: minmax(0, .82fr) minmax(460px, 1.18fr);
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,.86);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(18,34,52,.06);
+    }
+
+    .opportunity h3 {
+      font-size: 28px;
+      color: var(--navy);
+    }
+
+    .op-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .op-meta div {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      padding: 10px;
+    }
+
+    .op-meta b { display: block; color: var(--teal); }
+
+    .footer {
+      margin: 44px 0 34px;
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 1100px) {
+      .hero,
+      .section-head,
+      .split,
+      .opportunity {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-panel { max-width: 760px; }
+      .chart-strip { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .route-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .audience-cards,
+      .scene-cards,
+      .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .insight-band { grid-template-columns: 1fr; }
+      .opportunity { padding: 14px; }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner { align-items: flex-start; flex-direction: column; padding: 12px 0; }
+      .nav { justify-content: flex-start; }
+      .hero { min-height: auto; padding-top: 30px; }
+      .hero-metrics,
+      .cols-2,
+      .cols-3,
+      .cols-4,
+      .chart-strip,
+      .op-meta,
+      .route-grid,
+      .audience-cards,
+      .scene-cards,
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+      .bar-row { grid-template-columns: 1fr; }
+      .scenario-table,
+      .brand-table {
+        display: block;
+        overflow-x: auto;
+      }
+      th, td { min-width: 160px; }
+    }
+
+    #audience .insight-band .statement h3,
+    #audience .insight-band .statement p {
+      color: #fff !important;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#cover"><span class="mark">T</span><span>Tailong 男士防晒衣调研</span></a>
+      <nav class="nav" aria-label="报告导航">
+        <a href="#market">1 市场概况</a>
+        <a href="#audience">2 人群场景</a>
+        <a href="#products">3 爆品新品</a>
+        <a href="#brands">4 头部品牌</a>
+        <a href="#opportunities">5 机会点</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page">
+    <section id="cover" class="hero">
+      <div>
+        <p class="eyebrow">Category Planning Report</p>
+        <h1>美国男士防晒衣市场调研报告</h1>
+        <p class="lead">整合美国市场概况、亚马逊销量与价格带、人群场景 VOC、爆品/新品拆解、头部品牌地图和 Tailong 可切入机会点。核心判断：类目可进，但不适合做低价基础款铺货，应该走中价功能差异与场景款路线。</p>
+        <div class="hero-metrics">
+          <div class="metric"><b>315万+件</b><span>亚马逊近一年销量</span></div>
+          <div class="metric"><b>+22.7%</b><span>近一年较上一周期增长</span></div>
+          <div class="metric"><b>$15-20</b><span>最优主推价格带</span></div>
+          <div class="metric"><b>5-8月</b><span>夏季销售高峰窗口</span></div>
+        </div>
+      </div>
+      <aside class="hero-panel">
+        <div class="hero-image">
+          <img src="assets/amazon-market-overview/hero-sun-shirt-market.png" alt="男士防晒衣市场机会主视觉">
+        </div>
+        <p class="caption">报告结论面向跨境服装商品企划：从“是否可进”转向“以哪条产品路线进入、如何避开同质化竞争”。</p>
+      </aside>
+    </section>
+
+    <section id="market" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">01 Market Overview</p>
+          <h2>市场概况</h2>
+        </div>
+        <p class="section-note">本章分为 1.1 美国市场概况和 1.2 亚马逊市场概况。美国市场部分只保留核心判断、市场趋势与数据口径、需求驱动、消费者人群与场景四块；亚马逊部分保留销量、竞争、价格带和上新节奏判断。</p>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title"><small>1.1 United States Market</small>美国市场概况</div>
+
+        <div class="subsection">
+          <div class="subsection-title"><small>02 Executive Summary</small>核心判断</div>
+          <div class="grid cols-3">
+            <article class="card orange">
+              <span class="tag">判断 1</span>
+              <h3>大盘增长成立</h3>
+              <p>美国 UPF 防晒服 2023 年 7.063 亿美元，2030 年预计 12.333 亿美元，CAGR 8.4%。</p>
+              <span class="tag">不是男士防晒衫精确口径</span>
+            </article>
+            <article class="card teal">
+              <span class="tag">判断 2</span>
+              <h3>需求场景清晰</h3>
+              <p>钓鱼、徒步旅行、开车通勤、跑步骑行、庭院劳动都能解释“为什么夏天穿长袖”。</p>
+              <span class="tag">场景驱动型品类</span>
+            </article>
+            <article class="card orange">
+              <span class="tag">判断 3</span>
+              <h3>机会不是基础长袖</h3>
+              <p>不建议做低价白牌基础款；应优先做场景化、高覆盖、轻量透气功能款。</p>
+              <span class="tag">低价内卷风险高</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title"><small>03 Market Size & Scope</small>市场趋势与数据口径</div>
+          <div class="grid cols-2">
+            <article class="card">
+              <h3>数据口径分层图</h3>
+              <div class="funnel" aria-label="数据口径分层">
+                <div class="funnel-row"><strong>全球 UPF / Sun Protective Clothing</strong><div class="bar">行业大盘，支持趋势判断</div></div>
+                <div class="funnel-row"><strong>美国 UPF Sun Protective Clothing</strong><div class="bar">2023 年 7.063 亿美元；2030 年 12.333 亿美元</div></div>
+                <div class="funnel-row"><strong>Shirts 产品类型</strong><div class="bar">Deep Market Insights 指出 shirts 为最大产品类型</div></div>
+                <div class="funnel-row"><strong>Men's Sun Protection Shirts</strong><div class="bar">公开精确市场规模缺失</div></div>
+              </div>
+            </article>
+            <div class="grid">
+              <article class="card">
+                <h3>公开数据支持什么？</h3>
+                <div class="metric" style="box-shadow:none;margin-bottom:10px"><b>$706.3M</b><span>美国 UPF 防晒服整体市场 2023 年规模。来源：Grand View Research。</span></div>
+                <div class="metric" style="box-shadow:none"><b>$1.233B</b><span>美国 UPF 防晒服整体市场 2030 年预测。来源：Grand View Research。</span></div>
+              </article>
+              <div class="note-box">注意：原报告中的 7.063 亿美元、12.333 亿美元，是美国 UPF 防晒服整体市场口径，不是男士防晒衫单品规模。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title"><small>04 Demand Drivers</small>需求驱动因素</div>
+          <div class="grid cols-4">
+            <article class="card driver-card">
+              <div>
+                <span class="tag">健康</span>
+                <h3>健康防晒意识提升</h3>
+                <p>Skin Cancer Foundation 与 American Cancer Society 均建议用防晒衣物辅助防护 UV。</p>
+              </div>
+              <a href="https://www.skincancer.org/skin-cancer-prevention/sun-protection/sun-protective-clothing/" target="_blank">来源链接</a>
+            </article>
+            <article class="card driver-card">
+              <div>
+                <span class="tag">户外</span>
+                <h3>户外参与人数增长</h3>
+                <p>美国户外参与人群 2023 年 1.758 亿，2024 年 1.811 亿。</p>
+              </div>
+              <a href="https://outdoorindustry.org/research/reports-library/" target="_blank">来源链接</a>
+            </article>
+            <article class="card driver-card">
+              <div>
+                <span class="tag">水上</span>
+                <h3>钓鱼 / 水上是强场景</h3>
+                <p>2024 年美国钓鱼参与者 5790 万；水面反射与长时间暴晒强化防晒需求。</p>
+              </div>
+              <a href="https://www.nmma.org/press/article/25183" target="_blank">来源链接</a>
+            </article>
+            <article class="card driver-card">
+              <div>
+                <span class="tag">日常</span>
+                <h3>从专业户外到日常穿着</h3>
+                <p>旅行、开车、通勤、遛狗、庭院劳动都让防晒衫从装备服向日常功能服扩展。</p>
+              </div>
+              <span class="tag">推测 / 待 Amazon 验证</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="subsection">
+          <div class="subsection-title"><small>05 Personas & Use Cases</small>消费者人群与场景</div>
+          <div class="grid cols-2">
+            <figure class="visual-card">
+              <img src="assets/us-market/persona_scene_map.png" alt="男士防晒衣消费者人群与场景图">
+              <figcaption class="caption">人群场景图用于内部理解：钓鱼、徒步旅行、城市通勤、跑步训练等强晒场景共同支撑防晒衣需求。</figcaption>
+            </figure>
+            <article class="card">
+              <h3>核心企划判断</h3>
+              <ul class="proof-list">
+                <li>人群不是按年龄切，而是按“暴晒时长 + 活动强度 + 外观接受度”切。</li>
+                <li>钓鱼/水上活动适合做高覆盖；跑步/骑行适合做高透气；旅行/通勤适合做日常化外观。</li>
+                <li>消费者痛点集中在闷热、异味、版型、UPF 信任、日常不好看。</li>
+              </ul>
+            </article>
+          </div>
+          <table class="scenario-table" style="margin-top:16px">
+            <thead>
+              <tr><th>人群</th><th>场景</th><th>核心需求</th><th>主要痛点</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>钓鱼/水上活动男性</td><td>船钓、岸钓、皮划艇、海边</td><td>脸颈手背高覆盖、快干、防晒稳定</td><td>hood 兜风、面罩闷、脖子晒伤、汗湿</td></tr>
+              <tr><td>徒步/旅行男性</td><td>徒步、露营、旅行、国家公园</td><td>轻量、透气、抗皱、多日穿</td><td>闷热、黏身、旅行穿不好看</td></tr>
+              <tr><td>日常防晒男性</td><td>开车、通勤、遛狗、城市步行</td><td>不像装备服、可日常外穿</td><td>老气、像钓鱼服、颜色土、版型肥</td></tr>
+              <tr><td>高出汗运动男性</td><td>跑步、骑行、户外训练</td><td>透气、速干、低摩擦</td><td>UPF 50 太厚、汗味、贴身不舒服</td></tr>
+              <tr><td>户外劳动男性</td><td>庭院劳动、园艺、户外工作</td><td>耐穿、抗污、便宜、易洗</td><td>太薄不耐磨、太厚热、袖口易脏</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title"><small>1.2 Amazon Market</small>亚马逊市场概况</div>
+        <figure class="report-image">
+          <img src="visual-assets/amazon-market.png" alt="亚马逊市场概况：美国站男士防晒衣 Sun Protection Shirts">
+        </figure>
+      </div>
+    </section>
+
+    <section id="audience" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">02 Audience & Scene</p>
+          <h2>男士防晒衣目标人群与场景洞察</h2>
+        </div>
+        <p class="section-note">基于 5,644 条 VOC 评论与 200 条自然搜索关键词，男士防晒衣不是单纯的“防晒长袖”，而是围绕身材友好、强晒防护、出汗舒适、水陆切换和日常外穿的综合体验品类。</p>
+      </div>
+
+      <div class="grid cols-4">
+        <div class="metric"><b>40.9%</b><span>最大人群为体型 / 尺码敏感用户，需求核心是合身、宽松、不显肚子。</span></div>
+        <div class="metric"><b>24.6%</b><span>最高好评基础条件是穿着舒适 / 面料柔软。</span></div>
+        <div class="metric"><b>9.9%</b><span>最高明确场景是海滩 / 泳池 / 游泳 / 度假。</span></div>
+        <div class="metric"><b>7.7%</b><span>最高核心痛点是闷热、不透气、汗湿粘身。</span></div>
+      </div>
+
+      <div class="insight-band" style="margin-top:18px">
+        <article class="statement"><h3>第一判断</h3><p>Tailong 应优先做“男士身材友好型防晒衫”，而不是紧身 rash guard。核心是宽松但不肥大、遮肚但不邋遢、轻薄但不透。</p></article>
+        <article class="statement"><h3>第二判断</h3><p>场景要从泛户外收窄到水陆两用、日常户外、轻运动、钓鱼长晒和户外工作，每条路线对应不同功能证明。</p></article>
+        <article class="statement"><h3>第三判断</h3><p>好评门槛不是新奇卖点，而是舒适、凉爽、真实防晒、尺码稳定、洗后稳定；这些做不到会直接形成差评。</p></article>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title"><small>Audience Insight</small>人群洞察</div>
+        <p class="section-note">用户画像显示，体型和尺码问题压倒性领先。男士防晒衣的机会不只来自“怕晒”，更来自男性在强晒、下水、运动和日常外穿时对体面遮盖与舒适宽松的需求。</p>
+        <div class="audience-cards" style="margin-top:18px">
+          <article class="persona-card"><img src="assets/audience-scene-insights/audience-fit-size-sensitive.png" alt="体型尺码敏感人群"><div class="body"><div class="rankline"><span>人群 1</span><b>40.9%</b></div><h3>体型 / 尺码敏感</h3><p>对尺码准确、宽松、不显肚子、袖长和衣长更敏感，核心不是“紧身运动”，而是强晒环境下要舒适遮盖、体面、不勒。</p><div class="feature-cloud"><span>regular / loose fit</span><span>腹部友好</span><span>轻薄不透</span></div></div></article>
+          <article class="persona-card"><img src="assets/audience-scene-insights/audience-daily-outdoor.png" alt="日常户外防晒人群"><div class="body"><div class="rankline"><span>人群 2</span><b>16.1%</b></div><h3>日常户外防晒</h3><p>散步、院子活动、开车、短时旅行中减少涂防晒霜，同时要求不像泳衣或装备服，日常出门能穿。</p><div class="feature-cloud"><span>基础色</span><span>低 Logo</span><span>日常外观</span></div></div></article>
+          <article class="persona-card"><img src="assets/audience-scene-insights/audience-family-purchase.png" alt="家庭代购亲属购买人群"><div class="body"><div class="rankline"><span>人群 3</span><b>13.3%</b></div><h3>家庭代购 / 亲属购买</h3><p>购买者常是妻子、子女或家人，画像是送给丈夫、父亲的低风险、夏季实用礼物，要求尺码稳、穿着舒服、好洗耐穿。</p><div class="feature-cloud"><span>低风险</span><span>家人送礼</span><span>尺码清晰</span></div></div></article>
+          <article class="persona-card"><img src="assets/audience-scene-insights/audience-water-vacation.png" alt="水上运动海滨度假人群"><div class="body"><div class="rankline"><span>人群 4</span><b>9.7%</b></div><h3>水上运动 / 海滨度假</h3><p>更关注下水后的表现：快干、不粘身、不尴尬、强晒不晒伤，并且上岸后还能体面外穿。</p><div class="feature-cloud"><span>水陆两用</span><span>湿后不贴身</span><span>快干</span></div></div></article>
+          <article class="persona-card"><img src="assets/audience-scene-insights/audience-outdoor-work.png" alt="户外工作劳动人群"><div class="body"><div class="rankline"><span>人群 5</span><b>8.2%</b></div><h3>户外工作 / 劳动</h3><p>建筑、园艺、农场、维修、院子劳动等长时间暴晒场景，要求实用耐穿、耐洗、透气、不影响动作。</p><div class="feature-cloud"><span>耐穿耐洗</span><span>动作自由</span><span>深色耐脏</span></div></div></article>
+          <article class="persona-card"><img src="assets/audience-scene-insights/audience-sports-training.png" alt="运动训练户外运动人群"><div class="body"><div class="rankline"><span>人群 6</span><b>7.1%</b></div><h3>运动训练 / 户外运动</h3><p>跑步、徒步、骑行、高尔夫等场景要求排汗、快干、轻量、动作自由和日常训练外观。</p><div class="feature-cloud"><span>轻运动</span><span>快干排汗</span><span>动作自由</span></div></div></article>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title"><small>Scenario Insight</small>场景洞察</div>
+        <p class="section-note">场景差异决定产品语言。海边要解决暴晒、下水、湿后体面；户外工作要解决长时间暴晒和耐穿；日常户外要降低泳衣感；运动训练要解决出汗和动作自由；钓鱼要解决长时间静态暴晒与脖颈覆盖。</p>
+        <div class="scene-cards" style="margin-top:16px">
+          <article class="scene-card"><img src="assets/audience-scene-insights/scene-beach-pool-vacation.png" alt="海滩泳池度假场景"><div class="body"><h3>海滩 / 泳池 / 游泳 / 度假</h3><div class="num">556 条</div><p>占总评论 9.9%</p><div class="essence">要在暴晒、下水、公共场合外穿、身体暴露之间取得平衡。</div><ul class="proof-list"><li>担心晒伤、晒红、晒痛</li><li>下水后衣服贴身尴尬</li><li>需要快速恢复干爽</li></ul><div class="feature-cloud"><span>水陆两用</span><span>快干</span><span>轻薄不透</span></div></div></article>
+          <article class="scene-card"><img src="assets/audience-scene-insights/scene-outdoor-work.png" alt="户外工作场景"><div class="body"><h3>户外工作 / 户外劳动</h3><div class="num">465 条</div><p>占总评论 8.2%</p><div class="essence">不是好不好看，而是长时间高温暴晒、大量出汗、高频动作、高频清洗。</div><ul class="proof-list"><li>高温暴晒、强出汗</li><li>搬运、弯腰、抬手需要自由度</li><li>高频洗涤后稳定</li></ul><div class="feature-cloud"><span>耐穿</span><span>排汗快干</span><span>深色耐脏</span></div></div></article>
+          <article class="scene-card"><img src="assets/audience-scene-insights/scene-daily-yard.png" alt="日常户外散步院子场景"><div class="body"><h3>日常户外 / 散步 / 院子</h3><div class="num">405 条</div><p>占总评论 7.2%</p><div class="essence">用户想要防晒，但不想穿得像专业运动服或泳衣。</div><ul class="proof-list"><li>不想每天大面积涂防晒霜</li><li>担心长袖热</li><li>对肚子、胸腹、腰线更敏感</li></ul><div class="feature-cloud"><span>基础色</span><span>低 Logo</span><span>日常外穿</span></div></div></article>
+          <article class="scene-card"><img src="assets/audience-scene-insights/scene-sports-training.png" alt="运动训练场景"><div class="body"><h3>运动训练 / 跑步 / 徒步 / 高尔夫</h3><div class="num">402 条</div><p>占总评论 7.1%</p><div class="essence">运动中既要防晒，又要排汗、轻便、不增加热负担。</div><ul class="proof-list"><li>出汗后容易粘身摩擦</li><li>长袖防晒增加热负担</li><li>肩背动作需要自由</li></ul><div class="feature-cloud"><span>轻量排汗</span><span>弹力活动</span><span>反光细节</span></div></div></article>
+          <article class="scene-card"><img src="assets/audience-scene-insights/scene-fishing-kayak.png" alt="钓鱼船钓皮划艇场景"><div class="body"><h3>钓鱼 / 船钓 / 皮划艇</h3><div class="num">372 条</div><p>占总评论 6.6%</p><div class="essence">长时间静态暴晒中保持舒适和防护，并兼顾水面反光与装备摩擦。</div><ul class="proof-list"><li>手臂、脖子、后颈易晒伤</li><li>持续出汗但不剧烈运动</li><li>抛竿、划船需要活动自由</li></ul><div class="feature-cloud"><span>hooded sun shirt</span><span>护颈</span><span>抗摩擦</span></div></div></article>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title"><small>Positive Review Baseline</small>好评必备基础条件</div>
+        <p class="section-note">这些不是加分卖点，而是用户愿意给好评、复购、推荐的底层门槛。产品开发、质检、页面表达都要围绕这些门槛展开。</p>
+        <div class="grid cols-2" style="margin-top:14px">
+          <article class="card"><h3>好评门槛排序</h3><div class="bar-list"><div class="bar-row"><span>穿着舒适 / 面料柔软</span><span class="track"><i class="fill" style="--w:100%"></i></span><b>1391 / 24.6%</b></div><div class="bar-row"><span>轻薄凉爽 / 透气不闷</span><span class="track"><i class="fill" style="--w:84%"></i></span><b>1165 / 20.6%</b></div><div class="bar-row"><span>防晒有效</span><span class="track"><i class="fill" style="--w:63%"></i></span><b>875 / 15.5%</b></div><div class="bar-row"><span>价格 / 性价比满意</span><span class="track"><i class="fill" style="--w:48%"></i></span><b>671 / 11.9%</b></div><div class="bar-row"><span>尺码合身 / 版型满意</span><span class="track"><i class="fill" style="--w:41%"></i></span><b>574 / 10.2%</b></div><div class="bar-row"><span>质量耐穿 / 洗后稳定</span><span class="track"><i class="fill" style="--w:40%"></i></span><b>557 / 9.9%</b></div><div class="bar-row"><span>外观简洁 / 日常可穿</span><span class="track"><i class="fill" style="--w:25%"></i></span><b>345 / 6.1%</b></div></div></article>
+          <article class="card"><h3>转化为开发要求</h3><ul class="proof-list"><li>面料手感要软，内侧缝线不能磨皮，领标不能刮肤，帽体不能勒脖。</li><li>轻薄、透气、快干优先，不能为了 UPF 做得厚重、闷热、粘身。</li><li>UPF 50+ 必须真实可靠，浅色款也要单独验证，页面前期应讲清防晒保护范围。</li><li>尺码体系要稳定，腹部 regular fit / loose fit，避免穿成紧身 rash guard。</li><li>$15-20 价格带要让功能升级有支撑，不适合只做普通低价基础款。</li><li>洗后尺寸稳定、袖口不变形、拇指孔不断裂，是避免低分评价的关键。</li></ul></article>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title"><small>Pain Points</small>核心需解决痛点</div>
+        <p class="section-note">核心痛点会直接造成不满、退货和差评。最高频矛盾集中在热闷粘身、尺码版型、真实防晒、浅色薄透和耐久稳定。</p>
+        <div class="grid cols-2" style="margin-top:14px">
+          <article class="card"><h3>痛点排序</h3><div class="bar-list"><div class="bar-row"><span>闷热 / 不透气 / 汗湿粘身</span><span class="track"><i class="fill" style="--w:100%"></i></span><b>432 / 7.7%</b></div><div class="bar-row"><span>尺码不准 / 版型不合</span><span class="track"><i class="fill" style="--w:77%"></i></span><b>331 / 5.9%</b></div><div class="bar-row"><span>做工 / 耐久问题</span><span class="track"><i class="fill" style="--w:52%"></i></span><b>224 / 4.0%</b></div><div class="bar-row"><span>防晒失效 / 仍晒伤</span><span class="track"><i class="fill" style="--w:51%"></i></span><b>220 / 3.9%</b></div><div class="bar-row"><span>面料薄透 / 质感廉价</span><span class="track"><i class="fill" style="--w:47%"></i></span><b>201 / 3.6%</b></div><div class="bar-row"><span>领口 / 帽子 / 袖口细节不适</span><span class="track"><i class="fill" style="--w:26%"></i></span><b>111 / 2.0%</b></div></div></article>
+          <article class="card"><h3>解决方向</h3><ul class="proof-list"><li>优先开发舒适凉爽且不闷热、湿后不粘身的面料组合。</li><li>女式同款逻辑不能直接套用，男士更在意腹部遮盖、肩背活动和袖长。</li><li>强化真实 UPF 表达：浅色、薄款、长时间户外都要有可信度支撑。</li><li>浅色款必须控制透肉，避免显廉价和尴尬。</li><li>加强缝口、袖口、下摆、拇指孔做工，并进行洗后稳定验证。</li><li>领口、帽口、袖口松紧要动态试穿，避免功能细节变成新痛点。</li></ul></article>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <div class="subsection-title"><small>Planning Routes</small>企划落地方向</div>
+        <p class="section-note">把第二章洞察转成 Tailong 可执行的产品路线：先围绕身材友好与强晒舒适建立基础盘，再按场景做功能差异。</p>
+        <div class="route-grid" style="margin-top:14px">
+          <article class="route-card"><span class="tag">主线机会</span><h3>1. 身材友好基础款</h3><p>regular / loose fit，腹部微放量，轻薄不透，基础色低 Logo，适合日常户外、水上、轻运动跨场景。</p></article>
+          <article class="route-card"><span class="tag">高场景提及</span><h3>2. 水陆两用快干款</h3><p>面向海滩、泳池、邮轮、度假；强调 UPF 可信、湿后不贴、出水快干、上岸可外穿。</p></article>
+          <article class="route-card"><span class="tag">差异化机会</span><h3>3. 钓鱼长晒防护款</h3><p>连帽、护颈、拇指孔、背部/侧片透气、抗摩擦，视觉要明确钓鱼/船钓而不是泛户外。</p></article>
+          <article class="route-card"><span class="tag">实用延展</span><h3>4. 户外工作耐穿款</h3><p>深色耐脏、耐洗耐磨、动作自由、长时间不闷，可作为日常户外防晒衫的功能延伸。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="section interactive-products-section">
+      <div class="section-head">
+        <div>
+          <small>03 HOT SELLERS & NEW LAUNCHES</small>
+          <h2>爆品与新品分析</h2>
+        </div>
+        <p class="section-note">可按品牌、款式、价格带和特征筛选；点击产品卡查看主页图、A+ 图与版型/设计/功能/面料拆解。</p>
+      </div>
+      <iframe class="interactive-products-frame" src="sunshirt_interactive_dashboard/index_light.html" title="男士防晒衣爆品与新品互动分析"></iframe>
+    </section>
+    <section id="brands" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">04 Brand Map</p>
+          <h2>头部品牌分析</h2>
+        </div>
+        <p class="section-note">头部品牌可以分为低价销量型、中价运动户外功能型、专业场景/信任型三类。Tailong 更应借鉴功能堆叠、场景聚焦、系列化和防晒信任表达，而不是照搬低价基础款。</p>
+      </div>
+
+      <table class="brand-table">
+        <thead>
+          <tr>
+            <th>品牌</th>
+            <th>核心产品</th>
+            <th>定位</th>
+            <th>价格/溢价逻辑</th>
+            <th>核心竞争力</th>
+            <th>对 Tailong 的启发</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Roadbox</td>
+            <td><div class="brand-product"><img src="sunshirt_interactive_dashboard/assets/爆品_B0CJF41XNX_home.png" alt="Roadbox UPF 50+ Fishing Shirt"><b>Roadbox UPF 50+ Fishing Shirt</b><span>Amazon 爆品 / 连帽款</span></div></td>
+            <td>Amazon 平价功能型防晒品牌</td>
+            <td>$9.99-$19.99，靠低价和多 SKU 承接泛防晒需求</td>
+            <td>基础功能完整、价格门槛低、颜色和款式覆盖广</td>
+            <td>可借鉴功能组合、拇指孔、口袋、拉链帽衫结构；不建议照搬低价基础款打法。</td>
+          </tr>
+          <tr>
+            <td>G Gradual</td>
+            <td><div class="brand-product"><img src="sunshirt_interactive_dashboard/assets/爆品_B0DQL1BR3T_home.png" alt="G Gradual UPF Long Sleeve Shirt"><b>G Gradual UPF Long Sleeve Shirt</b><span>Amazon 爆品 / 轻运动</span></div></td>
+            <td>运动训练 / 轻户外 UPF T 恤化品牌</td>
+            <td>$14.99-$23.99，中低价，靠运动基础功能和视觉更新</td>
+            <td>轻运动版型、反光/渐变细节、快干弹力</td>
+            <td>可借鉴反光点、渐变色、轻运动视觉；避免做普通基础运动 T 恤化。</td>
+          </tr>
+          <tr>
+            <td>Willit</td>
+            <td><div class="brand-product"><img src="sunshirt_interactive_dashboard/assets/爆品_B07S49P312_home.png" alt="Willit Hoodie Sun Shirt"><b>Willit Hoodie Sun Shirt</b><span>Amazon 爆品 / 连帽护颈</span></div></td>
+            <td>Amazon + DTC 功能户外品牌</td>
+            <td>$14.99-$29.99，靠连帽、高领、口袋、图案和水陆场景支撑价值</td>
+            <td>连帽、拇指孔、口袋、凉感、四向弹力等功能堆叠</td>
+            <td>适合学习中价功能款的细节组合，但页面场景不能过宽泛。</td>
+          </tr>
+          <tr>
+            <td>NORTHYARD</td>
+            <td><div class="brand-product"><img src="sunshirt_interactive_dashboard/assets/爆品_B0BXC9S2M7_home.png" alt="NORTHYARD UPF 50+ Hoodie"><b>NORTHYARD UPF 50+ Hoodie</b><span>Amazon 爆品 / 弹力快干</span></div></td>
+            <td>中价运动户外功能型</td>
+            <td>$14.99-$22.99，靠弹力、透气、快干、多场景、大码覆盖</td>
+            <td>兼顾日常、水上与轻运动，运动户外视觉较成熟</td>
+            <td>可借鉴弹力快干、短袖/长袖/连帽矩阵和运动户外视觉，但要形成明确人群记忆点。</td>
+          </tr>
+          <tr>
+            <td>Coolibar</td>
+            <td><div class="brand-product"><img src="https://www.coolibar.com/cdn/shop/files/11024-395-1000-01_G.jpg?v=1753386867&width=500" alt="Coolibar Andros Fishing Hoodie"><b>Coolibar Andros Fishing Hoodie</b><span>官网代表款 / UPF 50+</span></div></td>
+            <td>DTC 专业防晒 / 健康防晒</td>
+            <td>$62-$95，高价，靠专业防晒、健康信任和成熟产品矩阵</td>
+            <td>UPF 信任背书、健康防晒心智、成熟用户表达</td>
+            <td>适合学习防晒可信度表达；不建议照搬高价医学防晒定位。</td>
+          </tr>
+          <tr>
+            <td>Bassdash / AFTCO</td>
+            <td><div class="brand-product-pair"><div class="brand-product"><img src="https://www.bassdash.com/cdn/shop/products/1_cb507f82-dbd0-474b-9ca2-1ae4cf66ecc1.jpg?v=1732097876&width=500" alt="Bassdash FS17M Hoodie"><b>Bassdash FS17M Hoodie</b><span>官网代表款 / 钓鱼连帽</span></div><div class="brand-product"><img src="https://www.aftco.com/cdn/shop/files/M63126-CLSH-1_74eab733-d7f7-4656-a4d6-42c7846290b1.jpg" alt="AFTCO Samurai Hoodie"><b>AFTCO Samurai Hoodie</b><span>官网代表款 / 钓鱼防晒</span></div></div></td>
+            <td>钓鱼垂类 / 专业钓鱼系列化</td>
+            <td>Bassdash 多在 $24.98-$34.98；AFTCO 多在 $39-$85</td>
+            <td>钓鱼场景、面罩/护颈、网眼透气、抗污抗菌、系列命名</td>
+            <td>适合学习钓鱼场景和系列化逻辑；避免过重迷彩、钓鱼图案和高价专业文化限制日常穿着。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card orange" style="margin-top:18px">
+        <h3>品牌分析结论</h3>
+        <p>Tailong 男士防晒衣应避开低价基础款竞争，走中价功能差异路线，重点聚焦轻薄不透、快干不粘、宽松不显肚子、连帽/拇指孔全防护、钓鱼/日常户外场景明确，以及更可信的防晒表达。</p>
+      </div>
+
+    </section>
+
+    <section id="opportunities" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">05 Entry Opportunities</p>
+          <h2>市场切入的机会点</h2>
+        </div>
+        <p class="section-note">四个机会点从人群、场景、功能、价格和视觉表达一起定义。优先级建议：先做水陆两用全防护和钓鱼长晒分区透气，再用轻运动 T 恤化补日常运动盘，户外工作款作为实用延展。</p>
+      </div>
+
+      <article class="opportunity">
+        <div>
+          <span class="tag">机会点一</span>
+          <h3>连帽全防护水陆两用防晒衫</h3>
+          <p>适合海边、泳池、钓鱼、船钓和强晒户外的全防护防晒衫。核心是用连帽、护颈、拇指孔和湿后不粘，把普通 UPF 长袖升级为强晒水陆两用全防护款。</p>
+          <div class="op-meta">
+            <div><b>建议价格</b>$16.99-19.99</div>
+            <div><b>目标人群</b>海边/泳池/度假男性、钓鱼/船钓用户</div>
+            <div><b>目标场景</b>海边、泳池、船钓、皮划艇、旅行水陆切换</div>
+            <div><b>款式方向</b>连帽长袖 UPF 防晒衫，regular fit</div>
+          </div>
+          <ul class="proof-list">
+            <li>基础必备：UPF50+、快干、透气、连帽、拇指孔、弹力活动、水陆两用。</li>
+            <li>差异化：头颈手臂全覆盖、下水后快干不粘、帽子护颈不闷、上岸也能体面穿。</li>
+          </ul>
+        </div>
+        <div class="report-image">
+          <img src="visual-assets/opportunity-1.png" alt="机会点一：连帽全防护水陆两用防晒衫">
+        </div>
+      </article>
+
+      <article class="opportunity">
+        <div>
+          <span class="tag">机会点二</span>
+          <h3>钓鱼 / 船钓长晒分区透气防护款</h3>
+          <p>面向钓鱼、船钓、皮划艇等长时间暴晒场景的透气全防护防晒衫。核心是把普通防晒衣升级成钓鱼长晒解决方案，用分区透气、护颈、弹力、大码和抗污建立场景差异。</p>
+          <div class="op-meta">
+            <div><b>建议价格</b>$17.99-19.99</div>
+            <div><b>目标人群</b>钓鱼爱好者、船钓/岸钓用户、皮划艇用户、大码男性</div>
+            <div><b>目标场景</b>船钓、岸钓、皮划艇、水面强反光环境</div>
+            <div><b>款式方向</b>hooded fishing sun shirt，relaxed fit</div>
+          </div>
+          <ul class="proof-list">
+            <li>基础必备：UPF50+、长袖、连帽、快干、透气、弹力、宽松版型。</li>
+            <li>差异化：后背网眼/腋下透气、护颈结构、抗摩擦、抗污易护理、大码友好、低调钓鱼图案。</li>
+          </ul>
+        </div>
+        <div class="report-image">
+          <img src="visual-assets/opportunity-2.png" alt="机会点二：钓鱼船钓长晒分区透气防护款">
+        </div>
+      </article>
+
+      <article class="opportunity">
+        <div>
+          <span class="tag">机会点三</span>
+          <h3>轻运动反光 UPF 防晒 T 恤</h3>
+          <p>面向跑步、徒步、高尔夫、轻训练的运动 T 恤化防晒上衣。核心是用运动 T 恤化外观 + UPF 防晒 + 快干弹力 + 反光细节，承接轻运动人群夏季防晒需求。</p>
+          <div class="op-meta">
+            <div><b>建议价格</b>$14.99-16.99</div>
+            <div><b>目标人群</b>跑步男性、徒步/高尔夫男性、轻训练用户</div>
+            <div><b>目标场景</b>跑步、徒步、高尔夫、骑行、健身前后通勤</div>
+            <div><b>款式方向</b>运动 T 恤化 UPF 上衣，regular athletic fit</div>
+          </div>
+          <ul class="proof-list">
+            <li>基础必备：UPF50+、快干、排汗、弹力、轻量、插肩袖。</li>
+            <li>差异化：小面积反光点、肩背活动结构、后背透气组织、低饱和运动色、不紧身运动版型。</li>
+          </ul>
+        </div>
+        <div class="report-image">
+          <img src="visual-assets/opportunity-3.png" alt="机会点三：轻运动反光UPF防晒T恤">
+        </div>
+      </article>
+
+      <article class="opportunity">
+        <div>
+          <span class="tag">机会点四</span>
+          <h3>户外工作耐穿快干防晒衫</h3>
+          <p>面向户外劳动、园艺、施工、长时间户外作业的耐穿型 UPF 防晒衫。核心是把防晒衫从运动/海边延展到户外工作场景，用耐穿、耐洗、排汗和动作自由建立实用差异。</p>
+          <div class="op-meta">
+            <div><b>建议价格</b>$18.99-22.99</div>
+            <div><b>目标人群</b>户外工作男性、园艺/院子活动用户、建筑/搬运用户</div>
+            <div><b>目标场景</b>户外劳动、园艺、搬运、农场/院子维护</div>
+            <div><b>款式方向</b>长袖 UPF 工作型防晒衫，宽松直筒</div>
+          </div>
+          <ul class="proof-list">
+            <li>基础必备：UPF50+、快干、排汗、耐洗、活动自由、深色耐脏。</li>
+            <li>差异化：耐磨易护理、肩背活动结构、强缝线、轻微反光、不贴身不闷、高频清洗不易变形。</li>
+          </ul>
+        </div>
+        <div class="report-image">
+          <img src="visual-assets/opportunity-4.png" alt="机会点四：户外工作耐穿快干防晒衫">
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      数据来源：用户提供的男士防晒衣市场调研 Word 文档、美国市场概况 HTML、亚马逊市场概况 HTML、人群和场景洞察 HTML、爆品和新品分析 HTML，以及四张机会点视觉素材。生成日期：2026-06-02。
+    </footer>
+  </main>
+</body>
+</html>
