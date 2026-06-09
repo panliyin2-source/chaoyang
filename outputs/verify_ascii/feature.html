@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loday 女士塑腰带爆品与新品特征</title>
+  <style>
+    :root {
+      --paper:#fbf7f1; --panel:#fffdf9; --ink:#221f1c; --muted:#71645e;
+      --line:#eadfd7; --coral:#d96050; --teal:#287d78; --gold:#b98939; --charcoal:#2b2927;
+      --shadow:0 18px 48px rgba(45,36,32,.13);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:"Inter","Segoe UI","Microsoft YaHei",Arial,sans-serif; line-height:1.58; }
+    img { display:block; max-width:100%; }
+    a { color:inherit; text-decoration:none; }
+    .nav { position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:14px 28px; background:rgba(251,247,241,.9); border-bottom:1px solid var(--line); backdrop-filter:blur(16px); }
+    .brand { font-weight:850; letter-spacing:0; }
+    .brand small { display:block; color:var(--muted); font-size:12px; font-weight:650; }
+    .nav a { padding:8px 10px; border-radius:8px; font-size:13px; color:#4c4541; }
+    .nav a:hover { background:#fff; box-shadow:0 0 0 1px var(--line) inset; }
+    .hero { min-height:72vh; display:grid; align-items:end; padding:72px 7vw 48px; background:linear-gradient(120deg,rgba(217,96,80,.10),transparent 42%),linear-gradient(320deg,rgba(40,125,120,.12),transparent 44%); }
+    .hero-grid { display:grid; grid-template-columns:1.2fr .8fr; gap:42px; align-items:end; max-width:1240px; margin:0 auto; width:100%; }
+    .eyebrow { color:var(--teal); font-weight:850; font-size:13px; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { margin:12px 0 18px; font-size:clamp(42px,7vw,88px); line-height:.96; letter-spacing:0; max-width:900px; }
+    .lead { max-width:760px; color:#4f4743; font-size:18px; }
+    .hero-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .stat { background:rgba(255,253,249,.78); border:1px solid var(--line); border-radius:8px; padding:18px; box-shadow:var(--shadow); }
+    .stat b { display:block; font-size:30px; }
+    .stat span { color:var(--muted); font-size:13px; }
+    main { max-width:1240px; margin:0 auto; padding:38px 24px 80px; }
+    section { margin-top:56px; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:18px; }
+    h2 { margin:0; font-size:32px; letter-spacing:0; }
+    .note { color:var(--muted); max-width:650px; margin:6px 0 0; }
+    .tabs { display:flex; flex-wrap:wrap; gap:8px; }
+    button { border:0; background:var(--charcoal); color:#fff; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:750; }
+    button.secondary { background:#fff; color:var(--ink); box-shadow:0 0 0 1px var(--line) inset; }
+    button.active { background:var(--coral); }
+    .feature-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+    .feature-card, .route, .product-card { background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:var(--shadow); overflow:hidden; }
+    .feature-card { padding:18px; display:grid; grid-template-columns:74px 1fr; gap:16px; min-height:210px; }
+    .icon { width:72px; height:72px; border-radius:18px; background-image:url('assets/waist-feature-icons.png'); background-size:300% 200%; box-shadow:inset 0 0 0 1px rgba(0,0,0,.04); }
+    .icon.compression { background-position:0 0; }
+    .icon.back { background-position:50% 0; }
+    .icon.antiroll { background-position:100% 0; }
+    .icon.sweat { background-position:0 100%; }
+    .icon.seamless { background-position:50% 100%; }
+    .icon.structure { background-position:100% 100%; }
+    .count { display:inline-flex; margin:0 0 8px; padding:4px 8px; background:#f7ebe4; color:#9c4639; border-radius:999px; font-size:12px; font-weight:800; }
+    h3 { margin:0 0 8px; font-size:19px; line-height:1.25; }
+    .feature-card p, .route p { margin:7px 0 0; color:#594f4a; font-size:14px; }
+    .feature-card strong { color:var(--teal); }
+    .routes { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .route { padding:18px; }
+    .route .num { color:var(--gold); font-weight:900; font-size:13px; }
+    .rules { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; counter-reset:rule; }
+    .rule { background:#292624; color:#fff; border-radius:8px; padding:18px; min-height:150px; position:relative; overflow:hidden; }
+    .rule:before { counter-increment:rule; content:"0" counter(rule); color:#e9b36b; display:block; font-weight:900; margin-bottom:12px; }
+    .filters { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+    .product-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .product-card { cursor:pointer; }
+    .thumb { aspect-ratio:4/3; background:#f2ebe5; overflow:hidden; }
+    .thumb img { width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .25s ease; }
+    .product-card:hover .thumb img { transform:scale(1.025); }
+    .product-body { padding:13px; }
+    .tag { display:inline-flex; padding:3px 8px; border-radius:999px; background:#e7f1ef; color:#1e6d68; font-size:12px; font-weight:800; }
+    .tag.best { background:#fae8e3; color:#b94f42; }
+    .asin { font-family:"Cascadia Mono","Consolas",monospace; font-weight:850; margin-top:8px; }
+    .brand-name { color:var(--muted); font-size:13px; margin-top:2px; }
+    .compare { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    .compare-panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:22px; box-shadow:var(--shadow); }
+    .compare-panel ul { margin:14px 0 0; padding-left:20px; }
+    .compare-panel li { margin:8px 0; }
+    .modal { position:fixed; inset:0; display:none; background:rgba(24,22,20,.72); z-index:40; padding:28px; }
+    .modal.open { display:grid; place-items:center; }
+    .modal-panel { width:min(1120px,100%); max-height:92vh; overflow:auto; background:var(--paper); border-radius:10px; box-shadow:0 30px 90px rgba(0,0,0,.35); }
+    .modal-head { position:sticky; top:0; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 18px; background:rgba(251,247,241,.95); border-bottom:1px solid var(--line); backdrop-filter:blur(10px); }
+    .modal-title { font-weight:900; }
+    .shots { display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:18px; }
+    .shot { background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+    .shot h4 { margin:0; padding:10px 12px; border-bottom:1px solid var(--line); }
+    .shot img { width:100%; height:auto; }
+    .source { color:var(--muted); font-size:12px; margin-top:20px; }
+    @media (max-width:960px) {
+      .hero-grid, .compare, .shots { grid-template-columns:1fr; }
+      .feature-grid, .product-grid, .routes, .rules { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width:620px) {
+      .nav { align-items:flex-start; flex-direction:column; padding:12px 16px; }
+      main { padding-inline:16px; }
+      .hero { padding:50px 16px 34px; min-height:72vh; }
+      .hero-stats, .feature-grid, .product-grid, .routes, .rules { grid-template-columns:1fr; }
+      .feature-card { grid-template-columns:64px 1fr; }
+      .icon { width:62px; height:62px; border-radius:14px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand">Loday 女士塑腰带特征页<small>爆品与新品分析 / 第三部分参考交互</small></div>
+    <div>
+      <a href="#summary">总览</a>
+      <a href="#features">特征</a>
+      <a href="#routes">企划路线</a>
+      <a href="#products">产品证据</a>
+    </div>
+  </nav>
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Amazon US Women's Waist Trainer</div>
+        <h1>爆品靠“效果可信”，新品靠“结构可见”突围</h1>
+        <p class="lead">基于爆品 Top20、新品 Top20 主页与 A+ 截图，以及市场调研第三部分内容，提炼 Loday 下一阶段塑腰带企划应优先验证的结构、材质、视觉和页面表达。</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>20/20</b><span>爆品全部覆盖收腹/束腰/塑腰</span></div>
+        <div class="stat"><b>15/20</b><span>爆品强调日常或无痕内穿</span></div>
+        <div class="stat"><b>18/20</b><span>新品仍用排扣建立强压缩信任</span></div>
+        <div class="stat"><b>13/20</b><span>新品用钢骨/支撑条强化稳定</span></div>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section id="summary">
+      <div class="section-head">
+        <div>
+          <h2>结论总览</h2>
+          <p class="note">爆品共同点是“压得住、撑得住、穿得上”；新品变化不是削弱压缩，而是在压缩基础上增加稳定、场景和视觉差异。</p>
+        </div>
+      </div>
+      <div class="compare">
+        <div class="compare-panel">
+          <h3>爆品逻辑</h3>
+          <ul>
+            <li>先解决“有没有效果”：收腹、束腰、沙漏腰、腰线变化必须前置。</li>
+            <li>再解决“穿不穿得住”：腰背支撑、防卷边、可调节、日常或运动场景。</li>
+            <li>A+ 不是生活方式堆图，而是结构解释：排扣、钢骨、防卷边、尺码、材质。</li>
+          </ul>
+        </div>
+        <div class="compare-panel">
+          <h3>新品逻辑</h3>
+          <ul>
+            <li>用三带、开胸、吊带、无痕腹带、连体塑身衣避开传统腰封同质化。</li>
+            <li>用可见结构证明强压缩，同时针对卷边、下滑、勒肉、显痕做体验修正。</li>
+            <li>视觉从“展示产品”升级为“展示新品为什么不同”。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="section-head">
+        <div>
+          <h2>爆品特征</h2>
+          <p class="note">这些是进入成熟腰训/塑腰带竞争的基础门槛，不能作为唯一差异点。</p>
+        </div>
+      </div>
+      <div class="feature-grid"><article class="feature-card">
+          <div class="icon compression"></div>
+          <div>
+            <span class="count">20/20</span>
+            <h3>强收腹 / 束腰</h3>
+            <p>收腹束腰、强力收腹、沙漏腰、减少腰围是所有爆品的底层心智。</p>
+            <p><strong>企划判断：</strong>先证明有效，再谈舒适。主图必须让用户一眼看到腰腹变化。</p>
+          </div>
+        </article>
+<article class="feature-card">
+          <div class="icon back"></div>
+          <div>
+            <span class="count">16/20</span>
+            <h3>腰背 / 背部支撑</h3>
+            <p>背部支撑、姿态改善、运动支撑频繁出现，腰带承担稳定腰背的功能。</p>
+            <p><strong>企划判断：</strong>后腰、侧腰、胸下到胯上的覆盖高度要讲清楚，不能只做正面收腰。</p>
+          </div>
+        </article>
+<article class="feature-card">
+          <div class="icon seamless"></div>
+          <div>
+            <span class="count">15/20</span>
+            <h3>日常 / 无痕内穿</h3>
+            <p>日常内穿、无痕内搭、舒适穿搭场景是成熟爆品的常见卖点。</p>
+            <p><strong>企划判断：</strong>可做强收腹但不厚重、侧腰不溢肉、衣下更平整的日常化表达。</p>
+          </div>
+        </article>
+<article class="feature-card">
+          <div class="icon sweat"></div>
+          <div>
+            <span class="count">13/20</span>
+            <h3>运动 / 燃汗</h3>
+            <p>运动燃汗、训练辅助、可调松紧和固定感形成独立细分场景。</p>
+            <p><strong>企划判断：</strong>氯丁胶/保温材料适合运动款，但要同时解决热、闷、厚的问题。</p>
+          </div>
+        </article>
+<article class="feature-card">
+          <div class="icon antiroll"></div>
+          <div>
+            <span class="count">10/20</span>
+            <h3>防卷边结构</h3>
+            <p>支撑骨防卷、宽版防卷、下摆贴胯、运动不移位是好评门槛。</p>
+            <p><strong>企划判断：</strong>防卷边不是堆硬骨，重点是下摆贴胯、分区支撑和坐下稳定。</p>
+          </div>
+        </article>
+<article class="feature-card">
+          <div class="icon structure"></div>
+          <div>
+            <span class="count">4/20</span>
+            <h3>托胸 / 副乳 / 背部修饰</h3>
+            <p>背心式、开胸式产品把腰腹塑形延展到胸下、背部、副乳区域。</p>
+            <p><strong>企划判断：</strong>这是新品可放大的结构升级方向，用上半身包覆拉开差异。</p>
+          </div>
+        </article></div>
+
+      <div class="section-head" style="margin-top:34px">
+        <div>
+          <h2>新品特征</h2>
+          <p class="note">新品机会集中在结构差异、穿着稳定、材质场景分层和更完整的 A+ 说明。</p>
+        </div>
+      </div>
+      <div class="feature-grid"><article class="feature-card">
+          <div class="icon structure"></div>
+          <div>
+            <span class="count">趋势增强</span>
+            <h3>三段 / 三带腰封</h3>
+            <p>外拉结构、分段包覆、下腹加压，让用户直观看到多一层压缩。</p>
+            <p><strong>企划判断：</strong>主图适合展示拉伸动作，是新品避开传统排扣腰封同质化的第一方向。</p>
+          </div>
+        </article>
+<article class="feature-card">
+          <div class="icon back"></div>
+          <div>
+            <span class="count">上身延展</span>
+            <h3>吊带 / 背心 / 开胸腰封</h3>
+            <p>解决腰封下滑、背部肉外溢、副乳明显、胸下不稳定。</p>
+            <p><strong>企划判断：</strong>把腰带升级成塑身内搭，承接日常穿着与曲线塑造场景。</p>
+          </div>
+        </article>
+<article class="feature-card">
+          <div class="icon seamless"></div>
+          <div>
+            <span class="count">舒适路线</span>
+            <h3>无扣 / 无痕腹带</h3>
+            <p>强调亲肤、长穿、日常、产后，不追求极限强压缩。</p>
+            <p><strong>企划判断：</strong>适合用锦纶/尼龙+氨纶路线做轻塑形，但要避免支撑感不足。</p>
+          </div>
+        </article>
+<article class="feature-card">
+          <div class="icon compression"></div>
+          <div>
+            <span class="count">排扣18/20，钢骨13/20</span>
+            <h3>可见强压缩结构</h3>
+            <p>排扣、钢骨、拉链仍是新品建立强压缩信任的可视化证据。</p>
+            <p><strong>企划判断：</strong>新品不能只讲舒适，必须把压缩、支撑、防卷边结构讲出来。</p>
+          </div>
+        </article>
+<article class="feature-card">
+          <div class="icon antiroll"></div>
+          <div>
+            <span class="count">权重提高</span>
+            <h3>稳定与防卷边</h3>
+            <p>防滑下摆、贴胯、无痕边缘、肩带支撑针对卷边、下滑、勒肉。</p>
+            <p><strong>企划判断：</strong>围绕老款差评修正体验，是提升新品留存和评分的核心。</p>
+          </div>
+        </article>
+<article class="feature-card">
+          <div class="icon sweat"></div>
+          <div>
+            <span class="count">四条路线</span>
+            <h3>材质场景分层</h3>
+            <p>涤纶弹性胶、锦纶氨纶、氯丁胶、弹力复合料分别对应强塑、日常、运动、测款。</p>
+            <p><strong>企划判断：</strong>Loday 可用成分透明化和触感说明建立信任，补足竞品材质表达不足。</p>
+          </div>
+        </article></div>
+    </section>
+
+    <section id="routes">
+      <div class="section-head">
+        <div>
+          <h2>Loday 可落地企划路线</h2>
+          <p class="note">结合爆品必备条件和新品结构趋势，优先验证这四条产品路线。</p>
+        </div>
+      </div>
+      <div class="routes"><article class="route">
+          <div class="num">路线 01</div>
+          <h3>强压长腰封</h3>
+          <p>胸下到胯上长覆盖，前腹+侧腰+后腰整体控制</p>
+          <p><strong>开发重点：</strong>适合腰腹明显塑形需求，重点验证坐下不顶胃、下腹包住。</p>
+        </article>
+<article class="route">
+          <div class="num">路线 02</div>
+          <h3>产后恢复腹带</h3>
+          <p>加宽包覆，多段魔术贴调节，腹部环绕支撑</p>
+          <p><strong>开发重点：</strong>表达要谨慎，强调支撑、恢复期舒适与可调节。</p>
+        </article>
+<article class="route">
+          <div class="num">路线 03</div>
+          <h3>轻运动腰封</h3>
+          <p>氯丁胶/燃汗材料，宽版包覆，魔术贴调节</p>
+          <p><strong>开发重点：</strong>承接 workout/sweat/sauna 场景，同时解决闷热和背部透气。</p>
+        </article>
+<article class="route">
+          <div class="num">路线 04</div>
+          <h3>上身塑身内搭</h3>
+          <p>开胸、吊带、背心式，胸下承托与背部包覆</p>
+          <p><strong>开发重点：</strong>向胸下、副乳、后背修饰扩展，提高日常搭配价值。</p>
+        </article></div>
+    </section>
+
+    <section>
+      <div class="section-head">
+        <div>
+          <h2>页面视觉规则</h2>
+          <p class="note">主图和 A+ 的任务是降低用户判断成本，让结构、效果和适配风险被看见。</p>
+        </div>
+      </div>
+      <div class="rules"><div class="rule">第一张主图展示腰腹变化，腰腹区域居中且覆盖高度清楚。</div>
+<div class="rule">运动款展示魔术贴外拉动作；传统腰封展示排扣、钢骨、覆盖高度。</div>
+<div class="rule">A+ 页面必须有尺码选择、防卷边/支撑结构、材质成分和穿法说明。</div>
+<div class="rule">增加坐下不卷边、侧腰不溢肉、大码模特、日常隐形穿搭等证据图。</div></div>
+    </section>
+
+    <section id="products">
+      <div class="section-head">
+        <div>
+          <h2>产品证据卡</h2>
+          <p class="note">点击卡片查看对应 ASIN 的主页截图与 A+/商品描述截图。筛选逻辑参考指定页面第三部分。</p>
+        </div>
+      </div>
+      <div class="filters">
+        <button class="filter active" data-filter="全部">全部</button>
+        <button class="filter secondary" data-filter="爆品">爆品</button>
+        <button class="filter secondary" data-filter="新品">新品</button>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+      <p class="source">资料来源：Loday 爆品/新品主页和 A+ 截图包、loday-0603/0604 商品企划表、Loday 美国女士塑身腰带市场调研第三部分。</p>
+    </section>
+  </main>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div class="modal-title" id="modalTitle"></div>
+        <button id="closeModal">关闭</button>
+      </div>
+      <div class="shots">
+        <div class="shot"><h4>主页截图</h4><img id="modalHome" alt="主页截图"></div>
+        <div class="shot"><h4>A+ / 商品描述截图</h4><img id="modalDetail" alt="商品详情截图"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DATA = {"products": [{"asin": "B092VP9YV5", "brand": "FeelinGirl", "url": "https://www.amazon.com/dp/B092VP9YV5", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B092VP9YV5主页.png", "detail": "../inputs/loday_product_screenshots/B092VP9YV5商品详情.png"}, {"asin": "B00V2WNA9I", "brand": "YIANNA", "url": "https://www.amazon.com/dp/B00V2WNA9I", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B00V2WNA9I主页.png", "detail": "../inputs/loday_product_screenshots/B00V2WNA9I商品详情.png"}, {"asin": "B07CJZC3PP", "brand": "Nebility", "url": "https://www.amazon.com/dp/B07CJZC3PP", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B07CJZC3PP主页.png", "detail": "../inputs/loday_product_screenshots/B07CJZC3PP商品详情.png"}, {"asin": "B0C9ZS159B", "brand": "LEINIDINA", "url": "https://www.amazon.com/dp/B0C9ZS159B", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B0C9ZS159B主页.png", "detail": "../inputs/loday_product_screenshots/B0C9ZS159B商品详情.png"}, {"asin": "B0CJ99YNMJ", "brand": "LODAY", "url": "https://www.amazon.com/dp/B0CJ99YNMJ", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B0CJ99YNMJ主页.png", "detail": "../inputs/loday_product_screenshots/B0CJ99YNMJ商品详情.png"}, {"asin": "B0DK3G3TGP", "brand": "SHAPSHE", "url": "https://www.amazon.com/dp/B0DK3G3TGP", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B0DK3G3TGP主页.png", "detail": "../inputs/loday_product_screenshots/B0DK3G3TGP商品详情.png"}, {"asin": "B07RMGKPG9", "brand": "HOPLYNN", "url": "https://www.amazon.com/dp/B07RMGKPG9", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B07RMGKPG9主页.png", "detail": "../inputs/loday_product_screenshots/B07RMGKPG9商品详情.png"}, {"asin": "B0DPBWRKT8", "brand": "SHAPSHE", "url": "https://www.amazon.com/dp/B0DPBWRKT8", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B0DPBWRKT8主页.png", "detail": "../inputs/loday_product_screenshots/B0DPBWRKT8商品详情.png"}, {"asin": "B0DX1P29NP", "brand": "Gepoetry", "url": "https://www.amazon.com/dp/B0DX1P29NP", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B0DX1P29NP主页.png", "detail": "../inputs/loday_product_screenshots/B0DX1P29NP商品详情.png"}, {"asin": "B09TVHYXX6", "brand": "Nebility", "url": "https://www.amazon.com/dp/B09TVHYXX6", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B09TVHYXX6主页.png", "detail": "../inputs/loday_product_screenshots/B09TVHYXX6商品详情.png"}, {"asin": "B07Y1DFSFM", "brand": "ChongErfei", "url": "https://www.amazon.com/dp/B07Y1DFSFM", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B07Y1DFSFM主页.png", "detail": "../inputs/loday_product_screenshots/B07Y1DFSFM商品详情.png"}, {"asin": "B08M931ZDQ", "brand": "YADIFEN", "url": "https://www.amazon.com/dp/B08M931ZDQ", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B08M931ZDQ主页.png", "detail": "../inputs/loday_product_screenshots/B08M931ZDQ商品详情.png"}, {"asin": "B075KBXFBK", "brand": "LODAY", "url": "https://www.amazon.com/dp/B075KBXFBK", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B075KBXFBK主页.png", "detail": "../inputs/loday_product_screenshots/B075KBXFBK商品详情.png"}, {"asin": "B07T8H2MPY", "brand": "Trendyline", "url": "https://www.amazon.com/dp/B07T8H2MPY", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B07T8H2MPY主页.png", "detail": "../inputs/loday_product_screenshots/B07T8H2MPY商品详情.png"}, {"asin": "B0C1Y84QPK", "brand": "SHAPSHE", "url": "https://www.amazon.com/dp/B0C1Y84QPK", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B0C1Y84QPK主页.png", "detail": "../inputs/loday_product_screenshots/B0C1Y84QPK商品详情.png"}, {"asin": "B07DWLTGSF", "brand": "LadySlim by NuvoFit", "url": "https://www.amazon.com/dp/B07DWLTGSF", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B07DWLTGSF主页.png", "detail": "../inputs/loday_product_screenshots/B07DWLTGSF商品详情.png"}, {"asin": "B0FLJMCWL3", "brand": "SHAPERX", "url": "https://www.amazon.com/dp/B0FLJMCWL3", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B0FLJMCWL3主页.png", "detail": "../inputs/loday_product_screenshots/B0FLJMCWL3商品详情.png"}, {"asin": "B0D7VJF3ST", "brand": "Nebility", "url": "https://www.amazon.com/dp/B0D7VJF3ST", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B0D7VJF3ST主页.png", "detail": "../inputs/loday_product_screenshots/B0D7VJF3ST商品详情.png"}, {"asin": "B0DMT298CJ", "brand": "SHAPERX", "url": "https://www.amazon.com/dp/B0DMT298CJ", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B0DMT298CJ主页.png", "detail": "../inputs/loday_product_screenshots/B0DMT298CJ商品详情.png"}, {"asin": "B0FND9T4YS", "brand": "Nebility", "url": "https://www.amazon.com/dp/B0FND9T4YS", "kind": "爆品", "home": "../inputs/loday_product_screenshots/B0FND9T4YS主页.png", "detail": "../inputs/loday_product_screenshots/B0FND9T4YS商品详情.png"}, {"asin": "B0DXVQC6DY", "brand": "LODAY", "url": "https://www.amazon.com/dp/B0DXVQC6DY", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0DXVQC6DY首页.png", "detail": "../inputs/loday_waist_new_pages_current/B0DXVQC6DY商品描述.png"}, {"asin": "B0G6J9F2J4", "brand": "GYDEK", "url": "https://www.amazon.com/dp/B0G6J9F2J4", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0G6J9F2J4主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0G6J9F2J4商品描述.png"}, {"asin": "B0GZYRC4YL", "brand": "sellto", "url": "https://www.amazon.com/dp/B0GZYRC4YL", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0GZYRC4YL主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0GZYRC4YL商品描述.png"}, {"asin": "B0F28Z28PK", "brand": "Junlan", "url": "https://www.amazon.com/dp/B0F28Z28PK", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0F28Z28PK主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0F28Z28PK商品描述.png"}, {"asin": "B0G6KHF46J", "brand": "GYDEK", "url": "https://www.amazon.com/dp/B0G6KHF46J", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0G6KHF46J主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0G6KHF46J商品描述.png"}, {"asin": "B0GKR65TD8", "brand": "Werena", "url": "https://www.amazon.com/dp/B0GKR65TD8", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0GKR65TD8主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0GKR65TD8商品描述.png"}, {"asin": "B0FLQ18J1M", "brand": "Nebility", "url": "https://www.amazon.com/dp/B0FLQ18J1M", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0FLQ18J1M主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FLQ18J1M商品描述.png"}, {"asin": "B0FCFBBP6B", "brand": "AOSBOEI", "url": "https://www.amazon.com/dp/B0FCFBBP6B", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0FCFBBP6B主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FCFBBP6B商品描述.png"}, {"asin": "B0G7JN6YR8", "brand": "LODAY", "url": "https://www.amazon.com/dp/B0G7JN6YR8", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0G7JN6YR8主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0G7JN6YR8商品描述.png"}, {"asin": "B0FXB2M2BL", "brand": "Gotoly", "url": "https://www.amazon.com/dp/B0FXB2M2BL", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0FXB2M2BL主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FXB2M2BL商品描述.png"}, {"asin": "B0DZBH7KW2", "brand": "YERKOAD", "url": "https://www.amazon.com/dp/B0DZBH7KW2", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0DZBH7KW2主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0DZBH7KW2商品描述.png"}, {"asin": "B0F6YK1C1S", "brand": "MISTHIN", "url": "https://www.amazon.com/dp/B0F6YK1C1S", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0F6YK1C1S主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0F6YK1C1S商品描述.png"}, {"asin": "B0FX4Y9RHB", "brand": "LEINIDINA", "url": "https://www.amazon.com/dp/B0FX4Y9RHB", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0FX4Y9RHB主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FX4Y9RHB商品描述.png"}, {"asin": "B0GKDT6QNV", "brand": "OXYSAIKO", "url": "https://www.amazon.com/dp/B0GKDT6QNV", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0GKDT6QNV主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0GKDT6QNV商品描述.png"}, {"asin": "B0DGGQHT4F", "brand": "SHAPELLX", "url": "https://www.amazon.com/dp/B0DGGQHT4F", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0DGGQHT4F主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0DGGQHT4F商品描述.png"}, {"asin": "B0FR4W436M", "brand": "Nebility", "url": "https://www.amazon.com/dp/B0FR4W436M", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0FR4W436M主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FR4W436M商品描述.png"}, {"asin": "B0DSLL6F55", "brand": "MISTHIN", "url": "https://www.amazon.com/dp/B0DSLL6F55", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0DSLL6F55主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0DSLL6F55商品描述.png"}, {"asin": "B0FS1WKS39", "brand": "FeelinGirl", "url": "https://www.amazon.com/dp/B0FS1WKS39", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0FS1WKS39主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FS1WKS39商品描述.png"}, {"asin": "B0FPX1CL76", "brand": "Nebility", "url": "https://www.amazon.com/dp/B0FPX1CL76", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0FPX1CL76主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FPX1CL76商品描述.png"}, {"asin": "B0G2RMHSRP", "brand": "SHAPELLX", "url": "https://www.amazon.com/dp/B0G2RMHSRP", "kind": "新品", "home": "../inputs/loday_waist_new_pages_current/B0G2RMHSRP主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0G2RMHSRP商品描述.png"}], "bestsellerFeatures": [{"name": "强收腹 / 束腰", "count": "20/20", "icon": "compression", "proof": "收腹束腰、强力收腹、沙漏腰、减少腰围是所有爆品的底层心智。", "planning": "先证明有效，再谈舒适。主图必须让用户一眼看到腰腹变化。"}, {"name": "腰背 / 背部支撑", "count": "16/20", "icon": "back", "proof": "背部支撑、姿态改善、运动支撑频繁出现，腰带承担稳定腰背的功能。", "planning": "后腰、侧腰、胸下到胯上的覆盖高度要讲清楚，不能只做正面收腰。"}, {"name": "日常 / 无痕内穿", "count": "15/20", "icon": "seamless", "proof": "日常内穿、无痕内搭、舒适穿搭场景是成熟爆品的常见卖点。", "planning": "可做强收腹但不厚重、侧腰不溢肉、衣下更平整的日常化表达。"}, {"name": "运动 / 燃汗", "count": "13/20", "icon": "sweat", "proof": "运动燃汗、训练辅助、可调松紧和固定感形成独立细分场景。", "planning": "氯丁胶/保温材料适合运动款，但要同时解决热、闷、厚的问题。"}, {"name": "防卷边结构", "count": "10/20", "icon": "antiroll", "proof": "支撑骨防卷、宽版防卷、下摆贴胯、运动不移位是好评门槛。", "planning": "防卷边不是堆硬骨，重点是下摆贴胯、分区支撑和坐下稳定。"}, {"name": "托胸 / 副乳 / 背部修饰", "count": "4/20", "icon": "structure", "proof": "背心式、开胸式产品把腰腹塑形延展到胸下、背部、副乳区域。", "planning": "这是新品可放大的结构升级方向，用上半身包覆拉开差异。"}], "newFeatures": [{"name": "三段 / 三带腰封", "count": "趋势增强", "icon": "structure", "proof": "外拉结构、分段包覆、下腹加压，让用户直观看到多一层压缩。", "planning": "主图适合展示拉伸动作，是新品避开传统排扣腰封同质化的第一方向。"}, {"name": "吊带 / 背心 / 开胸腰封", "count": "上身延展", "icon": "back", "proof": "解决腰封下滑、背部肉外溢、副乳明显、胸下不稳定。", "planning": "把腰带升级成塑身内搭，承接日常穿着与曲线塑造场景。"}, {"name": "无扣 / 无痕腹带", "count": "舒适路线", "icon": "seamless", "proof": "强调亲肤、长穿、日常、产后，不追求极限强压缩。", "planning": "适合用锦纶/尼龙+氨纶路线做轻塑形，但要避免支撑感不足。"}, {"name": "可见强压缩结构", "count": "排扣18/20，钢骨13/20", "icon": "compression", "proof": "排扣、钢骨、拉链仍是新品建立强压缩信任的可视化证据。", "planning": "新品不能只讲舒适，必须把压缩、支撑、防卷边结构讲出来。"}, {"name": "稳定与防卷边", "count": "权重提高", "icon": "antiroll", "proof": "防滑下摆、贴胯、无痕边缘、肩带支撑针对卷边、下滑、勒肉。", "planning": "围绕老款差评修正体验，是提升新品留存和评分的核心。"}, {"name": "材质场景分层", "count": "四条路线", "icon": "sweat", "proof": "涤纶弹性胶、锦纶氨纶、氯丁胶、弹力复合料分别对应强塑、日常、运动、测款。", "planning": "Loday 可用成分透明化和触感说明建立信任，补足竞品材质表达不足。"}]};
+    const productGrid = document.querySelector('#productGrid');
+    const modal = document.querySelector('#modal');
+    const modalTitle = document.querySelector('#modalTitle');
+    const modalHome = document.querySelector('#modalHome');
+    const modalDetail = document.querySelector('#modalDetail');
+
+    function renderProducts(filter = '全部') {
+      productGrid.innerHTML = '';
+      DATA.products.filter(p => filter === '全部' || p.kind === filter).forEach(product => {
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="thumb"><img src="${product.home}" alt="${product.asin} 主页"></div>
+          <div class="product-body">
+            <span class="tag ${product.kind === '爆品' ? 'best' : ''}">${product.kind}</span>
+            <div class="asin">${product.asin}</div>
+            <div class="brand-name">${product.brand}</div>
+          </div>`;
+        card.addEventListener('click', () => openProduct(product));
+        productGrid.appendChild(card);
+      });
+    }
+
+    function openProduct(product) {
+      modalTitle.textContent = `${product.kind} · ${product.brand} · ${product.asin}`;
+      modalHome.src = product.home;
+      modalDetail.src = product.detail;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    document.querySelectorAll('.filter').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+        button.classList.add('active');
+        renderProducts(button.dataset.filter);
+      });
+    });
+
+    document.querySelector('#closeModal').addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', event => { if (event.target === modal) modal.classList.remove('open'); });
+    window.addEventListener('keydown', event => { if (event.key === 'Escape') modal.classList.remove('open'); });
+    renderProducts();
+  </script>
+</body>
+</html>

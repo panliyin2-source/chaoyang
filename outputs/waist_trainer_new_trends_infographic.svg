@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <style>
+      .bg{fill:#fff}.ink{fill:#17151f}.muted{fill:#6f6a76}.accent{fill:#b44b76}.purple{fill:#6e5aa8}
+      .h1{font:800 42px Arial,"Microsoft YaHei",sans-serif}.h2{font:800 30px Arial,"Microsoft YaHei",sans-serif}
+      .h3{font:800 20px Arial,"Microsoft YaHei",sans-serif}.t{font:400 16px Arial,"Microsoft YaHei",sans-serif}
+      .s{font:400 14px Arial,"Microsoft YaHei",sans-serif}.tag{font:800 17px Arial,"Microsoft YaHei",sans-serif}
+      .panel{stroke:#d9d4df;stroke-width:1.5}.call{fill:#fff;stroke:#d9d4df;stroke-width:1.5}
+      .arrow{stroke:#b44b76;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+      .bone{stroke:#c8a98c;stroke-width:6;stroke-linecap:round;opacity:.9}.dash{stroke:#fff;stroke-width:2.5;stroke-dasharray:5 6}
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10z" fill="#b44b76"/>
+    </marker>
+    <linearGradient id="oldCorset" x1="0" x2="1">
+      <stop offset="0" stop-color="#ead3bc"/><stop offset=".55" stop-color="#f7e4cf"/><stop offset="1" stop-color="#d8b690"/>
+    </linearGradient>
+    <linearGradient id="blackCorset" x1="0" x2="1">
+      <stop offset="0" stop-color="#141219"/><stop offset=".5" stop-color="#3a3440"/><stop offset="1" stop-color="#111016"/>
+    </linearGradient>
+    <pattern id="mesh" width="14" height="14" patternUnits="userSpaceOnUse">
+      <path d="M0 14 L14 0 M-4 4 L4 -4 M10 18 L18 10" stroke="#d8c0cf" stroke-width="1.4"/>
+    </pattern>
+  </defs>
+
+  <rect class="bg" width="1600" height="900"/>
+  <text x="52" y="52" class="accent tag">TOP20 NEW PRODUCT TREND · WOMEN WAIST TRAINER</text>
+  <text x="52" y="104" class="ink h1">女士塑腰带新品趋势示意图：新老品结构对比</text>
+  <text x="1185" y="56" class="muted s">基于 TOP20 新品拆解 Excel + ASIN 主页/A+截图</text>
+  <text x="1185" y="82" class="muted s">图片判断内容用于视觉趋势归纳</text>
+  <line x1="52" y1="126" x2="1548" y2="126" stroke="#17151f" stroke-width="2.5"/>
+
+  <rect x="52" y="150" width="545" height="715" fill="#fbf8f4" class="panel"/>
+  <rect x="625" y="150" width="923" height="715" fill="#fff7fa" class="panel"/>
+
+  <text x="86" y="202" class="ink h2">老品逻辑</text>
+  <text x="86" y="232" class="muted t">传统高腰排扣腰封，重点集中在收腹、钢骨、防卷边和产后恢复。</text>
+  <text x="660" y="202" class="ink h2">新品趋势</text>
+  <text x="660" y="232" class="muted t">新品把“收腹”拆成多结构、多场景：分段加压、开胸托胸、透气网纱、无痕舒适和连体延伸。</text>
+
+  <!-- OLD garment -->
+  <g transform="translate(145 255)">
+    <path d="M150 0 C176 32 224 32 250 0 C235 105 255 198 280 305 C222 348 178 348 120 305 C145 198 165 105 150 0Z"
+          fill="url(#oldCorset)" stroke="#6b4f42" stroke-width="4"/>
+    <rect x="185" y="34" width="30" height="278" fill="#f8ead9" stroke="#9f7d66" stroke-width="2"/>
+    <g fill="#6b4f42">
+      <circle cx="193" cy="62" r="4"/><circle cx="207" cy="62" r="4"/><circle cx="193" cy="92" r="4"/><circle cx="207" cy="92" r="4"/>
+      <circle cx="193" cy="122" r="4"/><circle cx="207" cy="122" r="4"/><circle cx="193" cy="152" r="4"/><circle cx="207" cy="152" r="4"/>
+      <circle cx="193" cy="182" r="4"/><circle cx="207" cy="182" r="4"/><circle cx="193" cy="212" r="4"/><circle cx="207" cy="212" r="4"/>
+      <circle cx="193" cy="242" r="4"/><circle cx="207" cy="242" r="4"/><circle cx="193" cy="272" r="4"/><circle cx="207" cy="272" r="4"/>
+    </g>
+    <path class="bone" d="M158 52 L145 290"/><path class="bone" d="M175 52 L170 302"/><path class="bone" d="M225 52 L230 302"/><path class="bone" d="M242 52 L255 290"/>
+    <path class="dash" d="M128 150 C170 166 230 166 272 150"/>
+    <text x="200" y="372" text-anchor="middle" class="ink h3">传统高腰排扣腰封</text>
+    <text x="200" y="400" text-anchor="middle" class="muted s">单一区域压缩 · 钢骨支撑 · 基础黑肤色</text>
+  </g>
+  <rect x="82" y="292" width="155" height="76" class="call"/><text x="102" y="324" class="ink h3">前中排扣</text><text x="102" y="350" class="muted s">调节压缩档位</text>
+  <path class="arrow" d="M238 332 C285 320 305 318 330 336"/>
+  <rect x="402" y="292" width="155" height="76" class="call"/><text x="422" y="324" class="ink h3">钢骨支撑</text><text x="422" y="350" class="muted s">防卷边与背撑</text>
+  <path class="arrow" d="M416 368 C390 410 375 455 360 510"/>
+  <rect x="102" y="675" width="425" height="70" fill="#fff" stroke="#d9d4df"/>
+  <text x="126" y="704" class="accent h3">老品表达</text><text x="126" y="730" class="muted t">基础功能词为主：收腹 / 产后 / 隐形 / 防卷边</text>
+
+  <!-- NEW garments -->
+  <g transform="translate(660 275)">
+    <path d="M80 35 C105 60 155 60 180 35 C168 120 188 195 210 290 C158 325 102 325 50 290 C72 195 92 120 80 35Z"
+          fill="url(#blackCorset)" stroke="#121016" stroke-width="4"/>
+    <path d="M62 168 L10 142 C0 137 -8 148 0 160 L55 245Z" fill="#1f1c25" stroke="#121016" stroke-width="3"/>
+    <path d="M198 168 L250 142 C260 137 268 148 260 160 L205 245Z" fill="#1f1c25" stroke="#121016" stroke-width="3"/>
+    <rect x="116" y="62" width="28" height="250" fill="#ead3bc" stroke="#8b715f"/>
+    <path d="M58 130 C100 148 160 148 202 130" stroke="#b44b76" stroke-width="5" fill="none"/>
+    <path d="M55 215 C100 235 160 235 205 215" stroke="#b44b76" stroke-width="5" fill="none"/>
+    <text x="130" y="362" text-anchor="middle" class="ink h3">三段拉带</text>
+  </g>
+
+  <g transform="translate(960 260)">
+    <path d="M70 40 L35 110 L48 305 C90 330 150 330 192 305 L205 110 L170 40 L150 58 C134 90 106 90 90 58Z"
+          fill="#18161d" stroke="#121016" stroke-width="4"/>
+    <path d="M70 40 C82 100 158 100 170 40" fill="#fff7fa" stroke="#121016" stroke-width="4"/>
+    <path d="M48 112 L15 22" stroke="#17151f" stroke-width="15" stroke-linecap="round"/>
+    <path d="M192 112 L225 22" stroke="#17151f" stroke-width="15" stroke-linecap="round"/>
+    <rect x="108" y="95" width="28" height="210" fill="#ead3bc" stroke="#8b715f"/>
+    <text x="120" y="377" text-anchor="middle" class="ink h3">开胸吊带</text>
+  </g>
+
+  <g transform="translate(1265 275)">
+    <path d="M70 35 C96 60 146 60 172 35 C158 122 180 200 204 290 C158 325 84 325 38 290 C62 200 84 122 70 35Z"
+          fill="#f1d8c7" stroke="#8a6f5f" stroke-width="4"/>
+    <path d="M58 100 L96 70 L126 290 L40 290Z" fill="url(#mesh)"/>
+    <path d="M184 100 L144 70 L114 290 L202 290Z" fill="url(#mesh)"/>
+    <path class="bone" d="M72 118 L58 278"/><path class="bone" d="M172 118 L188 278"/>
+    <rect x="106" y="82" width="28" height="230" fill="#fff" stroke="#8b715f"/>
+    <text x="122" y="362" text-anchor="middle" class="ink h3">网纱托胸</text>
+  </g>
+
+  <path class="arrow" d="M885 390 C925 370 940 342 964 330"/>
+  <text x="874" y="365" class="muted s">从腰封到背心化</text>
+  <path class="arrow" d="M1208 405 C1250 370 1264 345 1285 330"/>
+  <text x="1188" y="378" class="muted s">从厚重到透气</text>
+
+  <!-- trend badges -->
+  <g transform="translate(660 745)">
+    <g><rect width="130" height="72" fill="#fff" stroke="#d9d4df"/><text x="65" y="31" text-anchor="middle" class="accent tag">三段结构</text><text x="65" y="54" text-anchor="middle" class="muted s">下腹/腰侧分区</text></g>
+    <g transform="translate(146 0)"><rect width="130" height="72" fill="#fff" stroke="#d9d4df"/><text x="65" y="31" text-anchor="middle" class="accent tag">开胸吊带</text><text x="65" y="54" text-anchor="middle" class="muted s">胸下+背部支撑</text></g>
+    <g transform="translate(292 0)"><rect width="130" height="72" fill="#fff" stroke="#d9d4df"/><text x="65" y="31" text-anchor="middle" class="accent tag">拉链排扣</text><text x="65" y="54" text-anchor="middle" class="muted s">易穿脱+强固定</text></g>
+    <g transform="translate(438 0)"><rect width="130" height="72" fill="#fff" stroke="#d9d4df"/><text x="65" y="31" text-anchor="middle" class="accent tag">网纱拼接</text><text x="65" y="54" text-anchor="middle" class="muted s">透气与差异</text></g>
+    <g transform="translate(584 0)"><rect width="130" height="72" fill="#fff" stroke="#d9d4df"/><text x="65" y="31" text-anchor="middle" class="accent tag">无扣腹带</text><text x="65" y="54" text-anchor="middle" class="muted s">舒适轻塑</text></g>
+    <g transform="translate(730 0)"><rect width="130" height="72" fill="#fff" stroke="#d9d4df"/><text x="65" y="31" text-anchor="middle" class="accent tag">低价测款</text><text x="65" y="54" text-anchor="middle" class="muted s">快速验证</text></g>
+  </g>
+</svg>

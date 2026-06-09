@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>女士塑腰带新品趋势示意图</title>
+  <style>
+    :root {
+      --ink: #17151f;
+      --muted: #6f6a76;
+      --line: #d9d4df;
+      --soft: #f7f2f5;
+      --old: #efe7dc;
+      --new: #f7e3ec;
+      --accent: #b44b76;
+      --accent2: #6e5aa8;
+      --dark: #26222b;
+      --beige: #ead3bc;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #ece8ef;
+      color: var(--ink);
+      font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+    }
+
+    .page {
+      width: min(1440px, 100vw);
+      aspect-ratio: 16 / 9;
+      background: #fff;
+      padding: 34px 42px 30px;
+      box-shadow: 0 18px 60px rgba(35, 28, 44, .18);
+      overflow: hidden;
+    }
+
+    .top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: end;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 38px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .source {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 22px;
+      height: 650px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: var(--soft);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel.old { background: linear-gradient(180deg, #fbf8f4, #f1e8de); }
+    .panel.new { background: linear-gradient(180deg, #fff7fa, #f7edf6); }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .label {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .sub {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+      max-width: 360px;
+    }
+
+    .svg-wrap {
+      width: 100%;
+      height: 440px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(217,212,223,.9);
+    }
+
+    .trend-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      min-height: 62px;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 10px 8px;
+      display: grid;
+      align-content: center;
+      gap: 4px;
+    }
+
+    .tag b {
+      font-size: 14px;
+      line-height: 1.15;
+    }
+
+    .tag span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.25;
+    }
+
+    .note {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    svg text {
+      font-family: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
+      letter-spacing: 0;
+    }
+
+    .callout { fill: #fff; stroke: #d8cfdb; stroke-width: 1.4; }
+    .call-title { fill: #17151f; font-weight: 800; font-size: 16px; }
+    .call-copy { fill: #6f6a76; font-size: 13px; }
+    .small { font-size: 12px; fill: #6f6a76; }
+    .arrow { stroke: #b44b76; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    .bone { stroke: #c8a98c; stroke-width: 5; stroke-linecap: round; opacity: .85; }
+    .stitch { stroke: #fff; stroke-width: 2; stroke-dasharray: 4 5; opacity: .95; }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="top">
+      <div>
+        <div class="eyebrow">TOP20 NEW PRODUCT TREND · WOMEN WAIST TRAINER</div>
+        <h1>女士塑腰带新品趋势示意图：新老品结构对比</h1>
+      </div>
+      <div class="source">
+        基于 TOP20 新品拆解 Excel + ASIN 主页/A+截图<br>
+        图片判断内容用于视觉趋势归纳
+      </div>
+    </header>
+
+    <section class="layout">
+      <article class="panel old">
+        <div class="panel-head">
+          <div class="label">老品逻辑</div>
+          <div class="sub">传统高腰排扣腰封，重点集中在收腹、钢骨、防卷边和产后恢复。</div>
+        </div>
+        <div class="svg-wrap">
+          <svg viewBox="0 0 600 440" width="100%" height="100%" role="img" aria-label="老品结构示意图">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#b44b76"></path>
+              </marker>
+              <linearGradient id="oldCorset" x1="0" x2="1">
+                <stop offset="0" stop-color="#ead3bc" />
+                <stop offset=".5" stop-color="#f5e3cf" />
+                <stop offset="1" stop-color="#d9b895" />
+              </linearGradient>
+            </defs>
+
+            <path d="M235 78 C252 102 275 105 300 105 C325 105 348 102 365 78
+                     C356 150 372 216 390 310 C354 340 246 340 210 310
+                     C228 216 244 150 235 78 Z"
+                  fill="url(#oldCorset)" stroke="#6b4f42" stroke-width="3" />
+            <rect x="285" y="94" width="30" height="230" fill="#f8ead9" stroke="#9f7d66" />
+            <g fill="#6b4f42">
+              <circle cx="293" cy="120" r="3"/><circle cx="307" cy="120" r="3"/>
+              <circle cx="293" cy="145" r="3"/><circle cx="307" cy="145" r="3"/>
+              <circle cx="293" cy="170" r="3"/><circle cx="307" cy="170" r="3"/>
+              <circle cx="293" cy="195" r="3"/><circle cx="307" cy="195" r="3"/>
+              <circle cx="293" cy="220" r="3"/><circle cx="307" cy="220" r="3"/>
+              <circle cx="293" cy="245" r="3"/><circle cx="307" cy="245" r="3"/>
+              <circle cx="293" cy="270" r="3"/><circle cx="307" cy="270" r="3"/>
+              <circle cx="293" cy="295" r="3"/><circle cx="307" cy="295" r="3"/>
+            </g>
+            <path class="bone" d="M250 110 L238 304" />
+            <path class="bone" d="M270 110 L263 315" />
+            <path class="bone" d="M330 110 L337 315" />
+            <path class="bone" d="M350 110 L362 304" />
+            <path class="stitch" d="M220 174 C260 188 340 188 380 174" />
+            <text x="300" y="366" text-anchor="middle" font-size="18" font-weight="800" fill="#17151f">传统高腰排扣腰封</text>
+            <text x="300" y="390" text-anchor="middle" class="small">单一区域压缩 · 钢骨支撑 · 基础黑肤色</text>
+
+            <rect class="callout" x="28" y="52" width="150" height="72" />
+            <text class="call-title" x="44" y="82">前中排扣</text>
+            <text class="call-copy" x="44" y="105">调节压缩档位</text>
+            <path class="arrow" d="M178 92 C220 92 255 105 285 128" />
+
+            <rect class="callout" x="398" y="56" width="150" height="72" />
+            <text class="call-title" x="414" y="86">钢骨支撑</text>
+            <text class="call-copy" x="414" y="109">防卷边与背撑</text>
+            <path class="arrow" d="M410 126 C388 150 370 184 350 220" />
+
+            <rect class="callout" x="42" y="280" width="160" height="74" />
+            <text class="call-title" x="58" y="310">基础卖点</text>
+            <text class="call-copy" x="58" y="333">收腹 / 产后 / 隐形</text>
+            <path class="arrow" d="M204 312 C232 302 248 294 262 282" />
+          </svg>
+        </div>
+        <div class="note">老品表达多依赖基础功能词，视觉重点较集中：排扣、钢骨、高腰包覆。</div>
+      </article>
+
+      <article class="panel new">
+        <div class="panel-head">
+          <div class="label">新品趋势</div>
+          <div class="sub">新品开始把“收腹”拆成多结构、多场景：分段加压、开胸托胸、透气网纱、无痕舒适和连体延伸。</div>
+        </div>
+        <div class="svg-wrap">
+          <svg viewBox="0 0 760 440" width="100%" height="100%" role="img" aria-label="新品结构趋势示意图">
+            <defs>
+              <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 0 L 10 5 L 0 10 z" fill="#b44b76"></path>
+              </marker>
+              <linearGradient id="blackCorset" x1="0" x2="1">
+                <stop offset="0" stop-color="#15141a" />
+                <stop offset=".5" stop-color="#34303a" />
+                <stop offset="1" stop-color="#111016" />
+              </linearGradient>
+              <pattern id="mesh" width="12" height="12" patternUnits="userSpaceOnUse">
+                <path d="M0 12 L12 0 M-3 3 L3 -3 M9 15 L15 9" stroke="#d8c0cf" stroke-width="1.2"/>
+              </pattern>
+            </defs>
+
+            <g transform="translate(30 44)">
+              <path d="M92 54 C112 74 145 76 168 54 C162 112 174 170 190 245 C154 270 106 270 70 245 C86 170 98 112 92 54 Z"
+                    fill="url(#blackCorset)" stroke="#121016" stroke-width="3" />
+              <path d="M78 164 L28 142 C18 138 12 148 18 158 L72 224 Z" fill="#1f1c25" stroke="#121016" stroke-width="2" />
+              <path d="M182 164 L232 142 C242 138 248 148 242 158 L188 224 Z" fill="#1f1c25" stroke="#121016" stroke-width="2" />
+              <rect x="118" y="70" width="24" height="208" fill="#ead3bc" stroke="#8b715f" />
+              <path d="M75 124 C105 134 155 134 185 124" stroke="#b44b76" stroke-width="4" fill="none" />
+              <path d="M72 190 C106 205 154 205 188 190" stroke="#b44b76" stroke-width="4" fill="none" />
+              <text x="130" y="316" text-anchor="middle" font-size="16" font-weight="800">三段拉带</text>
+            </g>
+
+            <g transform="translate(266 36)">
+              <path d="M72 34 L38 90 L48 264 C88 286 142 286 182 264 L192 90 L158 34 L142 52 C128 76 102 76 88 52 Z"
+                    fill="#18161d" stroke="#121016" stroke-width="3" />
+              <path d="M72 34 C82 92 150 92 158 34" fill="#fff7fa" stroke="#121016" stroke-width="3" />
+              <path d="M48 96 L15 18" stroke="#17151f" stroke-width="14" stroke-linecap="round" />
+              <path d="M182 96 L215 18" stroke="#17151f" stroke-width="14" stroke-linecap="round" />
+              <rect x="104" y="82" width="26" height="180" fill="#ead3bc" stroke="#8b715f" />
+              <text x="115" y="316" text-anchor="middle" font-size="16" font-weight="800">开胸吊带</text>
+            </g>
+
+            <g transform="translate(520 42)">
+              <path d="M72 50 C94 72 130 72 152 50 C146 116 160 182 178 246 C138 270 84 270 44 246 C62 182 78 116 72 50 Z"
+                    fill="#f1d8c7" stroke="#8a6f5f" stroke-width="3" />
+              <path d="M56 108 L92 76 L124 246 L44 246 Z" fill="url(#mesh)" opacity=".95" />
+              <path d="M164 108 L128 76 L96 246 L176 246 Z" fill="url(#mesh)" opacity=".95" />
+              <path class="bone" d="M70 112 L58 235" />
+              <path class="bone" d="M150 112 L162 235" />
+              <rect x="98" y="80" width="22" height="180" fill="#fff" stroke="#8b715f" />
+              <text x="110" y="316" text-anchor="middle" font-size="16" font-weight="800">网纱托胸</text>
+            </g>
+
+            <g transform="translate(88 332)">
+              <rect x="0" y="0" width="128" height="48" rx="0" fill="#fff" stroke="#d8cfdb" />
+              <text x="64" y="30" text-anchor="middle" font-size="15" font-weight="800" fill="#b44b76">分段加压</text>
+            </g>
+            <g transform="translate(238 332)">
+              <rect x="0" y="0" width="128" height="48" rx="0" fill="#fff" stroke="#d8cfdb" />
+              <text x="64" y="30" text-anchor="middle" font-size="15" font-weight="800" fill="#b44b76">托胸背撑</text>
+            </g>
+            <g transform="translate(388 332)">
+              <rect x="0" y="0" width="128" height="48" rx="0" fill="#fff" stroke="#d8cfdb" />
+              <text x="64" y="30" text-anchor="middle" font-size="15" font-weight="800" fill="#b44b76">透气网纱</text>
+            </g>
+            <g transform="translate(538 332)">
+              <rect x="0" y="0" width="128" height="48" rx="0" fill="#fff" stroke="#d8cfdb" />
+              <text x="64" y="30" text-anchor="middle" font-size="15" font-weight="800" fill="#b44b76">无痕舒适</text>
+            </g>
+
+            <path d="M184 142 C238 130 230 92 266 86" stroke="#b44b76" stroke-width="2" fill="none" marker-end="url(#arrow2)" />
+            <text x="206" y="118" font-size="13" fill="#6f6a76">从腰封到背心化</text>
+            <path d="M462 136 C500 118 512 94 540 90" stroke="#b44b76" stroke-width="2" fill="none" marker-end="url(#arrow2)" />
+            <text x="468" y="112" font-size="13" fill="#6f6a76">从厚重到透气</text>
+          </svg>
+        </div>
+        <div class="trend-row">
+          <div class="tag"><b>三段结构</b><span>下腹/腰侧分区</span></div>
+          <div class="tag"><b>开胸吊带</b><span>胸下+背部支撑</span></div>
+          <div class="tag"><b>拉链排扣</b><span>易穿脱+强固定</span></div>
+          <div class="tag"><b>网纱拼接</b><span>透气与视觉差异</span></div>
+          <div class="tag"><b>无扣腹带</b><span>舒适轻塑方向</span></div>
+          <div class="tag"><b>低价测款</b><span>新品快速验证</span></div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
