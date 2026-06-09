@@ -1,0 +1,1543 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loday 美国女士塑腰带市场调研报告</title>
+  <style>
+    :root {
+      --ink: #201b1a;
+      --muted: #6f625f;
+      --line: #e8ded8;
+      --paper: #fbf8f4;
+      --panel: #fffdf9;
+      --charcoal: #2a2726;
+      --coral: #d85d4d;
+      --rose: #e8b5aa;
+      --teal: #2d7c79;
+      --gold: #b8893d;
+      --plum: #72566a;
+      --shadow: 0 18px 50px rgba(45, 33, 30, .12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Inter", "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      line-height: 1.58;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 14px 28px;
+      background: rgba(251, 248, 244, .88);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 210px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .brand span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 6px;
+      font-size: 13px;
+      color: #4d4543;
+    }
+    .nav-links a {
+      padding: 7px 10px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+    }
+    .nav-links a:hover {
+      border-color: var(--line);
+      background: #fff;
+    }
+
+    .hero {
+      min-height: 86vh;
+      position: relative;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      background: #111;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(20, 17, 16, .92) 0%, rgba(29, 23, 21, .72) 38%, rgba(29, 23, 21, .18) 72%),
+        url("waist_report_assets/generated/waist-cincher-hero.png") center / cover no-repeat;
+    }
+    .hero-inner {
+      position: relative;
+      width: min(1220px, calc(100% - 44px));
+      margin: 0 auto;
+      padding: 96px 0 44px;
+      color: #fff;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      color: #f1cbc2;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 34px;
+      height: 2px;
+      background: var(--coral);
+    }
+    h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: .98;
+      letter-spacing: 0;
+      font-weight: 850;
+    }
+    .hero-copy {
+      max-width: 740px;
+      margin: 22px 0 34px;
+      color: rgba(255,255,255,.82);
+      font-size: 18px;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 920px;
+    }
+    .kpi {
+      min-height: 112px;
+      padding: 18px 16px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px;
+      background: rgba(255,255,255,.08);
+      backdrop-filter: blur(14px);
+    }
+    .kpi strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #fff;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+    .kpi span {
+      color: rgba(255,255,255,.76);
+      font-size: 13px;
+    }
+    .hero-note {
+      margin-top: 30px;
+      max-width: 780px;
+      color: rgba(255,255,255,.7);
+      font-size: 14px;
+    }
+
+    main { overflow: hidden; }
+    section {
+      padding: 76px 0;
+      border-top: 1px solid var(--line);
+    }
+    .wrap {
+      width: min(1220px, calc(100% - 44px));
+      margin: 0 auto;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 42px;
+      align-items: start;
+      margin-bottom: 34px;
+    }
+    .chapter {
+      color: var(--coral);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 54px);
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+    .lead {
+      max-width: 780px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 8px 28px rgba(45, 33, 30, .06);
+    }
+    .card {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+    .card h3, .panel h3 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.22;
+    }
+    .card p, .panel p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .metric {
+      font-size: 38px;
+      line-height: 1;
+      font-weight: 850;
+      color: var(--charcoal);
+    }
+    .metric small {
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      margin: 0 6px 8px 0;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: #f5ebe6;
+      color: #7b433b;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .bar-list { display: grid; gap: 13px; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: minmax(150px, 230px) 1fr 72px;
+      gap: 12px;
+      align-items: center;
+      font-size: 14px;
+    }
+    .track {
+      height: 12px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #efe5df;
+    }
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--coral), var(--gold));
+    }
+    .fill.teal { background: linear-gradient(90deg, var(--teal), #70b7a8); }
+    .fill.plum { background: linear-gradient(90deg, var(--plum), #b98ca5); }
+
+    .chart-panel {
+      padding: 24px;
+      min-height: 360px;
+    }
+    .subchapter {
+      margin: 34px 0 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+    }
+    .subchapter h3 {
+      margin: 0;
+      font-size: clamp(24px, 3vw, 34px);
+      line-height: 1.08;
+    }
+    .subchapter p {
+      max-width: 620px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .embed-frame {
+      width: 100%;
+      height: 760px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .embed-frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+    .product-analysis-frame {
+      height: 920px;
+    }
+    .brand-analysis-frame {
+      height: 880px;
+    }
+    .inline-report-frame {
+      height: auto;
+      padding: 0;
+      overflow: visible;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+    .inline-report-frame iframe {
+      width: 100%;
+      min-height: 900px;
+      overflow: hidden;
+      border: 0;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .inline-report-frame iframe.product-full-frame {
+      height: 6500px;
+      min-height: 6500px;
+    }
+    .inline-report-frame iframe.brand-full-frame {
+      height: 2300px;
+      min-height: 2300px;
+    }
+    .inline-report-frame iframe.audience-full-frame {
+      height: 5200px;
+      min-height: 5200px;
+    }
+    .inline-report-frame iframe.us-market-full-frame {
+      height: 2600px;
+      min-height: 2600px;
+    }
+    .us-scan {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line);
+      background: #fbf8f4;
+    }
+    .us-row {
+      display: grid;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 44px;
+      padding: 38px 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .us-row h4 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 27px;
+      line-height: 1.08;
+    }
+    .us-row .us-note {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .us-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .us-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .us-card small {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 5px 9px;
+      background: #f2e8df;
+      color: #4a403b;
+      font-weight: 700;
+    }
+    .us-card h5 {
+      margin: 0 0 9px;
+      font-size: 17px;
+    }
+    .us-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .us-bars {
+      display: grid;
+      gap: 14px;
+    }
+    .us-bar {
+      display: grid;
+      grid-template-columns: 150px 1fr 82px;
+      gap: 14px;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .us-track {
+      height: 12px;
+      background: #efe5dc;
+    }
+    .us-track i {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, #111, #cda98d);
+    }
+    .us-demand {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .us-demand img {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    .us-demand-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .us-channel-map {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .us-source-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .us-channel,
+    .us-source {
+      min-height: 104px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .us-channel strong,
+    .us-source strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--ink);
+      font-size: 15px;
+    }
+    .us-pain-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .us-pain {
+      min-height: 88px;
+      padding: 13px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .us-pain:before {
+      content: "";
+      display: block;
+      width: 22px;
+      height: 3px;
+      margin-bottom: 12px;
+      background: var(--coral);
+    }
+    .us-conclusion {
+      padding: 32px;
+      background: #1f1b18;
+      color: #fff;
+    }
+    .us-conclusion h4 {
+      margin: 0 0 14px;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+    }
+    .us-conclusion p {
+      max-width: 900px;
+      margin: 0 0 12px;
+      color: rgba(255,255,255,.78);
+    }
+    .amazon-board {
+      padding: 18px;
+      border: 1px solid #ffd4ad;
+      border-radius: 8px;
+      background: #fffaf5;
+      box-shadow: var(--shadow);
+    }
+    .market-image-frame {
+      padding: 14px;
+      border: 1px solid #ffd4ad;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .market-image-frame img {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid #f0e4dc;
+      background: #fff;
+    }
+    .board-title {
+      text-align: center;
+      padding: 8px 8px 14px;
+    }
+    .board-title h3 {
+      margin: 0;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.12;
+    }
+    .board-title p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-weight: 700;
+    }
+    .board-conclusion {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin: 10px 0 18px;
+      padding: 18px 22px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #ff6900, #ff7c1c);
+      color: #fff;
+      font-size: 25px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+    .board-conclusion b {
+      display: grid;
+      place-items: center;
+      flex: 0 0 52px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.22);
+      font-size: 28px;
+    }
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .board-card {
+      position: relative;
+      min-height: 210px;
+      padding: 20px;
+      border: 1px solid #e6d5ca;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .board-card h4 {
+      margin: 0 0 14px;
+      padding-left: 42px;
+      font-size: 22px;
+      line-height: 1.18;
+    }
+    .num {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #ff6900;
+      color: #fff;
+      font-weight: 900;
+    }
+    .mini-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .mini-kpi {
+      min-height: 92px;
+      padding: 12px 8px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      border: 1px solid #dce3e8;
+      border-radius: 8px;
+      background: #fdfefe;
+      text-align: center;
+    }
+    .mini-kpi strong {
+      color: #ff6900;
+      font-size: 29px;
+      line-height: 1;
+    }
+    .mini-kpi span {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .donuts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      align-items: center;
+    }
+    .donut {
+      display: grid;
+      place-items: center;
+      width: 132px;
+      height: 132px;
+      margin: 0 auto 8px;
+      border-radius: 50%;
+      background: conic-gradient(#ff6900 var(--value), #eef0f1 0);
+    }
+    .donut span {
+      display: grid;
+      place-items: center;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      background: #fff;
+      color: #ff6900;
+      font-size: 28px;
+      font-weight: 900;
+    }
+    .board-note {
+      margin-top: 14px;
+      padding: 14px;
+      border: 1px solid #ffd4ad;
+      border-radius: 8px;
+      background: #fff8ef;
+      color: #5b4a43;
+      font-size: 14px;
+    }
+    .trend-bars {
+      height: 150px;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 8px;
+      align-items: end;
+      padding: 10px 0 2px;
+      border-bottom: 1px solid #d8dde0;
+    }
+    .trend-bars i {
+      display: block;
+      border-radius: 4px 4px 0 0;
+      background: #ff7a13;
+    }
+    .keyword-box {
+      display: grid;
+      gap: 10px;
+    }
+    .keyword-box div {
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #cfdff2;
+      background: #f7fbff;
+    }
+    .keyword-box div:nth-child(2) {
+      border-color: #cfe7ca;
+      background: #f8fff5;
+    }
+    .price-table {
+      display: grid;
+      gap: 8px;
+    }
+    .price-row {
+      display: grid;
+      grid-template-columns: 120px 1fr 150px;
+      gap: 10px;
+      align-items: center;
+      padding: 10px;
+      border: 1px solid #dce3e8;
+      border-radius: 8px;
+      background: #f8fafb;
+      font-size: 14px;
+    }
+    .price-row.reco { border-color: #88c48b; background: #f6fff4; }
+    .price-row.strong { border-color: #ffaf75; background: #fff7ef; }
+    .price-row.no { border-color: #ff9a9a; background: #fff5f5; }
+    .chart-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 20px;
+      align-items: start;
+    }
+    .chart-title span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .price-bars {
+      height: 260px;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 12px;
+      align-items: end;
+      padding-top: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .price-bar {
+      display: grid;
+      align-content: end;
+      justify-items: center;
+      gap: 8px;
+      height: 100%;
+      min-width: 0;
+    }
+    .price-bar i {
+      display: block;
+      width: 100%;
+      min-height: 10px;
+      border-radius: 6px 6px 0 0;
+      background: #d8c7bd;
+    }
+    .price-bar.hot i { background: var(--coral); }
+    .price-bar.good i { background: var(--teal); }
+    .price-bar weak i { background: #c9c1bc; }
+    .price-bar b {
+      font-size: 12px;
+      white-space: nowrap;
+    }
+    .price-bar em {
+      color: var(--muted);
+      font-size: 11px;
+      font-style: normal;
+      white-space: nowrap;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      color: #4b3a35;
+      background: #f3ebe6;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: 0; }
+
+    .quote {
+      padding: 28px;
+      border-left: 5px solid var(--coral);
+      background: #fff6f2;
+      border-radius: 8px;
+      font-size: 20px;
+      font-weight: 750;
+      line-height: 1.42;
+    }
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .shot {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .shot img {
+      width: 100%;
+      aspect-ratio: 1 / .86;
+      object-fit: cover;
+      object-position: top;
+    }
+    .shot figcaption {
+      padding: 10px 12px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .insight-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .insight-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 10px 28px rgba(45, 33, 30, .07);
+    }
+    .insight-card img {
+      width: 100%;
+      aspect-ratio: 1 / .82;
+      object-fit: cover;
+      object-position: center;
+      background: #f8f3ee;
+    }
+    .insight-body {
+      padding: 16px;
+    }
+    .insight-body h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+    .insight-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .insight-meta span {
+      padding: 3px 7px;
+      border-radius: 8px;
+      background: #f6eee9;
+    }
+    .insight-body p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .scenario-strip {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .scenario-card {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 16px;
+      min-height: 190px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .scenario-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 190px;
+      object-fit: cover;
+    }
+    .scenario-card .insight-body {
+      align-self: center;
+      padding: 18px 18px 18px 0;
+    }
+    .route {
+      position: relative;
+      padding: 24px;
+      min-height: 300px;
+      overflow: hidden;
+    }
+    .route::after {
+      content: attr(data-rank);
+      position: absolute;
+      right: 18px;
+      bottom: -12px;
+      color: rgba(216, 93, 77, .14);
+      font-size: 112px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .route .price {
+      color: var(--teal);
+      font-weight: 850;
+      font-size: 22px;
+      margin: 12px 0;
+    }
+    .route ul, .check-list {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .route li, .check-list li { margin: 6px 0; }
+
+    .brand-map {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .brand-cell {
+      padding: 16px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+    .brand-cell b { display: block; margin-bottom: 7px; }
+    .brand-cell span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .opportunity-tailong {
+      background: #f7f8f3;
+      background-image:
+        linear-gradient(rgba(18, 74, 68, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 74, 68, 0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .opp-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 430px);
+      gap: 48px;
+      align-items: end;
+      padding-bottom: 22px;
+      border-bottom: 2px solid #173c5f;
+      margin-bottom: 30px;
+    }
+
+    .opp-kicker {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #0f7a72;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .opp-kicker::before {
+      content: "";
+      width: 64px;
+      height: 2px;
+      background: #f47a2a;
+      display: inline-block;
+    }
+
+    .opp-hero h2 {
+      margin: 0;
+      color: #14375b;
+      font-size: clamp(42px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .opp-hero p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .opp-list {
+      display: grid;
+      gap: 24px;
+    }
+
+    .opp-item {
+      display: grid;
+      grid-template-columns: minmax(320px, 0.86fr) minmax(420px, 1.34fr);
+      gap: 24px;
+      align-items: stretch;
+      border: 1px solid rgba(20, 55, 91, 0.18);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.82);
+      padding: 20px;
+      box-shadow: 0 18px 45px rgba(20, 55, 91, 0.08);
+    }
+
+    .opp-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .opp-badge {
+      width: max-content;
+      max-width: 100%;
+      border-radius: 6px;
+      background: #e9f3fb;
+      color: #14375b;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 8px 12px;
+    }
+
+    .opp-title {
+      color: #14375b;
+      font-size: clamp(26px, 3vw, 38px);
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    .opp-summary {
+      margin: 0;
+      color: #223447;
+      line-height: 1.72;
+      font-size: 16px;
+    }
+
+    .opp-info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .opp-info {
+      border: 1px solid rgba(20, 55, 91, 0.18);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.78);
+      padding: 14px;
+      min-height: 96px;
+    }
+
+    .opp-info strong {
+      display: block;
+      color: #0f7a72;
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+
+    .opp-info span {
+      display: block;
+      color: #25384d;
+      line-height: 1.55;
+      font-size: 15px;
+    }
+
+    .opp-bullets {
+      margin: 0;
+      padding-left: 18px;
+      color: #223447;
+      line-height: 1.75;
+      font-size: 15px;
+    }
+
+    .opp-bullets li {
+      margin: 6px 0;
+    }
+
+    .opp-visual {
+      margin: 0;
+      border: 1px solid rgba(187, 80, 76, 0.35);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+    }
+
+    .opp-visual img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .footer {
+      padding: 44px 0 64px;
+      color: var(--muted);
+      background: #201b1a;
+    }
+    .footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      color: rgba(255,255,255,.68);
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+      .kpi-row, .grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .section-head, .split { grid-template-columns: 1fr; }
+      .grid-3, .brand-map { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .insight-gallery { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .scenario-strip, .scenario-card { grid-template-columns: 1fr; }
+      .scenario-card .insight-body { padding: 16px; }
+      .us-row, .us-demand { grid-template-columns: 1fr; }
+      .us-grid-3, .us-source-strip { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .us-channel-map { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .us-pain-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .board-grid { grid-template-columns: 1fr; }
+      .subchapter { align-items: flex-start; flex-direction: column; }
+      .embed-frame { height: 620px; }
+      .product-analysis-frame { height: 780px; }
+      .brand-analysis-frame { height: 760px; }
+      .bar-row { grid-template-columns: 1fr; gap: 6px; }
+      .price-bars { gap: 7px; }
+      .opp-hero, .opp-item { grid-template-columns: 1fr; }
+      .opp-info-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero { min-height: 92vh; }
+      .hero-inner, .wrap { width: min(100% - 28px, 1220px); }
+      .kpi-row, .grid-2, .grid-3, .grid-4, .brand-map, .visual-grid, .insight-gallery { grid-template-columns: 1fr; }
+      .us-grid-3, .us-source-strip, .us-channel-map, .us-pain-grid, .us-demand-grid { grid-template-columns: 1fr; }
+      .us-bar { grid-template-columns: 1fr; gap: 6px; }
+      .mini-kpis, .donuts, .price-row { grid-template-columns: 1fr; }
+      .board-conclusion { align-items: flex-start; font-size: 19px; }
+      .embed-frame { height: 520px; }
+      .product-analysis-frame { height: 680px; }
+      .brand-analysis-frame { height: 660px; }
+      .price-bars { height: 230px; }
+      .price-bar b, .price-bar em { font-size: 10px; }
+      th, td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="#top">Loday 女士塑腰带调研<span>Category Planning Report · Amazon US</span></a>
+    <div class="nav-links">
+      <a href="#market">1 市场概况</a>
+      <a href="#keywords">2 关键词趋势</a>
+      <a href="#audience">3 人群场景</a>
+      <a href="#product">4 爆品新品</a>
+      <a href="#brand">5 头部品牌</a>
+      <a href="#opportunity">6 可切入机会点</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="eyebrow">Category Planning Report</div>
+      <h1>美国女士塑腰带市场调研报告</h1>
+      <p class="hero-copy">整合美国站市场盘面、Amazon Top100 销售表现、关键词趋势、8,668 条 VOC、人群场景、爆品/新品结构和头部品牌地图。核心判断：类目可进，但不能做普通基础腰封，应围绕下腹覆盖、长穿稳定、大码适配建立产品差异。</p>
+      <div class="kpi-row">
+        <div class="kpi"><strong>200万+</strong><span>Top100 近一年销量</span></div>
+        <div class="kpi"><strong>+20.89%</strong><span>较上一周期销量增长</span></div>
+        <div class="kpi"><strong>$30-35</strong><span>高款效机会价格带</span></div>
+        <div class="kpi"><strong>1-3月</strong><span>塑形/健身需求高峰</span></div>
+      </div>
+      <p class="hero-note">报告结论面向跨境服装商品企划：从“是否进入”转向“用哪条产品路线进入、如何避开头部老链接与基础款同质化竞争”。</p>
+    </div>
+  </header>
+
+  <main>
+    <section id="market">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="chapter">1 市场概况</div>
+          <div>
+            <h2>市场概况</h2>
+            <p class="lead">本章拆分为两个层级：先看美国女士塑身腰带节点的整体市场空间，再看亚马逊美国站 Top100 样本下的销量、搜索、竞争、新品和价格带机会。</p>
+          </div>
+        </div>
+
+        <div class="subchapter">
+          <div>
+            <div class="chapter">1.1 美国市场概况</div>
+            <h3>美国市场概况</h3>
+          </div>
+          <p>只保留美国女士塑身腰带节点前期判断的核心内容：市场规模、趋势、需求驱动、品牌生态、消费者反馈和总结结论。</p>
+        </div>
+
+        <div class="us-scan">
+          <section class="us-row">
+            <div>
+              <h4>1. 市场规模判断</h4>
+              <p class="us-note">可确认的是 shapewear 大盘有规模；不可确认的是 waist cincher belt 的精确公开规模。</p>
+            </div>
+            <div class="us-grid-3">
+              <article class="us-card"><small>US Shapewear</small><h5>美国市场有规模支撑</h5><p>Grand View Research：美国 shapewear 市场 2020 年 6.705 亿美元，预计 2028 年 12.159 亿美元，CAGR 7.7%。</p></article>
+              <article class="us-card"><small>Growth</small><h5>仍处于增长口径</h5><p>Technavio：美国 shapewear 市场 2025-2030 年 CAGR 8.4%，增量 3.177 亿美元，女性端仍是最大收入份额。</p></article>
+              <article class="us-card"><small>Caution</small><h5>细分类目数据不足</h5><p>公开资料多为 shapewear / body shapewear / women shapewear，不能直接等同于 waist cincher。</p></article>
+            </div>
+          </section>
+
+          <section class="us-row">
+            <div>
+              <h4>2. 行业趋势判断</h4>
+              <p class="us-note">不是“老式束腰训练”单一路径，而是从强塑形向舒适、日常和包容尺码延展。</p>
+            </div>
+            <div class="us-bars">
+              <div class="us-bar"><b>舒适/透气</b><div class="us-track"><i style="width:88%"></i></div><span>强信号</span></div>
+              <div class="us-bar"><b>日常/隐形</b><div class="us-track"><i style="width:82%"></i></div><span>强信号</span></div>
+              <div class="us-bar"><b>大码包容</b><div class="us-track"><i style="width:76%"></i></div><span>中强</span></div>
+              <div class="us-bar"><b>产后/支撑</b><div class="us-track"><i style="width:68%"></i></div><span>中强</span></div>
+              <div class="us-bar"><b>长期瘦腰叙事</b><div class="us-track"><i style="width:34%"></i></div><span>需谨慎</span></div>
+            </div>
+          </section>
+
+          <section class="us-row">
+            <div>
+              <h4>3. 需求驱动判断</h4>
+              <p class="us-note">需求真实存在，但需要区分“短时视觉塑形/支撑”和“长期训练出小腰”。</p>
+            </div>
+            <div class="us-demand">
+              <figure class="shot" style="margin:0"><img src="waist_report_assets/us_market/ai-demand-panels.png" alt="塑身腰带需求场景示意图"><figcaption>图片来源：AI 示意图，四类场景为 tummy control、腰线/支撑、运动流汗、产后腹部支撑。</figcaption></figure>
+              <div class="us-demand-grid">
+                <article class="us-card"><h5>穿衣更平整</h5><p>Spanx、SKIMS、Shapermint 等均围绕 tummy control、smoothing、waist sculpting 表达。</p></article>
+                <article class="us-card"><h5>腰腹支撑</h5><p>SHAPERX、FeelinGirl 页面同时强调 back support、posture support、adjustable compression。</p></article>
+                <article class="us-card"><h5>运动/流汗</h5><p>waist trainer belt 常与 workout、sweat boost、gym / yoga 场景绑定。</p></article>
+                <article class="us-card"><h5>产后恢复</h5><p>Belly Bandit、Bellefit 等说明 postpartum belly wrap / girdle 是独立功能需求。</p></article>
+              </div>
+            </div>
+          </section>
+
+          <section class="us-row">
+            <div>
+              <h4>4. 品牌动态判断</h4>
+              <p class="us-note">传统品牌、DTC 品牌、Amazon/TikTok 品牌共同参与，说明不是单一平台需求。</p>
+            </div>
+            <div>
+              <div class="us-channel-map">
+                <div class="us-channel"><strong>Amazon</strong>SHAPERX、YIANNA、FeelinGirl、Nebility 等。</div>
+                <div class="us-channel"><strong>TikTok Shop</strong>body shaper / waist trainer 有可见品牌与销量痕迹。</div>
+                <div class="us-channel"><strong>DTC 官网</strong>SKIMS、Spanx、Shapermint、Honeylove、Leonisa。</div>
+                <div class="us-channel"><strong>Mass Retail</strong>Target / Walmart 等有 women's shapewear 货架。</div>
+                <div class="us-channel"><strong>Postpartum</strong>Belly Bandit、Bellefit 等偏功能支撑。</div>
+              </div>
+              <div class="us-source-strip">
+                <div class="us-source"><strong>SHAPERX 产品页</strong>来源网站：shaperx.com；卖点含 tummy control、posture/back support、postpartum。</div>
+                <div class="us-source"><strong>FeelinGirl 产品页</strong>来源网站：feelingirl.com；卖点含 workout、daily wear、postpartum recovery。</div>
+                <div class="us-source"><strong>Shapermint 产品页</strong>来源网站：shapermint.com；waist cincher / high compression 方向。</div>
+                <div class="us-source"><strong>Maidenform 分类页</strong>来源网站：maidenform.com；传统品牌 waist cinchers 货架。</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="us-row">
+            <div>
+              <h4>5. 消费者反馈判断</h4>
+              <p class="us-note">公开评价与论坛讨论已经能看到可继续 VOC 的痛点。</p>
+            </div>
+            <div>
+              <div class="us-grid-3">
+                <article class="us-card"><h5>主要满意</h5><p>腰线更明显、tummy control、支撑感、腰背/姿态支撑、运动和日常可穿。</p></article>
+                <article class="us-card"><h5>主要抱怨</h5><p>卷边/下滑、勒肉、闷热、尺码不准、坐下不舒服、钢骨戳肉、衣服下明显。</p></article>
+                <article class="us-card"><h5>VOC 价值</h5><p>痛点重复出现，适合进入 Amazon 评论分析验证频次、严重度和人群差异。</p></article>
+              </div>
+              <div class="us-pain-grid">
+                <div class="us-pain">卷边 / 下滑</div><div class="us-pain">坐下不舒服</div><div class="us-pain">尺码难选</div><div class="us-pain">钢骨 / 拉链体验</div><div class="us-pain">闷热 / 不透气</div><div class="us-pain">衣服下可见</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="us-row">
+            <div>
+              <h4>6. 总结判断</h4>
+              <p class="us-note">本报告仅判断是否值得继续调研。</p>
+            </div>
+            <div class="us-conclusion">
+              <h4>明确结论：建议继续下钻</h4>
+              <p>美国 shapewear 大盘有规模且仍增长；女性仍是核心用户；腰腹塑形、收腹、穿搭平整、产后/腰背支撑需求真实存在；传统 / DTC / Amazon / TikTok 品牌共同参与，说明该需求不是单一平台需求。</p>
+              <p>下一步建议进入 Amazon 评论与搜索结果页初筛，重点验证 waist trainer belt / waist cincher 的销量层级、评分结构、差评痛点和腰带 vs faja / bodysuit / brief 的需求边界。</p>
+            </div>
+          </section>
+        </div>
+
+
+        <div class="subchapter">
+          <div>
+            <div class="chapter">1.2 亚马逊市场概况</div>
+            <h3>亚马逊市场概况</h3>
+          </div>
+          <p>基于卖家精灵市场分析报告与 Top100 数据提炼，重点看 Amazon US 女士塑腰带节点的进入门槛、价格机会和新品策略。</p>
+        </div>
+
+        <div class="market-image-frame">
+          <img src="../视觉素材/1280X1280.PNG" alt="女性塑腰带（塑身腰封）亚马逊美国站市场概况示意图">
+        </div>
+      </div>
+    </section>
+
+    <section id="keywords">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="chapter">2 关键词趋势</div>
+          <div>
+            <h2>关键词趋势</h2>
+            <p class="lead">核心大词仍是基本盘，但更适合新品破局的是功能词、场景词、人群词与 Faja / 西语词。关键词策略要从“泛腰训”拆成“下腹、大码、长躯干、日常隐形、运动燃汗”。</p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <h3>成熟大词仍要覆盖</h3>
+            <p><b>waist trainer for women</b> 月搜索 751,539；<b>waist trainer</b> 月搜索 351,550。它们决定基础流量池，但不适合作为唯一竞争点。</p>
+          </div>
+          <div class="card">
+            <h3>下腹控制是高意图机会</h3>
+            <p><b>stomach shapewear</b> 月搜索 44,838，购买率 10.40%；<b>waist shapewear</b> 购买率 14.65%。</p>
+          </div>
+          <div class="card">
+            <h3>Faja / 西语需求不可忽视</h3>
+            <p><b>fajas colombianas moldeadoras</b> 月搜索 384,530；<b>faja</b> 月搜索 311,403，背后是强包裹和拉美塑身文化。</p>
+          </div>
+        </div>
+
+        <div style="margin-top:22px">
+          <table>
+            <thead><tr><th>流量池</th><th>代表关键词</th><th>企划含义</th></tr></thead>
+            <tbody>
+              <tr><td>核心大词</td><td>waist trainer, waist trainer for women, waist cincher</td><td>必须覆盖，但不能只围绕大词做泛流量竞争。</td></tr>
+              <tr><td>功能词</td><td>stomach shapewear, lower belly fat, tummy control</td><td>把腹部塑形做具体：前腹强压、下腹包覆、坐下不挤肉。</td></tr>
+              <tr><td>人群词</td><td>plus size waist trainer, long torso waist trainer</td><td>流量占比不大但购买率高，适合做差异化款。</td></tr>
+              <tr><td>场景词</td><td>sweat waist trainer, workout, all-day comfort, invisible wear</td><td>运动燃汗可做细分；日常隐形适合 Loday 做舒适升级。</td></tr>
+              <tr><td>西语/Faja</td><td>faja, fajas para mujer, fajas moldeadoras</td><td>可加入西语标题/A+模块，但产品要能支撑强包裹心智。</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="audience">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="chapter">3 人群场景</div>
+          <div>
+            <h2>目标人群与场景洞察</h2>
+          </div>
+        </div>
+        <div class="inline-report-frame">
+          <iframe class="full-report-frame audience-full-frame" src="loday_audience_scene_insights.html" scrolling="no" title="Loday 人群和场景分析"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="product">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="chapter">4 爆品新品</div>
+          <div>
+            <h2>爆品与新品分析</h2>
+            <p class="lead">本节嵌入独立的爆品/新品分析 HTML，集中展示爆品卖点、版型结构、设计细节、材质视觉、新品趋势和对 Loday 的企划启发。</p>
+          </div>
+        </div>
+        <div class="inline-report-frame">
+          <iframe class="full-report-frame product-full-frame" src="loday_bestseller_new_features.html" scrolling="no" title="Loday 爆品新品分析"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="brand">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="chapter">5 头部品牌</div>
+          <div>
+            <h2>头部品牌分析</h2>
+            <p class="lead">本节嵌入独立的头部品牌分析 HTML，集中展示 FeelinGirl、Nebility、SHAPSHE、YIANNA、SHAPERX、Shapellx 等品牌定位、价格区间、产品矩阵和对 Loday 的启发。</p>
+          </div>
+        </div>
+        <div class="inline-report-frame">
+          <iframe class="full-report-frame brand-full-frame" src="loday_top_brand_analysis.html" scrolling="no" title="Loday 头部品牌分析"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section id="opportunity" class="opportunity-tailong">
+      <div class="wrap">
+        <div class="opp-hero">
+          <div>
+            <div class="opp-kicker">6 可切入机会点</div>
+            <h2>可切入机会点</h2>
+          </div>
+          <p>三个机会点从人群、场景、功能、价格和视觉表达一起定义。优先级建议：先做下腹精准塑形长腰封，再用日常低负担款拉开穿着场景，最后用大码/长躯干友好款建立差异化壁垒。</p>
+        </div>
+
+        <div class="opp-list">
+          <article class="opp-item">
+            <div class="opp-copy">
+              <span class="opp-badge">机会点一</span>
+              <h3 class="opp-title">下腹精准塑形长腰封</h3>
+              <p class="opp-summary">解决普通腰封覆盖不到下腹、久坐容易卷边的问题，从“收腰”升级为“下腹 + 腰腹 + 背部”的整体控制。</p>
+              <div class="opp-info-grid">
+                <div class="opp-info">
+                  <strong>建议价格</strong>
+                  <span>$19.99-22.99</span>
+                </div>
+                <div class="opp-info">
+                  <strong>目标人群</strong>
+                  <span>腰腹赘肉/曲线焦虑女性、日常长穿人群、外出穿搭塑形用户。</span>
+                </div>
+                <div class="opp-info">
+                  <strong>目标场景</strong>
+                  <span>日常穿搭、牛仔裤/内穿、办公久坐、外出搭配。</span>
+                </div>
+                <div class="opp-info">
+                  <strong>款式方向</strong>
+                  <span>胸下到胯上长腰封，高度覆盖下腹，上腹/下腹分区压缩，下摆防卷。</span>
+                </div>
+              </div>
+              <ul class="opp-bullets">
+                <li>基础必备：3排可调扣、5-7根分区骨条、宽版下摆防卷、下腹加高覆盖。</li>
+                <li>差异化：前片下腹加压层、坐下不顶胃结构、柔性防卷下摆。</li>
+                <li>视觉重点：主图展示下腹覆盖变化，A+用坐姿图证明不卷边。</li>
+              </ul>
+            </div>
+            <figure class="opp-visual">
+              <img src="../视觉素材/机会点一.png" alt="机会点一 下腹精准塑形长腰封">
+            </figure>
+          </article>
+
+          <article class="opp-item">
+            <div class="opp-copy">
+              <span class="opp-badge">机会点二</span>
+              <h3 class="opp-title">日常可长穿低负担塑腰封</h3>
+              <p class="opp-summary">把传统腰训从“短时勒紧”升级为“日常可穿的支撑塑形”，兼顾久坐舒适、衣下平整与轻负担塑形。</p>
+              <div class="opp-info-grid">
+                <div class="opp-info">
+                  <strong>建议价格</strong>
+                  <span>$17.99-19.99</span>
+                </div>
+                <div class="opp-info">
+                  <strong>目标人群</strong>
+                  <span>日常穿搭塑形女性、上班久坐通勤女性、大码/丰满体型女性。</span>
+                </div>
+                <div class="opp-info">
+                  <strong>目标场景</strong>
+                  <span>日常通勤、办公室久坐、裙装内穿、外出搭配。</span>
+                </div>
+                <div class="opp-info">
+                  <strong>款式方向</strong>
+                  <span>无痕腹带/轻量中腰封，宽腰设计，低凸起闭合，柔性支撑后腰。</span>
+                </div>
+              </div>
+              <ul class="opp-bullets">
+                <li>基础必备：宽腰塑形、内穿平整、腰背支撑、柔软包边、不卷边。</li>
+                <li>差异化：坐姿减压结构、低凸起门襟、薄边收口、日常肤色/黑色主推。</li>
+                <li>视觉重点：主图突出衣下更平整，场景图覆盖通勤、办公和日常外出。</li>
+              </ul>
+            </div>
+            <figure class="opp-visual">
+              <img src="../视觉素材/机会点二.png" alt="机会点二 日常可长穿低负担塑腰封">
+            </figure>
+          </article>
+
+          <article class="opp-item">
+            <div class="opp-copy">
+              <span class="opp-badge">机会点三</span>
+              <h3 class="opp-title">大码/长躯干友好三段可调塑腰带</h3>
+              <p class="opp-summary">不是简单放大尺码，而是为大码、丰满、长躯干与腹部集中型身材做覆盖更完整、压力更可调、边缘不截断的升级腰封。</p>
+              <div class="opp-info-grid">
+                <div class="opp-info">
+                  <strong>建议价格</strong>
+                  <span>$19.99-21.99</span>
+                </div>
+                <div class="opp-info">
+                  <strong>目标人群</strong>
+                  <span>大码/丰满体型女性、腹部集中型身材、长躯干女性。</span>
+                </div>
+                <div class="opp-info">
+                  <strong>目标场景</strong>
+                  <span>日常内穿、健身塑形、婚礼/聚会、拍照穿搭。</span>
+                </div>
+                <div class="opp-info">
+                  <strong>款式方向</strong>
+                  <span>三段/三带式长腰封，长短躯干可选，侧腰强化加压，下腹独立加压。</span>
+                </div>
+              </div>
+              <ul class="opp-bullets">
+                <li>基础必备：XS-4XL、长/短躯干双版、3-5排可调扣、宽版贴胯防卷边。</li>
+                <li>差异化：三段式外拉压缩、侧腰强化加压层、大码专属尺码图。</li>
+                <li>视觉重点：大码曲线模特、下腹露出对比、三段压力调节图、A+详细尺码图。</li>
+              </ul>
+            </div>
+            <figure class="opp-visual">
+              <img src="../视觉素材/机会点三.png" alt="机会点三 大码长躯干友好三段可调塑腰带">
+            </figure>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div>Loday Women's Waist Cincher Market Research · HTML Report</div>
+      <div>Data source: Amazon US Top100, VOC 8,668 reviews, keyword reverse lookup, product page/A+ screenshots.</div>
+    </div>
+  </footer>
+
+  <script>
+    function resizeEmbeddedReports() {
+      document.querySelectorAll('iframe[data-auto-height="true"]').forEach(frame => {
+        try {
+          const doc = frame.contentDocument || frame.contentWindow.document;
+          const body = doc.body;
+          const html = doc.documentElement;
+          const height = Math.max(
+            body ? body.scrollHeight : 0,
+            body ? body.offsetHeight : 0,
+            html ? html.clientHeight : 0,
+            html ? html.scrollHeight : 0,
+            html ? html.offsetHeight : 0
+          );
+          if (height) frame.style.height = `${height + 8}px`;
+        } catch (error) {
+          frame.style.height = '1200px';
+        }
+      });
+    }
+    window.addEventListener('load', resizeEmbeddedReports);
+    window.addEventListener('resize', resizeEmbeddedReports);
+    setTimeout(resizeEmbeddedReports, 500);
+    setTimeout(resizeEmbeddedReports, 1500);
+  </script>
+</body>
+</html>
