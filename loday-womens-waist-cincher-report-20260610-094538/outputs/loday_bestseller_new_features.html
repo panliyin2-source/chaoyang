@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loday 4. 爆款/新品分析</title>
+  <style>
+    :root {
+      --paper:#fbf7f1; --panel:#fffdf9; --ink:#221f1c; --muted:#70645f;
+      --line:#eadfd7; --coral:#d96050; --teal:#287d78; --gold:#b98939; --dark:#2b2927;
+      --shadow:0 18px 48px rgba(45,36,32,.12);
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:"Inter","Segoe UI","Microsoft YaHei",Arial,sans-serif; line-height:1.58; }
+    img { max-width:100%; display:block; }
+    button, select { font:inherit; }
+    .nav { position:sticky; top:0; z-index:20; display:flex; justify-content:space-between; align-items:center; gap:18px; padding:14px 28px; background:rgba(251,247,241,.92); border-bottom:1px solid var(--line); backdrop-filter:blur(16px); }
+    .brand { font-weight:900; }
+    .brand small { display:block; font-size:12px; color:var(--muted); font-weight:650; }
+    .nav a { color:#4c4541; text-decoration:none; font-size:13px; padding:8px 10px; border-radius:8px; }
+    .nav a:hover { background:#fff; box-shadow:0 0 0 1px var(--line) inset; }
+    .hero { padding:76px 7vw 52px; background:linear-gradient(120deg,rgba(217,96,80,.12),transparent 42%),linear-gradient(320deg,rgba(40,125,120,.13),transparent 45%); }
+    .hero-inner { max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1.1fr .9fr; gap:42px; align-items:end; }
+    .eyebrow { color:var(--teal); font-weight:900; font-size:13px; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { margin:12px 0 18px; font-size:clamp(44px,7vw,88px); line-height:.96; letter-spacing:0; }
+    .lead { max-width:760px; font-size:18px; color:#4e4743; }
+    .hero-panel { background:rgba(255,253,249,.82); border:1px solid var(--line); border-radius:8px; padding:22px; box-shadow:var(--shadow); }
+    .hero-panel h2 { margin:0 0 12px; font-size:24px; }
+    .hero-panel p { margin:8px 0; color:#514944; }
+    main { max-width:1240px; margin:0 auto; padding:36px 24px 80px; }
+    section { margin-top:58px; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:18px; margin-bottom:18px; }
+    h2 { margin:0; font-size:34px; letter-spacing:0; }
+    .note { margin:7px 0 0; max-width:760px; color:var(--muted); }
+    .product-card, .filter-panel, .visual-card, .insight-panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:var(--shadow); }
+    .visual-card { overflow:hidden; padding:14px; display:flex; justify-content:center; background:#fff; }
+    .visual-card img { width:min(100%, 880px); border-radius:6px; }
+    .insight-grid { display:grid; grid-template-columns:1fr 1.12fr; gap:14px; margin-top:14px; }
+    .insight-panel { padding:18px; }
+    .insight-panel h3 { margin-top:0; }
+    .planning-line { border:1px solid #d9e6ec; background:#f3f8fa; color:#294c5b; border-radius:7px; padding:10px 12px; margin-top:9px; font-size:14px; }
+    .bar-list { display:grid; gap:8px; }
+    .bar-row { display:grid; grid-template-columns:130px 1fr 42px; gap:10px; align-items:center; font-size:13px; }
+    .bar-row span { color:#3e3733; }
+    .bar-row b { text-align:right; color:#504842; font-size:12px; }
+    .bar-track { height:12px; background:#e8eef0; border-radius:999px; overflow:hidden; }
+    .bar-track i { display:block; height:100%; border-radius:999px; }
+    h3 { margin:8px 0 8px; font-size:20px; line-height:1.25; }
+    .filter-panel { padding:16px; margin-bottom:16px; }
+    .filter-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; }
+    label { display:block; color:#5b514b; font-size:12px; font-weight:850; margin-bottom:6px; }
+    select { width:100%; border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:8px; padding:10px 12px; }
+    .filter-actions { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:12px; }
+    .count { color:var(--muted); font-size:13px; }
+    button { border:0; background:var(--dark); color:#fff; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:800; }
+    .product-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .product-card { overflow:hidden; cursor:pointer; }
+    .thumb { aspect-ratio:4/3; background:#f2ebe5; overflow:hidden; }
+    .thumb img { width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .24s ease; }
+    .product-card:hover .thumb img { transform:scale(1.025); }
+    .product-body { padding:14px; }
+    .tag-row { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+    .tag { display:inline-flex; padding:3px 8px; border-radius:999px; background:#e7f1ef; color:#1e6d68; font-size:12px; font-weight:850; }
+    .tag.best { background:#fae8e3; color:#b94f42; }
+    .asin { margin-top:9px; font-family:"Cascadia Mono","Consolas",monospace; font-weight:900; }
+    .brand-name { color:var(--muted); font-size:13px; margin-top:2px; }
+    .meta { margin-top:10px; display:grid; gap:5px; color:#514944; font-size:13px; }
+    .meta b { color:#2d2926; }
+    .chips { display:flex; flex-wrap:wrap; gap:5px; margin-top:9px; }
+    .chip { font-size:12px; padding:3px 7px; border-radius:999px; background:#f4ece6; color:#6b5147; }
+    .modal { position:fixed; inset:0; display:none; background:rgba(24,22,20,.72); z-index:40; padding:28px; }
+    .modal.open { display:grid; place-items:center; }
+    .modal-panel { width:min(1120px,100%); max-height:92vh; overflow:auto; background:var(--paper); border-radius:10px; box-shadow:0 30px 90px rgba(0,0,0,.35); }
+    .modal-head { position:sticky; top:0; display:flex; justify-content:space-between; align-items:center; gap:16px; padding:14px 18px; background:rgba(251,247,241,.95); border-bottom:1px solid var(--line); backdrop-filter:blur(10px); }
+    .modal-title { font-weight:900; }
+    .shots { display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:18px; }
+    .shot { background:#fff; border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+    .shot h4 { margin:0; padding:10px 12px; border-bottom:1px solid var(--line); }
+    .source { color:var(--muted); font-size:12px; margin-top:18px; }
+    @media (max-width:980px) {
+      .hero-inner, .insight-grid, .shots { grid-template-columns:1fr; }
+      .product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .filter-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width:620px) {
+      .nav { flex-direction:column; align-items:flex-start; padding:12px 16px; }
+      .hero { padding:48px 16px 34px; }
+      main { padding-inline:16px; }
+      .product-grid, .filter-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand">Loday 第四部分<small>爆款/新品分析</small></div>
+    <div>
+      <a href="#best-summary">爆品特征总结</a>
+      <a href="#new-summary">新品趋势总结</a>
+      <a href="#products">产品卡片</a>
+    </div>
+  </nav>
+  <header class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">4. 爆款/新品分析</div>
+        <h1>爆品特征与新品趋势</h1>
+        <p class="lead">按照调研报告第四部分重组：先看爆品已经验证的必备特征，再看新品正在出现的结构、功能、细节、面料与视觉变化，最后用产品卡片做筛选对照。</p>
+      </div>
+      <div class="hero-panel">
+        <h2>阅读顺序</h2>
+        <p><b>1. 爆品特征总结：</b>产品卖点、版型结构、设计细节、面料材质、视觉策略。</p>
+        <p><b>2. 新品趋势总结：</b>结构更新、功能更新、设计细节更新、面料更新、视觉更新。</p>
+        <p><b>3. 产品卡片：</b>按爆品/新品、版型、价格带、特征筛选，并查看主页与 A+ 证据图。</p>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section id="best-summary">
+      <div class="section-head">
+        <div>
+          <h2>爆品特征总结</h2>
+          <p class="note">爆品卖点的底层逻辑是：先解决“有没有效果”，再解决“穿不穿得住”。</p>
+        </div>
+      </div>
+      <div class="visual-card">
+      <img src="../视觉素材/爆品特征.png" alt="爆品特征示意图" />
+    </div>
+    <div class="insight-grid">
+      <article class="insight-panel">
+        <h3>企划总结</h3>
+        <div class="planning-line">核心公式：强收腹 / 束腰 + 腰背支撑 + 防卷边 + 可调节 + 明确场景 + 主图腰腹变化。</div>
+<div class="planning-line">版型主流：胸下到下腹长腰封，做前腹、侧腰、后腰整体控制，而不是只收正面。</div>
+<div class="planning-line">细节逻辑：排扣、钢骨、魔术贴、拉链、肩带都要服务“压得住、撑得住、穿得上”。</div>
+<div class="planning-line">面料判断：乳胶卖强塑，氯丁胶卖燃汗，涤纶/氨纶卖基础舒适，锦纶/氨纶卖日常内穿。</div>
+      </article>
+      <article class="insight-panel">
+        <h3>特征数量</h3>
+        <div class="bar-list"><div class="bar-row">
+          <span>收腹 / 束腰 / 塑腰</span>
+          <div class="bar-track"><i style="width:100%; background:#0b66bd"></i></div>
+          <b>20/20</b>
+        </div>
+<div class="bar-row">
+          <span>腰背 / 背部支撑</span>
+          <div class="bar-track"><i style="width:80%; background:#0b66bd"></i></div>
+          <b>16/20</b>
+        </div>
+<div class="bar-row">
+          <span>日常 / 无痕内穿</span>
+          <div class="bar-track"><i style="width:75%; background:#0b66bd"></i></div>
+          <b>15/20</b>
+        </div>
+<div class="bar-row">
+          <span>运动 / 燃汗</span>
+          <div class="bar-track"><i style="width:65%; background:#0b66bd"></i></div>
+          <b>13/20</b>
+        </div>
+<div class="bar-row">
+          <span>宽版 / 高腰 / 长版</span>
+          <div class="bar-track"><i style="width:65%; background:#0b66bd"></i></div>
+          <b>13/20</b>
+        </div>
+<div class="bar-row">
+          <span>钢骨 / 支撑条</span>
+          <div class="bar-track"><i style="width:60%; background:#0b66bd"></i></div>
+          <b>12/20</b>
+        </div>
+<div class="bar-row">
+          <span>防卷边</span>
+          <div class="bar-track"><i style="width:50%; background:#0b66bd"></i></div>
+          <b>10/20</b>
+        </div>
+<div class="bar-row">
+          <span>多排扣 / 排扣</span>
+          <div class="bar-track"><i style="width:40%; background:#0b66bd"></i></div>
+          <b>8/20</b>
+        </div>
+<div class="bar-row">
+          <span>偏产后腹带</span>
+          <div class="bar-track"><i style="width:35%; background:#0b66bd"></i></div>
+          <b>7/20</b>
+        </div>
+<div class="bar-row">
+          <span>魔术贴</span>
+          <div class="bar-track"><i style="width:35%; background:#0b66bd"></i></div>
+          <b>7/20</b>
+        </div></div>
+      </article>
+    </div>
+    </section>
+
+    <section id="new-summary">
+      <div class="section-head">
+        <div>
+          <h2>新品趋势总结</h2>
+          <p class="note">新品不再只集中在传统排扣腰封，而是向三带/三段、开胸/吊带、无扣无痕、连体塑身衣扩展。</p>
+        </div>
+      </div>
+      <div class="visual-card">
+      <img src="../视觉素材/新品趋势.png" alt="新品趋势示意图" />
+    </div>
+    <div class="insight-grid">
+      <article class="insight-panel">
+        <h3>企划总结</h3>
+        <div class="planning-line">新品机会不在“再做一个普通腰封”，而在结构升级、场景升级、体验升级。</div>
+<div class="planning-line">优先关注：三带/三段腰封、开胸/吊带腰封、无扣无痕腹带、连体塑身衣。</div>
+<div class="planning-line">差异化方向：下腹控制、防卷边、低闷感、日常可穿、真实身材适配。</div>
+<div class="planning-line">A+重点：把结构差异、穿着稳定、材质成分、尺码选择和场景图讲完整。</div>
+      </article>
+      <article class="insight-panel">
+        <h3>特征数量</h3>
+        <div class="bar-list"><div class="bar-row">
+          <span>收腹 / 束腰</span>
+          <div class="bar-track"><i style="width:100%; background:#16816f"></i></div>
+          <b>20/20</b>
+        </div>
+<div class="bar-row">
+          <span>排扣</span>
+          <div class="bar-track"><i style="width:90%; background:#16816f"></i></div>
+          <b>18/20</b>
+        </div>
+<div class="bar-row">
+          <span>钢骨 / 支撑条</span>
+          <div class="bar-track"><i style="width:65%; background:#16816f"></i></div>
+          <b>13/20</b>
+        </div>
+<div class="bar-row">
+          <span>开胸 / 吊带 / 背心</span>
+          <div class="bar-track"><i style="width:45%; background:#16816f"></i></div>
+          <b>9/20</b>
+        </div>
+<div class="bar-row">
+          <span>无扣 / 无痕腹带</span>
+          <div class="bar-track"><i style="width:35%; background:#16816f"></i></div>
+          <b>7/20</b>
+        </div>
+<div class="bar-row">
+          <span>三带 / 三段腰封</span>
+          <div class="bar-track"><i style="width:30%; background:#16816f"></i></div>
+          <b>6/20</b>
+        </div>
+<div class="bar-row">
+          <span>防卷边 / 贴胯</span>
+          <div class="bar-track"><i style="width:25%; background:#16816f"></i></div>
+          <b>5/20</b>
+        </div>
+<div class="bar-row">
+          <span>网纱 / 透气结构</span>
+          <div class="bar-track"><i style="width:20%; background:#16816f"></i></div>
+          <b>4/20</b>
+        </div>
+<div class="bar-row">
+          <span>肤色 / 视觉差异</span>
+          <div class="bar-track"><i style="width:15%; background:#16816f"></i></div>
+          <b>3/20</b>
+        </div>
+<div class="bar-row">
+          <span>连体塑身衣</span>
+          <div class="bar-track"><i style="width:10%; background:#16816f"></i></div>
+          <b>2/20</b>
+        </div></div>
+      </article>
+    </div>
+    </section>
+
+    <section id="products">
+      <div class="section-head">
+        <div>
+          <h2>爆品新品产品卡片</h2>
+          <p class="note">筛选项包含类型、版型、价格带、特征。点击卡片可查看对应主页与 A+/商品描述截图。</p>
+        </div>
+      </div>
+      <div class="filter-panel">
+        <div class="filter-grid">
+          <div><label>类型</label><select id="kindFilter"><option value="">全部</option><option value="爆品">爆品</option><option value="新品">新品</option></select></div>
+          <div><label>版型</label><select id="fitFilter"><option value="">全部</option></select></div>
+          <div><label>价格带</label><select id="priceFilter"><option value="">全部</option></select></div>
+          <div><label>特征</label><select id="featureFilter"><option value="">全部</option></select></div>
+        </div>
+        <div class="filter-actions"><span class="count" id="resultCount"></span><button id="resetFilters">重置筛选</button></div>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+      <p class="source">资料来源：Loday 爆品/新品主页和 A+ 截图包、loday-0603/0604 商品企划表、Amazon Top100 表、调研报告第四部分。新品价格字段在现有表格中未提供时标记为“未明确找到”。</p>
+    </section>
+  </main>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div class="modal-title" id="modalTitle"></div>
+        <button id="closeModal">关闭</button>
+      </div>
+      <div class="shots">
+        <div class="shot"><h4>主页截图</h4><img id="modalHome" alt="主页截图"></div>
+        <div class="shot"><h4>A+ / 商品描述截图</h4><img id="modalDetail" alt="商品详情截图"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DATA = {"products": [{"asin": "B092VP9YV5", "brand": "FeelinGirl", "url": "https://www.amazon.com/dp/B092VP9YV5", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$30-40", "price": "$33.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "FeelinGirl Waist Trainer Belt Waist Cincher Trimmer Ab Belt Tummy Control Body Shaper with Triple Wrap Women and Men", "home": "../inputs/loday_product_screenshots/B092VP9YV5主页.png", "detail": "../inputs/loday_product_screenshots/B092VP9YV5商品详情.png"}, {"asin": "B00V2WNA9I", "brand": "YIANNA", "url": "https://www.amazon.com/dp/B00V2WNA9I", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$20-25", "price": "$22.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "YIANNA Women's Underbust Latex Sport Girdle Waist Trainer Corsets Hourglass Body Shaper", "home": "../inputs/loday_product_screenshots/B00V2WNA9I主页.png", "detail": "../inputs/loday_product_screenshots/B00V2WNA9I商品详情.png"}, {"asin": "B07CJZC3PP", "brand": "Nebility", "url": "https://www.amazon.com/dp/B07CJZC3PP", "kind": "爆品", "fit": "开胸/吊带腰封", "priceBand": "$15-20", "price": "$16.99", "features": ["肩带支撑", "背部包覆", "胸下承托"], "title": "Nebility Waist Trainer for Women Corset Shapewear with Zipper Women's Waist Cincher Tank Top with Adjustable Straps", "home": "../inputs/loday_product_screenshots/B07CJZC3PP主页.png", "detail": "../inputs/loday_product_screenshots/B07CJZC3PP商品详情.png"}, {"asin": "B0C9ZS159B", "brand": "LEINIDINA", "url": "https://www.amazon.com/dp/B0C9ZS159B", "kind": "爆品", "fit": "三段/三带腰封", "priceBand": "$10-15", "price": "$14.99", "features": ["三带外拉", "运动燃汗", "可调节"], "title": "LEINIDINA Womens Waist Trainer Corset with Zipper Sweat Waist Trimmer for Women Workout Belt Corset Shapewear", "home": "../inputs/loday_product_screenshots/B0C9ZS159B主页.png", "detail": "../inputs/loday_product_screenshots/B0C9ZS159B商品详情.png"}, {"asin": "B0CJ99YNMJ", "brand": "LODAY", "url": "https://www.amazon.com/dp/B0CJ99YNMJ", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$15-20", "price": "$16.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "LODAY Waist Trainer Corset Shapewear Tummy Control Body Shaper Waist Cincher for Women Faja Postpartum Belly Band Wrap", "home": "../inputs/loday_product_screenshots/B0CJ99YNMJ主页.png", "detail": "../inputs/loday_product_screenshots/B0CJ99YNMJ商品详情.png"}, {"asin": "B0DK3G3TGP", "brand": "SHAPSHE", "url": "https://www.amazon.com/dp/B0DK3G3TGP", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$40+", "price": "$50.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "SHAPSHE Waist Trainer Corset for Women Tummy Control Sport Workout Body Shaper Vest for Women Postpartum Gym Zipper and Hooks", "home": "../inputs/loday_product_screenshots/B0DK3G3TGP主页.png", "detail": "../inputs/loday_product_screenshots/B0DK3G3TGP商品详情.png"}, {"asin": "B07RMGKPG9", "brand": "HOPLYNN", "url": "https://www.amazon.com/dp/B07RMGKPG9", "kind": "爆品", "fit": "三段/三带腰封", "priceBand": "$15-20", "price": "$19.99", "features": ["三带外拉", "运动燃汗", "可调节"], "title": "HOPLYNN Neoprene Sweat Waist Trainer Corset Trimmer Shaper Belt for Women", "home": "../inputs/loday_product_screenshots/B07RMGKPG9主页.png", "detail": "../inputs/loday_product_screenshots/B07RMGKPG9商品详情.png"}, {"asin": "B0DPBWRKT8", "brand": "SHAPSHE", "url": "https://www.amazon.com/dp/B0DPBWRKT8", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$40+", "price": "$44.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "SHAPSHE Waist Trainer for Women Tummy Control Corset Sport Workout Body Shaper Postpartum Belly Band Gym", "home": "../inputs/loday_product_screenshots/B0DPBWRKT8主页.png", "detail": "../inputs/loday_product_screenshots/B0DPBWRKT8商品详情.png"}, {"asin": "B0DX1P29NP", "brand": "Gepoetry", "url": "https://www.amazon.com/dp/B0DX1P29NP", "kind": "爆品", "fit": "产后恢复腹带", "priceBand": "$20-25", "price": "$22.99", "features": ["产后支撑", "魔术贴", "可调节"], "title": "Postpartum & Post Surgery Abdominal Binder. Postpartum Belly Band Support Recovery after C-Section, Natural Birth, Hysterectomy, Hernia Belt (Beige,M)", "home": "../inputs/loday_product_screenshots/B0DX1P29NP主页.png", "detail": "../inputs/loday_product_screenshots/B0DX1P29NP商品详情.png"}, {"asin": "B09TVHYXX6", "brand": "Nebility", "url": "https://www.amazon.com/dp/B09TVHYXX6", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$15-20", "price": "$15.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "Nebility Womens' Waist Trainer Tummy Control Waist Cincher Slim Body Shaper", "home": "../inputs/loday_product_screenshots/B09TVHYXX6主页.png", "detail": "../inputs/loday_product_screenshots/B09TVHYXX6商品详情.png"}, {"asin": "B07Y1DFSFM", "brand": "ChongErfei", "url": "https://www.amazon.com/dp/B07Y1DFSFM", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$15-20", "price": "$19.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "ChongErfei Waist Trainer Belt for Women Man - Waist Trimmer Ab Belt - Tummy Control Body Shaper", "home": "../inputs/loday_product_screenshots/B07Y1DFSFM主页.png", "detail": "../inputs/loday_product_screenshots/B07Y1DFSFM商品详情.png"}, {"asin": "B08M931ZDQ", "brand": "YADIFEN", "url": "https://www.amazon.com/dp/B08M931ZDQ", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$15-20", "price": "$16.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "YADIFEN Waist Trainer for Women,Zipper Corset Body Shaper for Tummy Control Neoprene Cincher Sweat Sauna Vest Tank Top", "home": "../inputs/loday_product_screenshots/B08M931ZDQ主页.png", "detail": "../inputs/loday_product_screenshots/B08M931ZDQ商品详情.png"}, {"asin": "B075KBXFBK", "brand": "LODAY", "url": "https://www.amazon.com/dp/B075KBXFBK", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$15-20", "price": "$15.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "LODAY Waist Trainer Corset for Women Tummy Control Sport Workout Body Shaper Black", "home": "../inputs/loday_product_screenshots/B075KBXFBK主页.png", "detail": "../inputs/loday_product_screenshots/B075KBXFBK商品详情.png"}, {"asin": "B07T8H2MPY", "brand": "Trendyline", "url": "https://www.amazon.com/dp/B07T8H2MPY", "kind": "爆品", "fit": "产后恢复腹带", "priceBand": "$15-20", "price": "$17.98", "features": ["产后支撑", "魔术贴", "可调节"], "title": "Trendyline Postpartum Belly Band,C Section Belly Binder,Abdominal Binder Post Surgery Girdle,Tummy Tuck Compression Wrap Waist Trainer (Black, Medium)", "home": "../inputs/loday_product_screenshots/B07T8H2MPY主页.png", "detail": "../inputs/loday_product_screenshots/B07T8H2MPY商品详情.png"}, {"asin": "B0C1Y84QPK", "brand": "SHAPSHE", "url": "https://www.amazon.com/dp/B0C1Y84QPK", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$40+", "price": "$46.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "SHAPSHE Waist Trainer for Women, Tummy Control Sports Girdle, Workout Body Shaper with Adjustable Shoulder Strap", "home": "../inputs/loday_product_screenshots/B0C1Y84QPK主页.png", "detail": "../inputs/loday_product_screenshots/B0C1Y84QPK商品详情.png"}, {"asin": "B07DWLTGSF", "brand": "LadySlim by NuvoFit", "url": "https://www.amazon.com/dp/B07DWLTGSF", "kind": "爆品", "fit": "传统排扣长腰封", "priceBand": "$40+", "price": "$42.95", "features": ["强收腹", "排扣", "钢骨支撑"], "title": "LadySlim by NuvoFit AUTHENTIC COLOMBIAN Premium Waist Trainer for Women Fajas Colombianas Reductoras Cinturilla Para Mujer", "home": "../inputs/loday_product_screenshots/B07DWLTGSF主页.png", "detail": "../inputs/loday_product_screenshots/B07DWLTGSF商品详情.png"}, {"asin": "B0FLJMCWL3", "brand": "SHAPERX", "url": "https://www.amazon.com/dp/B0FLJMCWL3", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$30-40", "price": "$39.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "SHAPERX Waist Trainer for Women Corset Shapewear Tummy Control Sport Workout Waist Cincher Body Shaper Zipper and Hooks", "home": "../inputs/loday_product_screenshots/B0FLJMCWL3主页.png", "detail": "../inputs/loday_product_screenshots/B0FLJMCWL3商品详情.png"}, {"asin": "B0D7VJF3ST", "brand": "Nebility", "url": "https://www.amazon.com/dp/B0D7VJF3ST", "kind": "爆品", "fit": "传统排扣长腰封", "priceBand": "$10-15", "price": "$14.99", "features": ["强收腹", "排扣", "钢骨支撑"], "title": "Nebility Waist Trainer for Women Corset Shapewear Tummy Control Segmented Waist Cincher Workout Girdle", "home": "../inputs/loday_product_screenshots/B0D7VJF3ST主页.png", "detail": "../inputs/loday_product_screenshots/B0D7VJF3ST商品详情.png"}, {"asin": "B0DMT298CJ", "brand": "SHAPERX", "url": "https://www.amazon.com/dp/B0DMT298CJ", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$40+", "price": "$43.99", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "SHAPERX Waist Trainer Corset for Women Tummy Control Sport Girdle Hourglass Waist Cincher Body Shaper with Steel Boned", "home": "../inputs/loday_product_screenshots/B0DMT298CJ主页.png", "detail": "../inputs/loday_product_screenshots/B0DMT298CJ商品详情.png"}, {"asin": "B0FND9T4YS", "brand": "Nebility", "url": "https://www.amazon.com/dp/B0FND9T4YS", "kind": "爆品", "fit": "连体塑身衣", "priceBand": "$15-20", "price": "$15.94", "features": ["腹部加压", "日常内穿", "曲线塑造"], "title": "Nebility Waist Trainer for Women Zipper Corset Shapewear Tummy Control Mesh Waist Cincher Faja Body Shaper", "home": "../inputs/loday_product_screenshots/B0FND9T4YS主页.png", "detail": "../inputs/loday_product_screenshots/B0FND9T4YS商品详情.png"}, {"asin": "B0DXVQC6DY", "brand": "LODAY", "url": "https://www.amazon.com/dp/B0DXVQC6DY", "kind": "新品", "fit": "开胸/吊带腰封", "priceBand": "$10-15", "price": "$14.98", "features": ["开胸结构", "日常内穿", "曲线塑造"], "title": "LODAY Segmented Waist Trainer for Women Corset Shapewear Waist Cincher Tummy Control Faja Body Shaper", "home": "../inputs/loday_waist_new_pages_current/B0DXVQC6DY首页.png", "detail": "../inputs/loday_waist_new_pages_current/B0DXVQC6DY商品描述.png"}, {"asin": "B0G6J9F2J4", "brand": "GYDEK", "url": "https://www.amazon.com/dp/B0G6J9F2J4", "kind": "新品", "fit": "开胸/吊带腰封", "priceBand": "$15-20", "price": "$19.99", "features": ["拉链", "粉色撞线", "视觉差异"], "title": "GYDEK Waist Trainer Corset for Women Tummy Control Sport Workout Waist Cincher Zipper Body Shaper Vest with Adjustable Straps", "home": "../inputs/loday_waist_new_pages_current/B0G6J9F2J4主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0G6J9F2J4商品描述.png"}, {"asin": "B0GZYRC4YL", "brand": "sellto", "url": "https://www.amazon.com/dp/B0GZYRC4YL", "kind": "新品", "fit": "产后恢复腹带", "priceBand": "$15-20", "price": "$17.99", "features": ["产后支撑", "魔术贴", "舒适可调"], "title": "sellto Waist Trainer for Women Tummy Control Postpartum Recovery Belt Waist Cincher Body Shaper", "home": "../inputs/loday_waist_new_pages_current/B0GZYRC4YL主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0GZYRC4YL商品描述.png"}, {"asin": "B0F28Z28PK", "brand": "Junlan", "url": "https://www.amazon.com/dp/B0F28Z28PK", "kind": "新品", "fit": "三段/三带腰封", "priceBand": "$10-15", "price": "$9.99", "features": ["三带外拉", "下腹加压", "可调节"], "title": "Junlan Waist Trainer for Women Shapewear - Tummy Control Waist Cincher Segmented Body Shaper", "home": "../inputs/loday_waist_new_pages_current/B0F28Z28PK主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0F28Z28PK商品描述.png"}, {"asin": "B0G6KHF46J", "brand": "GYDEK", "url": "https://www.amazon.com/dp/B0G6KHF46J", "kind": "新品", "fit": "开胸/吊带腰封", "priceBand": "$15-20", "price": "$16.99", "features": ["开胸结构", "排扣", "腰背支撑"], "title": "GYDEK Waist Trainer Corset for Women Tummy Control Sport Workout Waist Cincher Zipper Body Shaper Vest with Adjustable Straps", "home": "../inputs/loday_waist_new_pages_current/B0G6KHF46J主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0G6KHF46J商品描述.png"}, {"asin": "B0GKR65TD8", "brand": "Werena", "url": "https://www.amazon.com/dp/B0GKR65TD8", "kind": "新品", "fit": "传统排扣长腰封", "priceBand": "$15-20", "price": "$18.99", "features": ["排扣", "高腰包覆", "强收腹"], "title": "Werena Waist Trainer for Women Corset Shapewear Tummy Control Slimming Body Shaper Girdle Waist Cincher Belly Band", "home": "../inputs/loday_waist_new_pages_current/B0GKR65TD8主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0GKR65TD8商品描述.png"}, {"asin": "B0FLQ18J1M", "brand": "Nebility", "url": "https://www.amazon.com/dp/B0FLQ18J1M", "kind": "新品", "fit": "开胸/吊带腰封", "priceBand": "$20-25", "price": "$24.99", "features": ["开胸结构", "排扣", "胸下承托"], "title": "Nebility Waist Trainer for Women Corset Shapewear Tummy Control Faja Body Shaper Waist Cincher with Adjustable Strap", "home": "../inputs/loday_waist_new_pages_current/B0FLQ18J1M主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FLQ18J1M商品描述.png"}, {"asin": "B0FCFBBP6B", "brand": "AOSBOEI", "url": "https://www.amazon.com/dp/B0FCFBBP6B", "kind": "新品", "fit": "无扣无痕腹带", "priceBand": "$10-15", "price": "$9.99", "features": ["高腰包覆", "日常内穿", "轻薄"], "title": "AOSBOEI Waist Trainer Shapewear Tummy Control Waist Cincher Girdle Body Shaper Postpartum Recovery Belt Belly Band Wrap", "home": "../inputs/loday_waist_new_pages_current/B0FCFBBP6B主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FCFBBP6B商品描述.png"}, {"asin": "B0G7JN6YR8", "brand": "LODAY", "url": "https://www.amazon.com/dp/B0G7JN6YR8", "kind": "新品", "fit": "开胸/吊带腰封", "priceBand": "$10-15", "price": "$9.99", "features": ["开胸结构", "排扣", "胸下承托"], "title": "LODAY Waist Trainer for Women Corset Shapewear Tummy Control Postpartum Faja Body Shaper Waist Cincher", "home": "../inputs/loday_waist_new_pages_current/B0G7JN6YR8主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0G7JN6YR8商品描述.png"}, {"asin": "B0FXB2M2BL", "brand": "Gotoly", "url": "https://www.amazon.com/dp/B0FXB2M2BL", "kind": "新品", "fit": "三段/三带腰封", "priceBand": "$10-15", "price": "$14.97", "features": ["三带外拉", "强收腹", "腰背支撑"], "title": "Gotoly Waist Trainer for Women Corset Shapewear Tummy Control Faja Body Shaper Postpartum Segmented Waist Cincher", "home": "../inputs/loday_waist_new_pages_current/B0FXB2M2BL主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FXB2M2BL商品描述.png"}, {"asin": "B0DZBH7KW2", "brand": "YERKOAD", "url": "https://www.amazon.com/dp/B0DZBH7KW2", "kind": "新品", "fit": "无扣无痕腹带", "priceBand": "$15-20", "price": "$19.49", "features": ["无痕边缘", "日常内穿", "舒适亲肤"], "title": "YERKOAD Waist Trainer for Women Corset Shapewear Tummy Control Faja Body Shaper Waist Cincher Postpartum Belly Band", "home": "../inputs/loday_waist_new_pages_current/B0DZBH7KW2主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0DZBH7KW2商品描述.png"}, {"asin": "B0F6YK1C1S", "brand": "MISTHIN", "url": "https://www.amazon.com/dp/B0F6YK1C1S", "kind": "新品", "fit": "吊带/背心腰封", "priceBand": "$30-40", "price": "$39.99", "features": ["肩带支撑", "背部包覆", "拉链"], "title": "Waist Trainer for Women Corset Shapewear Tummy Control Vest Waist Cincher Shaper Workout Girdle", "home": "../inputs/loday_waist_new_pages_current/B0F6YK1C1S主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0F6YK1C1S商品描述.png"}, {"asin": "B0FX4Y9RHB", "brand": "LEINIDINA", "url": "https://www.amazon.com/dp/B0FX4Y9RHB", "kind": "新品", "fit": "三段/三带腰封", "priceBand": "$15-20", "price": "$19.99", "features": ["三带外拉", "运动燃汗", "可调节"], "title": "Waist Trainer for Women Corset Shapewear Segmented Sweat Waist Trimmer for Women Workout Belt", "home": "../inputs/loday_waist_new_pages_current/B0FX4Y9RHB主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FX4Y9RHB商品描述.png"}, {"asin": "B0GKDT6QNV", "brand": "OXYSAIKO", "url": "https://www.amazon.com/dp/B0GKDT6QNV", "kind": "新品", "fit": "无扣无痕腹带", "priceBand": "$15-20", "price": "$18.99", "features": ["无痕边缘", "亲肤轻薄", "日常内穿"], "title": "Waist Trainer Tummy Control for Women Lower Belly Fat，Women's Waist Cincher Slim Body Shape Postpartum Recovery Belt", "home": "../inputs/loday_waist_new_pages_current/B0GKDT6QNV主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0GKDT6QNV商品描述.png"}, {"asin": "B0DGGQHT4F", "brand": "SHAPELLX", "url": "https://www.amazon.com/dp/B0DGGQHT4F", "kind": "新品", "fit": "宽版高腰腹带", "priceBand": "$30-40", "price": "$35.49", "features": ["日常无痕", "高腰包覆", "轻塑形"], "title": "SHAPELLX Waist Trainer for Women Waist Cincher Corset Shapewear Body Shaper Tummy Control Stomach Belt Postpartum Band", "home": "../inputs/loday_waist_new_pages_current/B0DGGQHT4F主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0DGGQHT4F商品描述.png"}, {"asin": "B0FR4W436M", "brand": "Nebility", "url": "https://www.amazon.com/dp/B0FR4W436M", "kind": "新品", "fit": "开胸/吊带腰封", "priceBand": "$10-15", "price": "$14.99", "features": ["开胸结构", "拉链", "腰背支撑"], "title": "Nebility Waist Trainer for Women Corset Shapewear Tummy Control Body Shaper Top Waist Cincher Girdle with Adjustable Straps", "home": "../inputs/loday_waist_new_pages_current/B0FR4W436M主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FR4W436M商品描述.png"}, {"asin": "B0DSLL6F55", "brand": "MISTHIN", "url": "https://www.amazon.com/dp/B0DSLL6F55", "kind": "新品", "fit": "传统排扣长腰封", "priceBand": "$30-40", "price": "$31.99", "features": ["强收腹", "排扣", "钢骨支撑"], "title": "Waist Cincher Trimmer Belt Girdle Workout Shapewear Tummy Control Shaper Waist Trainer for Women", "home": "../inputs/loday_waist_new_pages_current/B0DSLL6F55主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0DSLL6F55商品描述.png"}, {"asin": "B0FS1WKS39", "brand": "FeelinGirl", "url": "https://www.amazon.com/dp/B0FS1WKS39", "kind": "新品", "fit": "连体塑身衣", "priceBand": "$40+", "price": "$42.99", "features": ["腹部加压", "背部修饰", "日常内穿"], "title": "FeelinGirl Waist Trainer Vest for Women Tummy Control Corset Body Shaper Back Support Adjustable Straps Workout Faja", "home": "../inputs/loday_waist_new_pages_current/B0FS1WKS39主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FS1WKS39商品描述.png"}, {"asin": "B0FPX1CL76", "brand": "Nebility", "url": "https://www.amazon.com/dp/B0FPX1CL76", "kind": "新品", "fit": "传统排扣长腰封", "priceBand": "$15-20", "price": "$15.99", "features": ["强收腹", "排扣", "乳胶高压缩"], "title": "Nebility Waist Trainer for Women Corset Shapewear - Mesh Faja Body Shaper Waist Cincher Tummy Control Girdle Daily Wear", "home": "../inputs/loday_waist_new_pages_current/B0FPX1CL76主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0FPX1CL76商品描述.png"}, {"asin": "B0G2RMHSRP", "brand": "SHAPELLX", "url": "https://www.amazon.com/dp/B0G2RMHSRP", "kind": "新品", "fit": "连体塑身衣", "priceBand": "$40+", "price": "$63.99", "features": ["日常内穿", "曲线塑造", "背部修饰"], "title": "SHAPELLX Waist Trainer for Women Corset Top Tummy Control Shapewear Waist Cincher Body Shaper Fajas Colombianas Moldeadoras", "home": "../inputs/loday_waist_new_pages_current/B0G2RMHSRP主页.png", "detail": "../inputs/loday_waist_new_pages_current/B0G2RMHSRP商品描述.png"}], "fits": ["三段/三带腰封", "产后恢复腹带", "传统排扣长腰封", "吊带/背心腰封", "宽版高腰腹带", "开胸/吊带腰封", "无扣无痕腹带", "连体塑身衣"], "prices": ["$10-15", "$15-20", "$20-25", "$30-40", "$40+"], "features": ["三带外拉", "下腹加压", "乳胶高压缩", "产后支撑", "亲肤轻薄", "可调节", "开胸结构", "强收腹", "拉链", "排扣", "无痕边缘", "日常内穿", "日常无痕", "曲线塑造", "粉色撞线", "肩带支撑", "背部修饰", "背部包覆", "胸下承托", "腰背支撑", "腹部加压", "舒适亲肤", "舒适可调", "视觉差异", "轻塑形", "轻薄", "运动燃汗", "钢骨支撑", "高腰包覆", "魔术贴"]};
+    const productGrid = document.querySelector('#productGrid');
+    const resultCount = document.querySelector('#resultCount');
+    const kindFilter = document.querySelector('#kindFilter');
+    const fitFilter = document.querySelector('#fitFilter');
+    const priceFilter = document.querySelector('#priceFilter');
+    const featureFilter = document.querySelector('#featureFilter');
+    const modal = document.querySelector('#modal');
+    const modalTitle = document.querySelector('#modalTitle');
+    const modalHome = document.querySelector('#modalHome');
+    const modalDetail = document.querySelector('#modalDetail');
+
+    function fillSelect(select, values) {
+      values.forEach(value => {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = value;
+        select.appendChild(option);
+      });
+    }
+
+    fillSelect(fitFilter, DATA.fits);
+    fillSelect(priceFilter, DATA.prices);
+    fillSelect(featureFilter, DATA.features);
+
+    function activeProducts() {
+      return DATA.products.filter(product => {
+        return (!kindFilter.value || product.kind === kindFilter.value)
+          && (!fitFilter.value || product.fit === fitFilter.value)
+          && (!priceFilter.value || product.priceBand === priceFilter.value)
+          && (!featureFilter.value || product.features.includes(featureFilter.value));
+      });
+    }
+
+    function renderProducts() {
+      const products = activeProducts();
+      productGrid.innerHTML = '';
+      resultCount.textContent = `当前显示 ${products.length} / ${DATA.products.length} 个 ASIN`;
+      products.forEach(product => {
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="thumb"><img src="${product.home}" alt="${product.asin} 主页"></div>
+          <div class="product-body">
+            <div class="tag-row"><span class="tag ${product.kind === '爆品' ? 'best' : ''}">${product.kind}</span><span class="tag">${product.priceBand}</span></div>
+            <div class="asin">${product.asin}</div>
+            <div class="brand-name">${product.brand}</div>
+            <div class="meta">
+              <div><b>版型：</b>${product.fit}</div>
+              <div><b>价格：</b>${product.price || product.priceBand}</div>
+            </div>
+            <div class="chips">${product.features.map(feature => `<span class="chip">${feature}</span>`).join('')}</div>
+          </div>`;
+        card.addEventListener('click', () => openProduct(product));
+        productGrid.appendChild(card);
+      });
+    }
+
+    function openProduct(product) {
+      modalTitle.textContent = `${product.kind} · ${product.brand} · ${product.asin} · ${product.fit}`;
+      modalHome.src = product.home;
+      modalDetail.src = product.detail;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    [kindFilter, fitFilter, priceFilter, featureFilter].forEach(select => select.addEventListener('change', renderProducts));
+    document.querySelector('#resetFilters').addEventListener('click', () => {
+      [kindFilter, fitFilter, priceFilter, featureFilter].forEach(select => select.value = '');
+      renderProducts();
+    });
+    document.querySelector('#closeModal').addEventListener('click', () => modal.classList.remove('open'));
+    modal.addEventListener('click', event => { if (event.target === modal) modal.classList.remove('open'); });
+    window.addEventListener('keydown', event => { if (event.key === 'Escape') modal.classList.remove('open'); });
+    renderProducts();
+  </script>
+</body>
+</html>

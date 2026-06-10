@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>女士塑身腰带目标人群与场景洞察</title>
+  <style>
+    :root{
+      --ink:#102f4f;--text:#263746;--muted:#647487;--line:#d7e1e6;--grid:#e8eff2;
+      --paper:#f7faf8;--card:#ffffff;--navy:#0c3158;--teal:#0b7a75;--olive:#2f2d20;
+      --pink:#ef7880;--pale:#fff5f2;--orange:#ed9b2f;--shadow:0 10px 26px rgba(31,55,75,.10)
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;color:var(--text);font-family:"Segoe UI","Microsoft YaHei",Arial,sans-serif;line-height:1.58;
+      background:
+        linear-gradient(var(--grid) 1px,transparent 1px),
+        linear-gradient(90deg,var(--grid) 1px,transparent 1px),
+        var(--paper);
+      background-size:28px 28px;
+    }
+    img{display:block;max-width:100%}
+    .wrap{max-width:1480px;margin:0 auto;padding:30px 34px 64px}
+    .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:start;border-bottom:2px solid var(--navy);padding-bottom:18px}
+    h1{margin:0;color:var(--ink);font-size:clamp(42px,5.3vw,74px);line-height:.95;letter-spacing:0;font-weight:900}
+    .subtitle{max-width:620px;margin:10px 0 0;color:#30475e;font-size:17px}
+    .sample{color:var(--pink);font-weight:900}
+    .hero-note{font-size:16px;color:#354b5d;padding-top:8px}
+    .metric-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:24px 0 18px}
+    .metric{min-height:94px;background:var(--card);border:1px solid #cfdde4;border-left:6px solid var(--teal);border-radius:8px;padding:14px 18px;box-shadow:var(--shadow)}
+    .metric b{display:block;color:var(--navy);font-size:32px;line-height:1}.metric span{display:block;margin-top:7px;color:#435669;font-size:13px;font-weight:700}
+    .judge-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:28px}
+    .judge{padding:18px 20px;border-radius:8px;color:#fff;background:var(--navy);box-shadow:var(--shadow);min-height:128px}
+    .judge:nth-child(2){background:#173f60}.judge:nth-child(3){background:var(--olive)}
+    .judge b{display:block;font-size:20px;margin-bottom:10px}.judge p{margin:0;font-weight:700}
+    .section-title{display:flex;align-items:end;gap:12px;margin:30px 0 14px}
+    .section-title .en{color:var(--teal);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:900}
+    h2{margin:0;color:var(--ink);font-size:30px;line-height:1.1}
+    .intro{margin:0 0 18px;color:#455b70;font-size:15px}
+    .visual{background:#fff;border:1px solid #f1cfc9;border-radius:12px;box-shadow:0 12px 30px rgba(178,87,73,.12);overflow:hidden;margin-bottom:22px}
+    .visual img{width:100%;height:auto}
+    .table-card{background:rgba(255,255,255,.86);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);overflow:hidden;margin-bottom:28px}
+    table{width:100%;border-collapse:collapse}th,td{padding:12px 14px;text-align:left;vertical-align:top;border-bottom:1px solid #e6eef2;font-size:14px}
+    th{background:#0f355d;color:#fff;font-size:13px}tr:last-child td{border-bottom:0}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .condition,.pain{background:#fff;border:1px solid #cfdde4;border-radius:8px;box-shadow:var(--shadow);padding:18px}
+    .condition h3,.pain h3{margin:0 0 8px;color:var(--navy);font-size:20px;line-height:1.2}
+    .num{color:#1c7aae;font-size:34px;line-height:1;font-weight:900}.pct{color:#52677a;font-size:13px;font-weight:800}
+    .bar{height:9px;background:#e9f0f3;border-radius:99px;overflow:hidden;margin:12px 0}.bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ef7880,#ed9b2f)}
+    .condition p,.pain p{margin:8px 0 0;color:#45596a;font-size:14px}
+    .pain ul{margin:10px 0 0;padding-left:18px;color:#405565;font-size:14px}.pain li{margin:6px 0}
+    .highlight{background:#fff3df;border-left:4px solid var(--orange);padding:10px 12px;margin:10px 0;color:#4d3d28;font-size:13px}
+    footer{color:#68798a;font-size:12px;margin-top:34px;padding-top:18px;border-top:1px solid var(--line)}
+    @media(max-width:980px){.hero,.metric-row,.judge-row,.grid-4,.grid-3{grid-template-columns:1fr 1fr}.wrap{padding:22px 18px 48px}}
+    @media(max-width:640px){.hero,.metric-row,.judge-row,.grid-4,.grid-3{grid-template-columns:1fr}h1{font-size:42px}th,td{font-size:12px;padding:9px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div>
+        <h1>女士塑身腰带目标人群与场景洞察</h1>
+        <p class="subtitle">3.目标人群&场景分析｜评论样本：<span class="sample">8668</span></p>
+      </div>
+      <p class="hero-note">塑身腰带不是单纯的“收腰产品”，而是围绕塑形焦虑、运动腰训、腰背支撑、日常长穿和穿搭平整的综合体验品类。</p>
+    </header>
+
+    <div class="metric-row">
+      <div class="metric"><b>22.2%</b><span>最大人群：腰腹赘肉/曲线焦虑女性</span></div>
+      <div class="metric"><b>15.6%</b><span>最高场景：健身训练/出汗腰训</span></div>
+      <div class="metric"><b>12.7%</b><span>高星级机会：背部支撑/体态改善</span></div>
+      <div class="metric"><b>19.1%</b><span>最大痛点：尺码与版型适配</span></div>
+    </div>
+
+    <div class="judge-row">
+      <div class="judge"><b>第一判断</b><p>塑形焦虑人群最大，强收腹、显腰线、隐藏腹部赘肉仍是基础盘。</p></div>
+      <div class="judge"><b>第二判断</b><p>运动腰训和背部支撑需求明确，产品不能只强调“勒紧”，还要体现稳定、支撑和不跑位。</p></div>
+      <div class="judge"><b>第三判断</b><p>好评来自质量、舒适、压缩支撑和即时塑形；差评主要来自尺码版型、勒痛、卷边和耐久问题。</p></div>
+    </div>
+
+    <section id="s31">
+      <div class="section-title"><span class="en">Audience Insight</span><h2>3.1 人群洞察</h2></div>
+      <p class="intro">用户画像显示，塑形和尺码问题压倒性领先。以下示意图按你提供的视觉素材呈现核心人群，每个人群均有对应画像。</p>
+      <div class="visual"><img src="assets/reference-core-audience.png" alt="3.1 核心人群示意图"></div>
+      <div class="table-card">
+        <table>
+          <thead><tr><th>人群类型</th><th>提及条数</th><th>占总评论比例</th><th>平均星级</th><th>1-2星占该人群比例</th></tr></thead>
+          <tbody>
+            <tr><td>腰腹赘肉/曲线焦虑女性</td><td>1923</td><td>22.20%</td><td>4.27</td><td>11.70%</td></tr>
+            <tr><td>健身/出汗训练女性</td><td>1352</td><td>15.60%</td><td>4.21</td><td>13.30%</td></tr>
+            <tr><td>背部支撑/体态改善女性</td><td>1104</td><td>12.70%</td><td>4.51</td><td>6.70%</td></tr>
+            <tr><td>日常穿搭塑形女性</td><td>765</td><td>8.80%</td><td>4.22</td><td>12.50%</td></tr>
+            <tr><td>大码/丰满体型女性</td><td>405</td><td>4.70%</td><td>3.99</td><td>18.80%</td></tr>
+            <tr><td>产后恢复女性</td><td>358</td><td>4.10%</td><td>4.47</td><td>8.10%</td></tr>
+            <tr><td>术后/医美恢复女性</td><td>195</td><td>2.20%</td><td>4.47</td><td>8.20%</td></tr>
+            <tr><td>更年期/体重变化女性</td><td>71</td><td>0.80%</td><td>4.52</td><td>7.00%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s32">
+      <div class="section-title"><span class="en">Scenario Insight</span><h2>3.2 场景洞察</h2></div>
+      <p class="intro">场景差异决定产品语言。运动要解决包裹、出汗和核心稳定；支撑要解决久站久坐疲劳；日常长穿要解决舒适；穿搭要解决隐形平整。</p>
+      <div class="visual"><img src="assets/reference-core-scene.png" alt="3.2 核心场景示意图"></div>
+      <div class="table-card">
+        <table>
+          <thead><tr><th>场景</th><th>场景提及</th><th>场景痛点</th><th>场景本质</th><th>产品方向</th><th>核心设计关键词</th></tr></thead>
+          <tbody>
+            <tr><td>健身训练/出汗腰训</td><td>1352条，占15.6%</td><td>运动时想加强腰腹包裹和出汗感，但普通运动中腹部松散、核心无支撑。</td><td>运动中被收住、出汗更多、腰腹更有训练感。</td><td>健身出汗型腰训带。</td><td>腰腹包裹、核心稳定、出汗反馈、运动支撑、贴合不跑位</td></tr>
+            <tr><td>背部支撑/体态改善</td><td>1104条，占12.7%</td><td>久坐、站立、运动或产后抱娃时腰背疲劳、姿态松垮。</td><td>身体被支撑住。</td><td>腰背支撑型塑腰带。</td><td>后腰承托、姿态提醒、腰背稳定、腹背联动、支撑不僵硬</td></tr>
+            <tr><td>日常长时间穿着</td><td>902条，占10.4%</td><td>坐、走、弯腰、吃饭等真实生活动作下，普通强勒产品难以长时间坚持。</td><td>能一直穿下去的塑形。</td><td>日常长穿型塑腰带。</td><td>长穿舒适、压力分区、坐姿友好、柔软包边、低负担支撑</td></tr>
+            <tr><td>外出穿搭/服装内穿</td><td>765条，占8.8%</td><td>腹部凸出、腰线不明显、背部肉感影响服装轮廓。</td><td>让衣服更好看。</td><td>日常隐形强塑腰带。</td><td>平腹塑形、隐形内穿、背部平顺、薄边收口、低凸起结构</td></tr>
+            <tr><td>上班/久坐/通勤</td><td>463条，占5.3%</td><td>办公久坐时腹部堆积、姿态变塌、腰背疲劳。</td><td>久坐体态管理和工作服内的隐形塑形。</td><td>久坐友好型支撑腰带。</td><td>坐姿支撑、上腹减压、腰背稳定、通勤内穿、办公体态</td></tr>
+            <tr><td>产后/剖腹产恢复</td><td>358条，占4.1%</td><td>腹部松弛、核心无力、身材变化和安全感下降。</td><td>身体变化期的支撑和安全感。</td><td>轻恢复友好支撑款。</td><td>腹部托住、柔软支撑、多档调节、恢复安全感、阶段性适配</td></tr>
+            <tr><td>术后/医美恢复</td><td>195条，占2.2%</td><td>需要稳定压缩和身体固定感，担心恢复期腹部不稳定。</td><td>恢复过程中的稳定压缩和身体保护感。</td><td>术后轻压缩支撑方向可作参考，不建议主线医疗化表达。</td><td>稳定压缩、压力可调、亲肤内里、腹部覆盖、非医疗化支撑</td></tr>
+            <tr><td>特殊活动/拍照/聚会</td><td>低频提及</td><td>希望短时间快速改善腰腹轮廓，让衣服上身更好看。</td><td>即时变好看。</td><td>营销辅助场景，不建议单独开发。</td><td>即时收腰、裙装内穿、拍照显瘦、快速塑形、轮廓优化</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s33">
+      <div class="section-title"><span class="en">Positive Review Baseline</span><h2>3.3 好评必备基础条件</h2></div>
+      <div class="grid-4">
+        <div class="condition"><h3>质量好/耐穿</h3><div class="num">2576</div><div class="pct">占总评论 29.7%</div><div class="bar"><i style="width:100%"></i></div><p>材料、拉链、钩扣、骨条质量带来信任感。</p></div>
+        <div class="condition"><h3>舒适/柔软</h3><div class="num">2256</div><div class="pct">占总评论 26.0%</div><div class="bar"><i style="width:87.6%"></i></div><p>强支撑同时降低体感压迫，用户愿意长时间穿。</p></div>
+        <div class="condition"><h3>压缩/支撑足</h3><div class="num">2139</div><div class="pct">占总评论 24.7%</div><div class="bar"><i style="width:83%"></i></div><p>满足 waist trainer 的基础购买预期，有被 hold in 的感觉。</p></div>
+        <div class="condition"><h3>收腹塑形明显</h3><div class="num">1656</div><div class="pct">占总评论 19.1%</div><div class="bar"><i style="width:64.3%"></i></div><p>即时塑形结果可见，是转化和好评核心。</p></div>
+        <div class="condition"><h3>尺码合适/调节友好</h3><div class="num">1204</div><div class="pct">占总评论 13.9%</div><div class="bar"><i style="width:46.7%"></i></div><p>降低买错风险，多档调节让不同阶段都能穿。</p></div>
+        <div class="condition"><h3>改善体态/缓解背痛</h3><div class="num">839</div><div class="pct">占总评论 9.7%</div><div class="bar"><i style="width:32.6%"></i></div><p>腰背支撑带来额外功能价值。</p></div>
+        <div class="condition"><h3>不卷边/不滑落</h3><div class="num">227</div><div class="pct">占总评论 2.6%</div><div class="bar"><i style="width:8.8%"></i></div><p>运动、久坐、日常场景体验稳定。</p></div>
+        <div class="condition"><h3>内穿平整/隐形</h3><div class="num">206</div><div class="pct">占总评论 2.4%</div><div class="bar"><i style="width:8%"></i></div><p>解决穿搭场景最关键的外观焦虑。</p></div>
+      </div>
+    </section>
+
+    <section id="s34">
+      <div class="section-title"><span class="en">Core Pain Points</span><h2>3.4 核心需解决痛点</h2></div>
+      <div class="grid-3">
+        <div class="pain"><h3>尺码与版型适配</h3><div class="num">1659</div><div class="pct">占总评论 19.1%</div><div class="highlight">最大痛点大类，直接影响大码、曲线身材、长/短躯干用户体验。</div><ul><li>大码/曲线身材不适配：520条</li><li>尺码偏大/压缩不足：506条</li><li>尺码偏小/穿不上：434条</li><li>长躯干覆盖不足：280条</li><li>短躯干/身高不适配：178条</li></ul></div>
+        <div class="pain"><h3>强压缩与舒适冲突</h3><div class="num">1013</div><div class="pct">占总评论 11.7%</div><div class="highlight">强塑形必须成立，但不能以勒痛、顶肉、限制活动为代价。</div><ul><li>勒痛/压迫感强：886条</li><li>硬骨/边缘顶肉：510条</li><li>限制呼吸/活动：278条</li><li>坐下/弯腰不适：194条</li></ul></div>
+        <div class="pain"><h3>结构与耐久风险</h3><div class="num">759</div><div class="pct">占总评论 8.8%</div><div class="highlight">质量感来自材料、钩扣、拉链、骨条、车缝和魔术贴等结构细节。</div><ul><li>材质廉价/强度不足：481条</li><li>开线/破损/骨条外露：294条</li><li>钩扣/扣眼损坏或难扣：219条</li><li>拉链爆开/拉不上：211条</li><li>魔术贴粘性/拉扯问题：79条</li></ul></div>
+        <div class="pain"><h3>场景稳定性</h3><div class="num">626</div><div class="pct">占总评论 7.2%</div><ul><li>卷边/上卷：387条</li><li>折叠/弯折/起褶：204条</li><li>活动场景下不稳定：197条</li><li>滑动/跑位：91条</li></ul></div>
+        <div class="pain"><h3>皮肤与闷热负担</h3><div class="num">302</div><div class="pct">占总评论 3.5%</div><ul><li>皮肤痒/过敏/红疹：272条</li><li>闷热/汗味/异味：89条</li><li>需要隔层穿着：15条</li></ul></div>
+        <div class="pain"><h3>穿搭轮廓焦虑</h3><div class="num">288</div><div class="pct">占总评论 3.3%</div><ul><li>衣服下显形：199条</li><li>厚重/体积感明显：155条</li><li>背部鼓包/边缘溢肉：43条</li><li>不适合外出/正式穿搭：4条</li></ul></div>
+        <div class="pain"><h3>穿脱与调节门槛</h3><div class="num">156</div><div class="pct">占总评论 1.8%</div><ul><li>独立穿上困难：144条</li><li>扣合/拉链步骤复杂：63条</li><li>脱下/撕开困难：11条</li></ul></div>
+      </div>
+    </section>
+
+    <footer>数据来源：Loday-美国女士塑身腰带市场调研第 3 章；核心人群与核心场景视觉素材来自本地“视觉素材”文件夹。</footer>
+  </main>
+</body>
+</html>
