@@ -1,0 +1,855 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>一周健身 & 饮食规划表</title>
+  <style>
+    :root {
+      --page: #edf2e9;
+      --paper: #fffdf7;
+      --ink: #1d211b;
+      --muted: #6f766a;
+      --line: rgba(42, 52, 38, .14);
+      --line-soft: rgba(42, 52, 38, .09);
+      --accent: #0f766e;
+      --accent-soft: #e0f2ee;
+      --leaf: #6d8c3d;
+      --tomato: #d75f45;
+      --cream: #fff8e9;
+      --done: #0f766e;
+      --shadow: 0 22px 70px rgba(42, 52, 38, .14);
+      --hero-image: url("https://source.unsplash.com/Sdw33zukJ5o/1800x1100");
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 10%, rgba(215, 95, 69, .16), transparent 30%),
+        radial-gradient(circle at 86% 4%, rgba(15, 118, 110, .16), transparent 27%),
+        linear-gradient(135deg, rgba(255,255,255,.5), rgba(255,255,255,0)),
+        var(--page);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.62;
+    }
+
+    button, input, textarea { font: inherit; }
+
+    .page {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      padding: 28px 22px 72px;
+      background: transparent;
+      min-height: 100vh;
+    }
+
+    .top {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 38px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .36);
+      border-radius: 28px;
+      color: #fffdf5;
+      background:
+        linear-gradient(90deg, rgba(12, 31, 29, .88), rgba(12, 31, 29, .48) 48%, rgba(12, 31, 29, .1)),
+        var(--hero-image) center / cover;
+      box-shadow: var(--shadow);
+    }
+
+    .top::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      pointer-events: none;
+      border: 1px solid rgba(255, 255, 255, .24);
+      border-radius: 20px;
+    }
+
+    .top > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      max-width: 700px;
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      margin: 0 0 18px;
+      max-width: 620px;
+      color: rgba(255, 253, 245, .86);
+      font-size: 16px;
+    }
+
+    .targets {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      width: min(100%, 860px);
+      margin-top: 18px;
+    }
+
+    .target {
+      min-height: 92px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 16px;
+      background: rgba(255, 253, 245, .14);
+      backdrop-filter: blur(10px);
+    }
+
+    .target b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 13px;
+      color: rgba(255, 253, 245, .72);
+    }
+
+    .target span {
+      display: block;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .sticky {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      margin: 18px 0 26px;
+      padding: 12px;
+      border: 1px solid rgba(42, 52, 38, .13);
+      border-radius: 18px;
+      background: rgba(255, 253, 247, .86);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 14px 36px rgba(42, 52, 38, .09);
+    }
+
+    .progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .progress strong {
+      min-width: 96px;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .bar {
+      height: 10px;
+      flex: 1;
+      min-width: 110px;
+      border-radius: 999px;
+      background: #dbe3d5;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transition: width .18s ease;
+    }
+
+    .reset {
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid rgba(42, 52, 38, .16);
+      border-radius: 999px;
+      color: #333;
+      background: var(--cream);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0 4px;
+    }
+
+    nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 11px;
+      border: 1px solid rgba(255, 255, 255, .3);
+      border-radius: 999px;
+      color: #fffdf5;
+      text-decoration: none;
+      background: rgba(255, 255, 255, .14);
+      backdrop-filter: blur(10px);
+      font-size: 13px;
+    }
+
+    section {
+      padding: 28px;
+      margin-top: 28px;
+      border: 1px solid rgba(42, 52, 38, .11);
+      border-radius: 26px;
+      background: rgba(255, 253, 247, .9);
+      box-shadow: 0 18px 48px rgba(42, 52, 38, .08);
+    }
+
+    h2 {
+      margin: 0 0 20px;
+      font-size: clamp(28px, 3.4vw, 42px);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 24px 0 8px;
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    h4 {
+      margin: 18px 0 8px;
+      font-size: 17px;
+      line-height: 1.3;
+    }
+
+    p { margin: 0 0 12px; }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .principle {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fff, #f6f9f0);
+    }
+
+    .principle b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 16px;
+    }
+
+    .principle span { color: var(--muted); }
+
+    #dayTables, #dietTables {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+      gap: 18px;
+    }
+
+    .block {
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: #fffdfa;
+      box-shadow: 0 12px 34px rgba(42, 52, 38, .07);
+    }
+
+    .block h3 {
+      display: inline-block;
+      margin-top: 0;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: #fffdf5;
+      background: linear-gradient(135deg, var(--accent), var(--leaf));
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin: 6px 0 0;
+      overflow: hidden;
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      background: #fff;
+    }
+
+    th, td {
+      padding: 11px 8px;
+      border-bottom: 1px solid var(--line-soft);
+      vertical-align: top;
+      text-align: left;
+      overflow-wrap: anywhere;
+    }
+
+    thead th {
+      border-bottom: 1px solid rgba(42, 52, 38, .12);
+      color: #293126;
+      font-weight: 800;
+      background: #f3f7ed;
+    }
+
+    tbody tr:nth-child(even) td { background: #fbfcf8; }
+    tbody tr:hover td { background: #eef7f3; }
+
+    .col-time { width: 31%; }
+    .col-check { width: 74px; text-align: center; }
+    .col-small { width: 15%; }
+    .col-mid { width: 22%; }
+
+    .em { font-weight: 800; }
+
+    .check-btn {
+      width: 42px;
+      height: 32px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid rgba(42, 52, 38, .18);
+      border-radius: 999px;
+      color: #a0a0a0;
+      background: #fffdf7;
+      cursor: pointer;
+      font-weight: 900;
+    }
+
+    .check-btn.done {
+      border-color: var(--done);
+      color: #fff;
+      background: var(--done);
+      box-shadow: 0 8px 18px rgba(15, 118, 110, .2);
+    }
+
+    .no-check {
+      display: inline-flex;
+      width: 42px;
+      height: 32px;
+      align-items: center;
+      justify-content: center;
+      color: #a0a0a0;
+      font-size: 13px;
+    }
+
+    .note-box {
+      margin: 14px 0 24px;
+      padding: 14px 16px;
+      border-left: 4px solid var(--accent);
+      border-radius: 14px;
+      background: var(--accent-soft);
+      font-weight: 800;
+    }
+
+    .simple {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: linear-gradient(135deg, #fffdf7, #eff8ef);
+    }
+
+    .simple ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .simple li { margin: 8px 0; }
+
+    .review-input {
+      width: 100%;
+      min-height: 36px;
+      padding: 7px 8px;
+      border: 1px solid #d7d7d7;
+      border-radius: 6px;
+      outline: none;
+      background: #fff;
+    }
+
+    textarea.review-input {
+      min-height: 86px;
+      resize: vertical;
+    }
+
+    .review-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, .12);
+    }
+
+    @media (max-width: 760px) {
+      .page { padding: 22px 14px 56px; }
+      .top { min-height: 620px; padding: 26px; border-radius: 22px; }
+      .sticky { padding-inline: 12px; }
+      .targets, .principles { grid-template-columns: 1fr; }
+      #dayTables, #dietTables { grid-template-columns: 1fr; }
+      section { padding: 18px; border-radius: 20px; }
+      h2 { font-size: 24px; }
+      h3 { font-size: 19px; }
+      body { font-size: 14px; }
+      th, td { padding: 9px 6px; }
+      .col-time { width: 28%; }
+      .col-check { width: 54px; }
+      .check-btn { width: 34px; height: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="top">
+      <h1>一周健身 & 饮食循环规划表</h1>
+      <p class="intro">下面是一份一周健身 & 饮食循环规划表。之后每周照这个循环执行即可。</p>
+      <div class="targets">
+        <div class="target"><b>当前</b><span>45.5kg / 31.8%体脂</span></div>
+        <div class="target"><b>1个月目标</b><span>44.6-45.0kg / 30.5%-31.0%体脂</span></div>
+        <div class="target"><b>7月27日中期目标</b><span>44.2-44.5kg / 30%左右体脂</span></div>
+        <div class="target"><b>8月30日最终目标</b><span>43kg / 28%左右体脂</span></div>
+      </div>
+      <nav>
+        <a href="#principles">一、总原则</a>
+        <a href="#weekly-plan">二、规划表</a>
+        <a href="#structure">三、结构总表</a>
+        <a href="#diet">四、饮食模板</a>
+        <a href="#slope">五、爬坡标准</a>
+        <a href="#protein">六、蛋白质</a>
+        <a href="#review">七、复盘表</a>
+        <a href="#simple">八、最简执行版</a>
+      </nav>
+    </header>
+
+    <div class="sticky">
+      <div class="progress">
+        <strong id="progressText">0/0 已打卡</strong>
+        <div class="bar"><span id="progressBar"></span></div>
+      </div>
+      <button class="reset" id="resetBtn" type="button">清空本周打卡</button>
+    </div>
+
+    <section id="principles">
+      <h2>一、一周总原则</h2>
+      <div class="principles">
+        <div class="principle"><b>三练不断</b><span>周一臀腿、周三背部核心、周五全身力量，先保证训练频率稳定。</span></div>
+        <div class="principle"><b>恢复日不加码</b><span>周二、周四、周日以恢复和体态为主，不额外增加高强度有氧。</span></div>
+        <div class="principle"><b>爬坡按标准执行</b><span>每周2-3次，每次20-30分钟，强度以微喘但能说话为准。</span></div>
+        <div class="principle"><b>蛋白质优先</b><span>每天蛋白质60-70g，不低于60g，帮助体脂下降时保住肌肉。</span></div>
+      </div>
+    </section>
+
+    <section id="weekly-plan">
+      <h2>二、一周健身 & 饮食规划表</h2>
+      <div id="dayTables"></div>
+    </section>
+
+    <section id="structure">
+      <h2>三、一周训练结构总表</h2>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-small">星期</th>
+            <th>力量</th>
+            <th>有氧</th>
+            <th>体态/拉伸</th>
+            <th>饮食类型</th>
+          </tr>
+        </thead>
+        <tbody id="structureBody"></tbody>
+      </table>
+    </section>
+
+    <section id="diet">
+      <h2>四、训练日和休息日饮食模板</h2>
+      <div id="dietTables"></div>
+    </section>
+
+    <section id="slope">
+      <h2>五、爬坡标准</h2>
+      <table>
+        <tbody id="slopeBody"></tbody>
+      </table>
+    </section>
+
+    <section id="protein">
+      <h2>六、每日蛋白质最低配置</h2>
+      <p>每天至少吃到以下组合：</p>
+      <table>
+        <thead>
+          <tr>
+            <th>食物</th>
+            <th>作用</th>
+          </tr>
+        </thead>
+        <tbody id="proteinBody"></tbody>
+      </table>
+      <p>你每天目标是：</p>
+      <div class="note-box">蛋白质60-70g，不低于60g。</div>
+    </section>
+
+    <section id="review">
+      <h2>七、每周复盘表</h2>
+      <p>每周日晚上填一次。</p>
+      <table>
+        <thead>
+          <tr>
+            <th class="col-mid">指标</th>
+            <th>记录</th>
+          </tr>
+        </thead>
+        <tbody id="reviewBody"></tbody>
+      </table>
+    </section>
+
+    <section id="simple">
+      <h2>八、最简执行版</h2>
+      <div class="simple">
+        <p>你只需要记住这个：</p>
+        <ul>
+          <li>周一练臀腿，周三练背部核心，周五练全身力量。</li>
+          <li>爬坡每周2-3次，每次20-30分钟，不要天天硬爬。</li>
+          <li>每天蛋白质60-70g，不低于60g。</li>
+          <li>恢复日好好恢复，不额外增加高强度有氧。</li>
+          <li>每周日晚上复盘体重、体脂、围度、训练完成度和饮食执行。</li>
+        </ul>
+        <p style="margin-top:14px;">这套表你可以连续循环4周。第一个月不要追求练得越多越好，先把<strong>三练不断、蛋白质吃够、体脂稳定下降、肌肉不掉</strong>做出来。</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "pan-weekly-fitness-framework-v2";
+    const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+    const days = [
+      {
+        title: "周一：私教臀腿日 + 爬坡",
+        rows: [
+          ["早餐", "鸡蛋1个 + 无糖豆浆/牛奶250ml + 玉米半根 / 全麦面包1片"],
+          ["午餐前", "香蕉半根 / 小红薯半个"],
+          ["中午训练", "私教课①：臀腿 + 核心"],
+          ["午餐/训练后", "米饭半碗 + 鸡胸/鱼/牛肉100-120g + 青菜2拳 + 汤"],
+          ["下午加餐", "无糖酸奶 / 牛奶 / 豆浆"],
+          ["晚餐", "虾仁/鱼肉100g + 豆腐100g + 蔬菜2拳 + 小土豆1个"],
+          ["晚上训练", "爬坡20-30分钟"],
+          ["当天重点", "训练日不要低碳，保证臀腿训练有力量"]
+        ]
+      },
+      {
+        title: "周二：恢复 + 体态日",
+        rows: [
+          ["早餐", "鸡蛋1个 + 牛奶/无糖豆浆250ml + 水果半份"],
+          ["中午", "不做力量训练"],
+          ["午餐", "米饭小半碗 + 鸡肉/鱼/瘦肉100g + 蔬菜2拳"],
+          ["下午加餐", "无糖酸奶 / 一小把坚果 / 豆浆"],
+          ["晚餐", "豆腐/鸡蛋/鱼肉任选2种 + 大量蔬菜 + 小红薯半个"],
+          ["晚上活动", "肩颈体态10分钟 + 步数7000左右"],
+          ["当天重点", "恢复肌肉，不额外加高强度有氧"]
+        ]
+      },
+      {
+        title: "周三：自练背部核心日 + 爬坡",
+        rows: [
+          ["早餐", "燕麦30g + 牛奶250ml + 鸡蛋1个"],
+          ["午餐前", "香蕉半根 / 小红薯半个"],
+          ["中午训练", "自练：背部 + 核心 + 轻臀腿，约60分钟"],
+          ["午餐/训练后", "米饭半碗 + 鸡腿肉/牛肉/鱼肉100-120g + 蔬菜2拳"],
+          ["下午加餐", "高蛋白酸奶 / 无糖豆浆"],
+          ["晚餐", "鸡蛋1个 + 虾仁/鱼肉100g + 蔬菜2拳 + 玉米半根"],
+          ["晚上训练", "爬坡25-30分钟"],
+          ["当天重点", "自练不要乱加重量，重点练背部和核心稳定"]
+        ]
+      },
+      {
+        title: "周四：恢复日",
+        rows: [
+          ["早餐", "鸡蛋1个 + 无糖豆浆250ml + 苹果半个"],
+          ["中午", "不做力量训练"],
+          ["午餐", "杂粮饭小半碗 + 鱼/虾/瘦肉100g + 蔬菜2拳"],
+          ["下午加餐", "酸奶 / 牛奶 / 豆浆"],
+          ["晚餐", "番茄鸡蛋汤 + 豆腐1个 + 蔬菜2拳 + 小红薯半个"],
+          ["晚上活动", "拉伸10分钟 + 步数5000-8000"],
+          ["当天重点", "为周五私教蓄力，不饥饿、不透支"]
+        ]
+      },
+      {
+        title: "周五：私教全身力量日 + 视状态爬坡",
+        rows: [
+          ["早餐", "全麦面包1片 + 鸡蛋1个 + 牛奶250ml"],
+          ["午餐前", "香蕉半根 / 小红薯半个"],
+          ["中午训练", "私教课②：全身力量 + 弱项强化"],
+          ["午餐/训练后", "米饭/杂粮饭小碗 + 鸡肉/牛肉/鱼肉120g + 蔬菜2拳"],
+          ["下午加餐", "无糖酸奶 / 黑咖啡"],
+          ["晚餐", "虾仁/鱼肉100g + 豆腐100g + 蔬菜2拳 + 玉米半根"],
+          ["晚上训练", "状态好：爬坡20-30分钟；很累：只拉伸"],
+          ["当天重点", "如果私教强度大，晚餐不能不吃碳"]
+        ]
+      },
+      {
+        title: "周六：轻活动日",
+        rows: [
+          ["早餐", "鸡蛋1个 + 豆浆/牛奶250ml + 玉米半根"],
+          ["中午", "不做正式力量训练"],
+          ["午餐", "正常外食可选：优先鸡、肉、菜，米饭吃半份"],
+          ["下午加餐", "水果一份 / 酸奶一杯"],
+          ["晚餐", "清淡蛋白质 + 蔬菜为主，主食小半份"],
+          ["晚上活动", "步数8000-10000 + 拉伸10分钟"],
+          ["当天重点", "可以灵活吃一点，但不能放纵一整天"]
+        ]
+      },
+      {
+        title: "周日：休息 + 复盘日",
+        rows: [
+          ["早餐", "鸡蛋1个 + 牛奶/豆浆 + 水果半份"],
+          ["中午", "完全休息或轻松散步"],
+          ["午餐", "米饭小半碗 + 瘦/鸡/鱼肉100g + 蔬菜2拳"],
+          ["下午加餐", "酸奶 / 豆浆"],
+          ["晚餐", "豆腐/鸡蛋/鱼肉 + 大量蔬菜 + 少量主食"],
+          ["晚上", "记录体重、体脂、围度、训练完成情况"],
+          ["当天重点", "低谷后正念，避免晚间报复性进食"]
+        ]
+      }
+    ];
+
+    const wednesdayWorkout = {
+      title: "周三自练内容",
+      headers: ["顺序", "动作", "组数/次数"],
+      rows: [
+        ["1", "快走/椭圆机热身", "8分钟"],
+        ["2", "坐姿划船", "12次 × 3组"],
+        ["3", "高位下拉", "12次 × 3组"],
+        ["4", "哑铃罗马尼亚硬拉", "10次 × 3组"],
+        ["5", "臀桥", "15次 × 3组"],
+        ["6", "弹力带外旋", "15次 × 2组"],
+        ["7", "死虫", "12次 × 3组"],
+        ["8", "侧支撑", "每侧30秒 × 2组"],
+        ["9", "拉伸放松", "5分钟"]
+      ]
+    };
+
+    const structureRows = [
+      ["周一", "私教臀腿核心", "爬坡20-30分钟", "拉伸", "训练日，高蛋白 + 足碳水"],
+      ["周二", "休息", "不安排", "肩颈体态10分钟", "恢复日，高蛋白 + 控碳"],
+      ["周三", "自练背部核心", "爬坡25-30分钟", "拉伸", "训练日，高蛋白 + 足碳水"],
+      ["周四", "休息", "不安排", "拉伸10分钟", "恢复日，高蛋白 + 控碳"],
+      ["周五", "私教全身力量", "视状态爬坡20-30分钟", "拉伸", "训练日，高蛋白 + 中碳水"],
+      ["周六", "休息", "步行活动", "拉伸10分钟", "轻活动日，正常吃不放纵"],
+      ["周日", "休息", "可轻松散步", "复盘", "低碳适度，记录数据"]
+    ];
+
+    const dietGroups = [
+      {
+        title: "训练日模板：周一 / 周三 / 周五",
+        rows: [
+          ["早餐", "鸡蛋 + 牛奶/豆浆 + 一小份主食"],
+          ["训练前", "香蕉半根 / 红薯半个 / 玉米半根"],
+          ["训练后午餐", "肉/鱼/虾100-120g + 米饭半碗 + 蔬菜2拳"],
+          ["下午加餐", "酸奶 / 牛奶 / 豆浆"],
+          ["晚餐", "蛋白质100g + 豆腐/鸡蛋 + 蔬菜 + 少量主食"]
+        ]
+      },
+      {
+        title: "恢复日模板：周二 / 周四 / 周日",
+        rows: [
+          ["早餐", "鸡蛋 + 牛奶/豆浆 + 水果半份"],
+          ["午餐", "蛋白质100g + 米饭小半碗 + 蔬菜2拳"],
+          ["下午加餐", "酸奶 / 豆浆 / 少量坚果"],
+          ["晚餐", "豆腐/鱼/鸡蛋 + 大量蔬菜 + 少量主食"]
+        ]
+      },
+      {
+        title: "轻活动日模板：周六",
+        rows: [
+          ["早餐", "鸡蛋 + 牛奶/豆浆 + 玉米/全麦面包"],
+          ["午餐", "可外食，但必须有蛋白质、主食半份"],
+          ["下午加餐", "水果/酸奶"],
+          ["晚餐", "蛋白质 + 蔬菜为主，少量主食"]
+        ]
+      }
+    ];
+
+    const slopeGroups = [
+      {
+        title: "30分钟标准版",
+        rows: [
+          ["热身", "0-5分钟", "2-4", "4.0-4.5", "身体热起来"],
+          ["稳态爬坡", "5-25分钟", "6-10", "4.5-5.2", "微喘、能说短句"],
+          ["放松", "25-30分钟", "0-3", "3.8-4.3", "心率降下来"]
+        ]
+      },
+      {
+        title: "20分钟轻量版",
+        note: "适合周一练腿很累、周五私教强度大时用。",
+        rows: [
+          ["热身", "0-4分钟", "2-4", "4.0-4.5", "轻松"],
+          ["稳态爬坡", "4-16分钟", "5-8", "4.3-5.0", "微喘"],
+          ["放松", "16-20分钟", "0-3", "3.8-4.2", "恢复"]
+        ]
+      }
+    ];
+
+    const proteinRows = [
+      ["鸡蛋1个", "基础蛋白"],
+      ["牛奶/豆浆250ml", "补蛋白和水分"],
+      ["肉/鱼/虾/鸡肉100-120g", "主蛋白"],
+      ["豆腐/鸡蛋/酸奶任选1-2种", "补充蛋白"]
+    ];
+
+    const reviewRows = [
+      ["本周平均体重", "kg"],
+      ["周体脂率", "%"],
+      ["胸围", "cm"],
+      ["腰围", "cm"],
+      ["大腿围", "cm"],
+      ["私教课", "2节 / 未完成"],
+      ["自练", "1次 / 未完成"],
+      ["爬坡", "次"],
+      ["平均步数", "步"],
+      ["蛋白质是否够", "是 / 否"],
+      ["睡眠", "好 / 一般 / 差"]
+    ];
+
+    function save() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function keyFrom(prefix, parts) {
+      return `${prefix}-${parts.join("-")}`.replace(/\s+/g, "");
+    }
+
+    function checkButton(key) {
+      const done = state[key] ? " done" : "";
+      return `<button class="check-btn${done}" type="button" data-check="${key}" aria-label="打卡">✓</button>`;
+    }
+
+    function shouldCheckDailyRow(row) {
+      const label = row[0];
+      return !label.includes("加餐") && label !== "午餐前" && label !== "当天重点";
+    }
+
+    function simpleTable(headers, rows, prefix, widths = [], options = {}) {
+      const withCheck = Boolean(options.withCheck);
+      return `
+        <table>
+          <thead>
+            <tr>
+              ${headers.map((h, index) => `<th class="${widths[index] || ""}">${h}</th>`).join("")}
+              ${withCheck ? `<th class="col-check">打卡</th>` : ""}
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map((row, rowIndex) => {
+              const key = keyFrom(prefix, [rowIndex]);
+              const canCheck = withCheck && (!options.checkFilter || options.checkFilter(row));
+              const checkCell = withCheck ? `<td class="col-check">${canCheck ? checkButton(key) : `<span class="no-check">-</span>`}</td>` : "";
+              return `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}${checkCell}</tr>`;
+            }).join("")}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function renderDayTables() {
+      const html = days.map((day, dayIndex) => `
+        <div class="block">
+          <h3>${day.title}</h3>
+          ${simpleTable(["时间", "安排"], day.rows, `day-${dayIndex}`, ["col-time", ""], { withCheck: true, checkFilter: shouldCheckDailyRow })}
+        </div>
+        ${dayIndex === 2 ? `
+          <div class="block">
+            <h3>${wednesdayWorkout.title}</h3>
+            ${simpleTable(wednesdayWorkout.headers, wednesdayWorkout.rows, "wed-workout", ["col-small", "", "col-mid"])}
+          </div>
+        ` : ""}
+      `).join("");
+      document.getElementById("dayTables").innerHTML = html;
+    }
+
+    function renderStaticTables() {
+      document.getElementById("structureBody").innerHTML = structureRows.map((row, index) => {
+        return `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`;
+      }).join("");
+
+      document.getElementById("dietTables").innerHTML = dietGroups.map((group, index) => `
+        <div class="block">
+          <h3>${group.title}</h3>
+          ${simpleTable(["餐次", "吃法"], group.rows, `diet-${index}`, ["col-time", ""])}
+        </div>
+      `).join("");
+
+      document.getElementById("slopeBody").innerHTML = slopeGroups.map(group => `
+        <tr><td colspan="5"><h3 style="margin:4px 0 6px;padding:0;background:none;color:var(--ink);">${group.title}</h3>${group.note ? `<p style="margin:0;color:var(--muted);">${group.note}</p>` : ""}</td></tr>
+        <tr><th>阶段</th><th>时间</th><th>坡度</th><th>速度</th><th>体感</th></tr>
+        ${group.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("")}
+      `).join("");
+
+      document.getElementById("proteinBody").innerHTML = proteinRows.map((row, index) => {
+        return `<tr><td>${row[0]}</td><td>${row[1]}</td></tr>`;
+      }).join("");
+
+      document.getElementById("reviewBody").innerHTML = reviewRows.map((row, index) => {
+        const inputKey = keyFrom("review-input", [index]);
+        return `
+          <tr>
+            <td>${row[0]}</td>
+            <td><input class="review-input" data-save="${inputKey}" value="${state[inputKey] || ""}" placeholder="${row[1]}"></td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function allCheckKeys() {
+      return Array.from(document.querySelectorAll("[data-check]")).map(button => button.dataset.check);
+    }
+
+    function updateProgress() {
+      const keys = allCheckKeys();
+      const done = keys.filter(key => state[key]).length;
+      const total = keys.length;
+      document.getElementById("progressText").textContent = `${done}/${total} 已打卡`;
+      document.getElementById("progressBar").style.width = total ? `${Math.round(done / total * 100)}%` : "0%";
+    }
+
+    function render() {
+      renderDayTables();
+      renderStaticTables();
+      updateProgress();
+    }
+
+    document.addEventListener("click", event => {
+      const button = event.target.closest("[data-check]");
+      if (!button) return;
+      const key = button.dataset.check;
+      state[key] = !state[key];
+      button.classList.toggle("done", Boolean(state[key]));
+      save();
+      updateProgress();
+    });
+
+    document.addEventListener("input", event => {
+      const field = event.target.closest("[data-save]");
+      if (!field) return;
+      state[field.dataset.save] = field.value;
+      save();
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      allCheckKeys().forEach(key => delete state[key]);
+      save();
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
