@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4周健身饮食交互打卡计划 | 蓝绿色版</title>
+<style>
+  :root{
+    --bg:#eefbf9;
+    --panel:#ffffff;
+    --panel-soft:#f3fffd;
+    --text:#12323a;
+    --muted:#607b82;
+    --line:#b8e7e2;
+    --teal:#008b8d;
+    --teal-dark:#00646d;
+    --aqua:#18c7b4;
+    --blue:#1976d2;
+    --mint:#dff8f3;
+    --warn:#f59e0b;
+    --shadow:0 18px 44px rgba(0,100,109,.12);
+    --radius:8px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif;
+    background:
+      linear-gradient(180deg,#e9fbf8 0%,#f8fffd 42%,#ffffff 100%);
+    line-height:1.55;
+  }
+  .app{max-width:1220px;margin:0 auto;padding:20px 18px 72px}
+  header{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:linear-gradient(135deg,#ffffff 0%,#e9fbf8 58%,#dff5ff 100%);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:22px;padding:24px}
+  h1{margin:0;font-size:32px;line-height:1.2;color:var(--teal-dark);letter-spacing:0}
+  .subtitle{margin:10px 0 0;color:var(--muted);max-width:760px}
+  .target-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+  .target{
+    background:rgba(255,255,255,.86);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:14px;
+    min-height:94px;
+  }
+  .target span{display:block;color:var(--muted);font-size:13px}
+  .target strong{display:block;color:var(--teal-dark);font-size:25px;margin-top:4px}
+  .target small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+  .summary{
+    border-left:5px solid var(--teal);
+    background:#fff;
+    border-radius:var(--radius);
+    padding:16px;
+    align-self:stretch;
+  }
+  .summary h2{margin:0 0 10px;font-size:19px;color:var(--teal-dark)}
+  .summary ul{margin:0;padding-left:18px;color:#25464d}
+  nav{
+    position:sticky;
+    top:0;
+    z-index:20;
+    margin:18px -18px 0;
+    padding:10px 18px;
+    display:flex;
+    gap:8px;
+    overflow:auto;
+    background:rgba(238,251,249,.9);
+    border-bottom:1px solid var(--line);
+    backdrop-filter:blur(10px);
+  }
+  .tab{
+    border:1px solid var(--line);
+    background:#fff;
+    color:var(--teal-dark);
+    border-radius:999px;
+    padding:10px 14px;
+    font-weight:750;
+    white-space:nowrap;
+    cursor:pointer;
+  }
+  .tab.active{background:linear-gradient(135deg,var(--teal),var(--aqua));border-color:transparent;color:#fff}
+  section{display:none;margin-top:18px}
+  section.active{display:block}
+  .grid{display:grid;gap:14px}
+  .two{grid-template-columns:1.15fr .85fr}
+  .three{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .four{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .panel{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:18px;
+    box-shadow:var(--shadow);
+  }
+  h2{font-size:23px;margin:0 0 14px;color:var(--teal-dark);letter-spacing:0}
+  h3{font-size:17px;margin:0 0 10px;color:#143a42}
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+  label{font-size:14px;color:#294a52}
+  input,select,textarea{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:#fff;
+    color:var(--text);
+    min-height:40px;
+    padding:9px 11px;
+    font:inherit;
+  }
+  button{
+    border:0;
+    border-radius:var(--radius);
+    background:var(--teal);
+    color:#fff;
+    min-height:40px;
+    padding:9px 13px;
+    cursor:pointer;
+    font-weight:750;
+  }
+  button.secondary{background:#fff;color:var(--teal-dark);border:1px solid var(--line)}
+  button.icon{width:40px;padding:0;display:inline-grid;place-items:center}
+  .today-head{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 220px;
+    gap:14px;
+    align-items:stretch;
+    margin-bottom:14px;
+  }
+  .day-note{
+    border:1px solid var(--line);
+    border-left:5px solid var(--aqua);
+    background:var(--panel-soft);
+    border-radius:var(--radius);
+    padding:14px;
+  }
+  .progress{height:12px;background:#daf4f0;border-radius:999px;overflow:hidden;margin-top:10px}
+  .bar{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--aqua));transition:.25s}
+  .score{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background:#fff;
+    color:var(--teal-dark);
+    text-align:center;
+  }
+  .score strong{font-size:34px;line-height:1}
+  .card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .task-card{
+    text-align:left;
+    color:var(--text);
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:14px;
+    display:grid;
+    grid-template-columns:26px minmax(0,1fr);
+    gap:10px;
+    min-height:128px;
+    box-shadow:none;
+  }
+  .task-card:hover{border-color:var(--teal);box-shadow:0 12px 24px rgba(0,139,141,.12)}
+  .task-card input{width:22px;height:22px;accent-color:var(--teal);margin-top:2px}
+  .task-card strong{display:block;font-size:16px;margin-bottom:4px;color:#10343b}
+  .task-card span{display:block;color:var(--muted);font-size:13px}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+  .pill{display:inline-flex;align-items:center;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:750;background:var(--mint);color:var(--teal-dark)}
+  .pill.blue{background:#e6f1ff;color:#155aa0}
+  .pill.warn{background:#fff4d6;color:#926200}
+  .image-frame{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:#fff;
+    cursor:zoom-in;
+  }
+  .image-frame img{display:block;width:100%;height:auto}
+  .image-caption{padding:10px 12px;color:var(--muted);font-size:13px;background:#f9fffe;cursor:zoom-in}
+  .meal-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .meal{
+    text-align:left;
+    color:var(--text);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:12px;
+    background:#fff;
+    min-height:120px;
+  }
+  .meal:hover{border-color:var(--teal);box-shadow:0 12px 24px rgba(0,139,141,.12)}
+  .meal-check{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;align-items:start}
+  .meal-check input{width:22px;height:22px;accent-color:var(--teal);margin-top:2px}
+  .meal b{display:block;color:var(--teal-dark);font-size:16px;margin-bottom:4px}
+  .meal p{margin:0;color:#25464d}
+  .meal small{display:block;margin-top:8px;color:var(--muted)}
+  .info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .info-card{border:1px solid var(--line);border-radius:var(--radius);padding:14px;background:#fff}
+  .info-card h3{margin-bottom:8px}
+  .notice{border-left:5px solid var(--aqua);background:var(--panel-soft);border-radius:var(--radius);padding:12px 14px;margin:12px 0}
+  .warning{border-left-color:#ef4444;background:#fff4f4}
+  .cancel-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:10px}
+  .cancel-grid div{border:1px solid var(--line);border-radius:var(--radius);padding:12px;background:#fff}
+  table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff}
+  th,td{border-bottom:1px solid #d8f0ed;padding:11px;text-align:left;vertical-align:top;font-size:14px}
+  th{background:#e3f7f4;color:var(--teal-dark);font-weight:850}
+  tr:last-child td{border-bottom:0}
+  .metrics{width:100%}
+  .metrics input,.metrics textarea{width:100%}
+  .gallery{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px}
+  .thumb{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:#fff;
+    cursor:pointer;
+  }
+  .thumb img{width:100%;display:block}
+  .thumb b{display:block;text-align:center;padding:8px;color:var(--teal-dark)}
+  dialog{
+    width:min(760px,calc(100vw - 26px));
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:0;
+    box-shadow:0 24px 70px rgba(0,60,70,.28);
+  }
+  dialog::backdrop{background:rgba(9,31,36,.42)}
+  .modal-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line);background:#f0fffc}
+  .modal-head h2{margin:0;font-size:21px}
+  .modal-body{padding:18px}
+  .detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .detail{border:1px solid var(--line);border-radius:var(--radius);padding:12px;background:#fff}
+  .detail b{display:block;color:var(--teal-dark);margin-bottom:5px}
+  .image-modal{width:min(1060px,calc(100vw - 28px))}
+  .image-modal .modal-body{padding:10px;background:#f7fffd}
+  .image-modal img{display:block;width:100%;height:auto;border-radius:var(--radius)}
+  .small{font-size:13px;color:var(--muted)}
+  .footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
+  @media (max-width:960px){
+    .hero,.two,.three,.four,.today-head{grid-template-columns:1fr}
+    .target-grid,.card-grid,.meal-list,.info-grid,.cancel-grid{grid-template-columns:1fr}
+    .gallery{grid-template-columns:repeat(2,minmax(0,1fr))}
+    h1{font-size:26px}
+  }
+  @media (max-width:620px){
+    .app{padding:14px 12px 56px}
+    .hero,.panel{padding:14px}
+    .detail-grid{grid-template-columns:1fr}
+    th,td{font-size:13px;padding:9px}
+  }
+  @media print{
+    nav,.toolbar button,dialog{display:none!important}
+    section{display:block!important}
+    body{background:#fff}
+    .panel,header{box-shadow:none}
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="hero">
+      <div>
+        <h1>4周健身饮食交互打卡计划</h1>
+        <p class="subtitle">目标是减脂保肌、提高骨骼肌、改善脖子前倾/圆肩驼背/高低肩。页面会按当天自动切换计划，也可以手动选星期；打卡和身体记录会保存在当前浏览器。</p>
+        <div class="target-grid">
+          <div class="target"><span>一个月目标体重</span><strong>44kg</strong><small>不追求过快下降</small></div>
+          <div class="target"><span>一个月目标体脂</span><strong>30%</strong><small>看趋势，不看单日波动</small></div>
+          <div class="target"><span>每日蛋白质</span><strong>75-85g</strong><small>减脂保肌核心</small></div>
+          <div class="target"><span>每日步数</span><strong>7000-9000</strong><small>状态好可到 10000</small></div>
+        </div>
+      </div>
+      <aside class="summary">
+        <h2>执行原则</h2>
+        <ul>
+          <li>力量训练优先动作标准，不用硬冲重量。</li>
+          <li>爬坡有氧以微喘、能短句说话为准。</li>
+          <li>恢复日不偷懒，但也不叠加强度。</li>
+          <li>膝盖、腰、肩颈明显疼痛时当天降阶。</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <nav id="tabs">
+    <button class="tab active" data-tab="today">今日打卡</button>
+    <button class="tab" data-tab="calendar">4周总表</button>
+    <button class="tab" data-tab="posture">体态矫正</button>
+    <button class="tab" data-tab="cardio">爬坡标准</button>
+    <button class="tab" data-tab="diet">饮食计划</button>
+    <button class="tab" data-tab="gallery">每日计划图</button>
+    <button class="tab" data-tab="review">每周复盘</button>
+    <button class="tab" data-tab="rules">调整规则</button>
+  </nav>
+
+  <section id="today" class="active">
+    <div class="grid two">
+      <div class="panel">
+        <h2>今日打卡</h2>
+        <div class="toolbar">
+          <label>日期 <input type="date" id="datePicker"></label>
+          <label>星期
+            <select id="daySelect"></select>
+          </label>
+          <button class="secondary" id="resetDay" title="清空今日勾选">清空今日</button>
+        </div>
+        <div class="today-head">
+          <div class="day-note" id="todayIntro"></div>
+          <div class="score"><strong id="scoreNum">0%</strong><span id="scoreText">0/0 已完成</span></div>
+        </div>
+        <div class="progress"><div class="bar" id="progressBar"></div></div>
+        <h3 style="margin-top:16px">训练计划</h3>
+        <div class="card-grid" id="workoutCards"></div>
+        <h3 style="margin-top:16px">饮食计划</h3>
+        <div class="meal-list" id="mealCards"></div>
+      </div>
+
+      <div class="grid">
+        <div class="panel">
+          <h2>今日计划图</h2>
+          <div class="image-frame">
+            <img id="dayImage" alt="今日计划图">
+            <div class="image-caption" id="imageCaption"></div>
+          </div>
+        </div>
+        <div class="panel">
+          <h2>今日记录</h2>
+          <table class="metrics">
+            <tr><th>项目</th><th>记录</th></tr>
+            <tr><td>体重 kg</td><td><input type="number" step="0.1" id="w" placeholder="例如 45.5"></td></tr>
+            <tr><td>步数</td><td><input type="number" id="steps" placeholder="例如 7800"></td></tr>
+            <tr><td>睡眠 h</td><td><input type="number" step="0.1" id="sleep" placeholder="例如 7.2"></td></tr>
+            <tr><td>饥饿感 1-10</td><td><input type="number" min="1" max="10" id="hunger"></td></tr>
+            <tr><td>疲劳感 1-10</td><td><input type="number" min="1" max="10" id="fatigue"></td></tr>
+            <tr><td>备注</td><td><textarea id="note" rows="2" placeholder="肩颈、腰、膝、经期、外食等"></textarea></td></tr>
+          </table>
+          <div class="toolbar" style="margin-top:12px">
+            <button id="saveMetrics">保存记录</button>
+            <button class="secondary" id="exportData">导出数据</button>
+          </div>
+          <div class="small" id="saveMsg"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="calendar">
+    <div class="panel">
+      <h2>4周总表</h2>
+      <table>
+        <tr><th>星期</th><th>中午/白天</th><th>晚上</th><th>重点</th></tr>
+        <tr><td>周一</td><td>臀腿 + 核心重点日</td><td>爬坡 20-25 分钟</td><td>下肢力量，膝盖不适则改散步</td></tr>
+        <tr><td>周二</td><td>体态矫正</td><td>散步 / 休息</td><td>恢复、肩颈、胸椎、髋部</td></tr>
+        <tr><td>周三</td><td>轻活动日</td><td>可选有氧 / 爬坡 20 分钟</td><td>快走、拉伸、普拉提基础</td></tr>
+        <tr><td>周四</td><td>体态矫正 + 轻活动</td><td>散步 / 休息</td><td>恢复，不额外加训练强度</td></tr>
+        <tr><td>周五</td><td>全身塑形 + 核心</td><td>爬坡 20-25 分钟</td><td>控制总量，不练到力竭</td></tr>
+        <tr><td>周六</td><td>快走 / 拉伸 / 普拉提基础</td><td>状态好可爬坡 20 分钟</td><td>以恢复为主</td></tr>
+        <tr><td>周日</td><td>主动恢复 + 每周复盘</td><td>尽量早睡</td><td>准备下周食材，复盘趋势</td></tr>
+      </table>
+    </div>
+    <div class="grid four" style="margin-top:14px">
+      <div class="panel"><h3>第1周：动作学习</h3><p>RPE 5-6，熟悉深蹲、硬拉、划船、体态动作，先把蛋白质吃够。</p></div>
+      <div class="panel"><h3>第2周：减脂启动</h3><p>RPE 6-7，步数稳定 7000+，主动作可小幅加重。</p></div>
+      <div class="panel"><h3>第3周：渐进负荷</h3><p>RPE 7-8，最后一组接近吃力，但不加 HIIT、不猛降热量。</p></div>
+      <div class="panel"><h3>第4周：巩固复盘</h3><p>RPE 6-7，对比体重、围度、照片、睡眠和训练完成率。</p></div>
+    </div>
+  </section>
+
+  <section id="posture">
+    <div class="panel">
+      <h2>每日 10-15 分钟体态矫正</h2>
+      <div class="notice"><strong>重点：</strong>你有明显脖子前倾、圆肩驼背问题。每天少量做，比一周一次猛练更有效。</div>
+      <table>
+        <tr><th>动作</th><th>组数</th><th>目的</th><th>动作提醒</th></tr>
+        <tr><td>靠墙收下巴</td><td>2×10次</td><td>改善脖子前倾</td><td>像做“双下巴”，不是仰头</td></tr>
+        <tr><td>门框胸肌拉伸</td><td>2×30秒</td><td>打开胸口</td><td>不要塌腰硬顶</td></tr>
+        <tr><td>泡沫轴胸椎伸展</td><td>2×8次</td><td>改善驼背</td><td>伸展胸椎，不是折腰</td></tr>
+        <tr><td>墙天使</td><td>2×8-10次</td><td>肩胛控制</td><td>肩膀别耸，肋骨别外翻</td></tr>
+        <tr><td>弹力带面拉</td><td>2×12-15次</td><td>激活上背</td><td>拉向眉眼高度</td></tr>
+        <tr><td>死虫</td><td>2×8次/侧</td><td>核心稳定</td><td>腰不要拱起来</td></tr>
+      </table>
+    </div>
+    <div class="info-grid" style="margin-top:14px">
+      <div class="info-card">
+        <h3>可能问题：脖子前倾</h3>
+        <p><strong>表现：</strong>头部向前，久坐低头后更明显。</p>
+        <p><strong>可能原因：</strong>长时间低头、胸椎僵硬、深层颈屈肌弱、上背无力。</p>
+        <p><strong>推荐动作：</strong>靠墙收下巴、弹力带面拉、墙天使、胸椎伸展。</p>
+      </div>
+      <div class="info-card">
+        <h3>可能问题：圆肩驼背</h3>
+        <p><strong>表现：</strong>肩膀向前扣，胸口打不开，上背圆。</p>
+        <p><strong>可能原因：</strong>胸小肌紧张，中下斜方肌和菱形肌弱。</p>
+        <p><strong>推荐动作：</strong>门框拉伸、坐姿划船、面拉、反向飞鸟、墙滑。</p>
+      </div>
+      <div class="info-card">
+        <h3>可能问题：高低肩</h3>
+        <p><strong>表现：</strong>一侧肩更高，拍照或背包后更明显。</p>
+        <p><strong>可能原因：</strong>长期单侧用力、肩胛控制不均、斜方肌紧张。</p>
+        <p><strong>推荐动作：</strong>单侧门框拉伸、弹力带划船、肩胛下沉练习。</p>
+      </div>
+      <div class="info-card">
+        <h3>可能问题：骨盆前倾</h3>
+        <p><strong>表现：</strong>腰容易累，站姿小腹前顶。</p>
+        <p><strong>可能原因：</strong>髋屈肌紧、臀腹力量不足、久坐。</p>
+        <p><strong>推荐动作：</strong>死虫、臀桥、低弓步拉伸、鸟狗。</p>
+      </div>
+    </div>
+    <div class="notice warning">如果出现持续疼痛、麻木、眩晕、手臂放射痛、明显活动受限，不要继续硬练，建议去医院康复科或找物理治疗师评估。</div>
+  </section>
+
+  <section id="cardio">
+    <div class="panel">
+      <h2>晚上 7 点后爬坡标准</h2>
+      <p>爬坡不是全程一个配置。你的原则是：<strong>微喘、出汗、能说短句，但不要喘到说不出话。</strong></p>
+      <div class="grid two" style="margin-top:14px">
+        <div>
+          <h3>第 1-2 周</h3>
+          <table>
+            <tr><th>阶段</th><th>时间</th><th>坡度</th><th>速度</th></tr>
+            <tr><td>热身</td><td>5分钟</td><td>0-2%</td><td>3.8-4.2km/h</td></tr>
+            <tr><td>主训练</td><td>15-20分钟</td><td>4-6%</td><td>4.2-4.8km/h</td></tr>
+            <tr><td>放松</td><td>3-5分钟</td><td>0-2%</td><td>3.5-4.0km/h</td></tr>
+          </table>
+        </div>
+        <div>
+          <h3>第 3-4 周</h3>
+          <table>
+            <tr><th>阶段</th><th>时间</th><th>坡度</th><th>速度</th></tr>
+            <tr><td>热身</td><td>5分钟</td><td>0-2%</td><td>3.8-4.2km/h</td></tr>
+            <tr><td>主训练</td><td>20-25分钟</td><td>5-8%</td><td>4.3-5.0km/h</td></tr>
+            <tr><td>放松</td><td>3-5分钟</td><td>0-2%</td><td>3.5-4.0km/h</td></tr>
+          </table>
+        </div>
+      </div>
+      <div class="notice"><strong>臀腿日注意：</strong>周一中午练臀腿后，晚上爬坡不要太狠。腿酸、膝盖不舒服、小腿紧，就改成散步 20 分钟。</div>
+      <h3>什么时候取消晚上爬坡？</h3>
+      <div class="cancel-grid">
+        <div>膝盖疼 / 小腿胀</div>
+        <div>腰酸明显</div>
+        <div>晚上睡不着</div>
+        <div>第二天起床很累</div>
+        <div>力量训练重量下降</div>
+        <div>肩颈酸痛加重</div>
+        <div>饥饿感强、想暴食</div>
+        <div>连续两天精神差</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="diet">
+    <div class="grid two">
+      <div class="panel">
+        <h2>饮食目标</h2>
+        <table>
+          <tr><th>项目</th><th>建议</th></tr>
+          <tr><td>训练日热量</td><td>1450-1550 kcal</td></tr>
+          <tr><td>恢复/休息日热量</td><td>1350-1500 kcal</td></tr>
+          <tr><td>蛋白质</td><td>75-85g/天</td></tr>
+          <tr><td>碳水</td><td>训练日前后不要砍太低，优先米饭、红薯、燕麦、玉米</td></tr>
+          <tr><td>饮水</td><td>1.8-2.2L/天</td></tr>
+        </table>
+      </div>
+      <div class="panel">
+        <h2>外食优先级</h2>
+        <p>优先选择“高蛋白 + 半份主食 + 足量蔬菜”：轻食饭、去皮鸡腿饭、麻辣烫清汤少丸子、日式/韩式拌饭少酱。少选炸鸡、奶茶、重油盖浇饭、纯沙拉无蛋白质。</p>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:14px">
+      <h2>一周参考菜单</h2>
+      <table id="dietTable"></table>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="panel">
+      <h2>每日计划图</h2>
+      <p class="small">点击任意一天，会切回今日打卡并显示对应计划。周三图片按你提供的文件放入；它的内容与周六图一致，我没有擅自改图。</p>
+      <div class="gallery" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <section id="review">
+    <div class="panel">
+      <h2>每周复盘</h2>
+      <table>
+        <tr><th>项目</th><th>第1周</th><th>第2周</th><th>第3周</th><th>第4周</th></tr>
+        <tr><td>体重</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+        <tr><td>腰围 / 臀围</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+        <tr><td>力量训练次数</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+        <tr><td>爬坡次数</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+        <tr><td>平均步数</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+        <tr><td>平均睡眠</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+        <tr><td>肩颈/腰/膝不适</td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td><td contenteditable="true"></td></tr>
+      </table>
+      <p class="small">复盘重点看趋势：围度是否下降、动作是否更稳、肩颈紧张是否减少、侧面体态是否更挺。</p>
+    </div>
+  </section>
+
+  <section id="rules">
+    <div class="panel">
+      <h2>调整规则</h2>
+      <table>
+        <tr><th>情况</th><th>怎么调整</th></tr>
+        <tr><td>连续两周体重和围度都没变</td><td>先检查饮食记录；再考虑每日减少 100 kcal 或增加 1000 步。</td></tr>
+        <tr><td>体重下降过快</td><td>每日增加 100-200 kcal，尤其是主食，避免掉肌肉。</td></tr>
+        <tr><td>训练后持续疲劳</td><td>减少 1 次爬坡，力量训练重量下降约 10%。</td></tr>
+        <tr><td>睡眠质量下降</td><td>晚上不做高强度有氧，晚餐加一点碳水。</td></tr>
+        <tr><td>腰痛</td><td>暂停硬拉、深蹲，改臀桥、鸟狗、死虫。</td></tr>
+        <tr><td>膝痛</td><td>降低爬坡坡度，检查深蹲膝盖方向。</td></tr>
+        <tr><td>肩颈痛</td><td>减少推举，增加胸椎活动、面拉、门框拉伸。</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <p class="footer">离线可用。打卡数据保存在当前浏览器 localStorage 中，换浏览器或清缓存会丢失。</p>
+</div>
+
+<dialog id="detailDialog">
+  <div class="modal-head">
+    <h2 id="modalTitle"></h2>
+    <button class="icon secondary" id="closeModal" title="关闭">×</button>
+  </div>
+  <div class="modal-body">
+    <div class="detail-grid" id="modalDetails"></div>
+  </div>
+</dialog>
+
+<dialog id="imageDialog" class="image-modal">
+  <div class="modal-head">
+    <h2 id="imageModalTitle">每日计划图</h2>
+    <button class="icon secondary" id="closeImageModal" title="关闭">×</button>
+  </div>
+  <div class="modal-body">
+    <img id="modalImage" alt="每日计划大图">
+  </div>
+</dialog>
+
+<script>
+const img = {
+  mon:"周一.png", tue:"周二.png", wed:"周三.png", thu:"周四.png",
+  fri:"周五.png", sat:"周六.png", sun:"周日.png"
+};
+
+const meals = {
+  mon:[
+    ["早餐","鸡蛋1个 + 无糖豆浆300ml + 全麦面包1片","约320kcal | 蛋白22g"],
+    ["午餐","米饭100g + 鸡胸120g + 蔬菜300g","约500kcal | 蛋白38g"],
+    ["加餐","希腊酸奶150g","约120kcal | 蛋白12g"],
+    ["晚餐","红薯150g + 虾仁120g + 青菜300g","约430kcal | 蛋白30g"]
+  ],
+  tue:[
+    ["早餐","牛奶250ml + 鸡蛋1个 + 玉米半根","约330kcal | 蛋白20g"],
+    ["午餐","杂粮饭80g + 瘦牛肉100g + 蔬菜300g","约480kcal | 蛋白32g"],
+    ["加餐","苹果1个 + 坚果10g","约150kcal | 蛋白3g"],
+    ["晚餐","豆腐150g + 鸡蛋1个 + 青菜300g","约420kcal | 蛋白28g"]
+  ],
+  wed:[
+    ["早餐","燕麦30g + 牛奶250ml + 鸡蛋1个","约350kcal | 蛋白22g"],
+    ["午餐","轻食双蛋白 + 半份主食","约500-600kcal | 蛋白35g"],
+    ["加餐","水果150g","约80kcal | 蛋白1g"],
+    ["晚餐","豆腐150g + 虾仁100g + 蔬菜300g","约420kcal | 蛋白35g"]
+  ],
+  thu:[
+    ["早餐","鸡蛋1个 + 豆浆300ml + 香蕉半根","约300kcal | 蛋白19g"],
+    ["午餐","米饭100g + 虾仁120g + 蔬菜300g","约480kcal | 蛋白32g"],
+    ["加餐","酸奶150g","约120kcal | 蛋白10g"],
+    ["晚餐","红薯120g + 豆腐200g + 青菜300g","约430kcal | 蛋白25g"]
+  ],
+  fri:[
+    ["早餐","全麦面包1片 + 鸡蛋2个 + 小番茄","约350kcal | 蛋白22g"],
+    ["午餐","米饭100g + 鸡胸120g + 蔬菜300g","约500kcal | 蛋白38g"],
+    ["加餐","牛奶250ml","约150kcal | 蛋白8g"],
+    ["晚餐","荞麦面 + 鱼肉120g + 青菜300g","约450kcal | 蛋白30g"]
+  ],
+  sat:[
+    ["早餐","燕麦30g + 牛奶250ml + 鸡蛋1个","约350kcal | 蛋白22g"],
+    ["午餐","轻食双蛋白 + 半份主食","约500-600kcal | 蛋白35g"],
+    ["加餐","水果150g","约80kcal | 蛋白1g"],
+    ["晚餐","豆腐150g + 虾仁100g + 蔬菜300g","约420kcal | 蛋白35g"]
+  ],
+  sun:[
+    ["早餐","鸡蛋1个 + 豆浆300ml + 玉米半根","约330kcal | 蛋白20g"],
+    ["午餐","米饭80g + 瘦肉120g + 蔬菜300g","约480kcal | 蛋白35g"],
+    ["加餐","酸奶150g","约120kcal | 蛋白10g"],
+    ["晚餐","鱼肉120g + 青菜300g + 南瓜150g","约420kcal | 蛋白30g"]
+  ]
+};
+
+const plan = {
+  mon:{name:"周一",label:"臀腿 + 核心重点日",intro:"中午力量训练，晚上爬坡 20-25 分钟。臀腿日不要硬冲爬坡，膝盖或腰不舒服就改散步。",heat:"1450-1550kcal",items:[
+    item("高脚杯深蹲","增强下肢力量，提高代谢","3组 × 10-12次","脚掌踩稳，膝盖朝脚尖，下蹲时核心收紧。","膝盖内扣、塌腰、身体过度前倾。","徒手深蹲或坐椅深蹲。","退阶：减少深度；进阶：加重量或慢速离心。"),
+    item("罗马尼亚硬拉","强化臀大肌和腘绳肌","3组 × 10次","髋向后推，背部平直，重量贴腿下放。","弯腰驼背、用腰拉、膝盖锁死。","弹力带硬拉或髋铰链练习。","退阶：徒手髋铰链；进阶：哑铃加重。"),
+    item("坐姿腿举","提升下肢整体力量","3组 × 10-12次","缓慢下放，不锁死膝盖，脚跟发力。","膝盖内扣、借力弹起。","臀桥 + 箱式深蹲。","退阶：减重量；进阶：增加行程或重量。"),
+    item("坐姿髋外展","激活臀中肌，稳定骨盆","3组 × 15次","向外打开时控制速度，顶峰停1秒。","身体后仰、惯性过大。","弹力带蚌式开合。","退阶：小幅度；进阶：弹力带侧走。"),
+    item("死虫 + Pallof Press","提升核心稳定，减少腰椎代偿","各2-3组","腰背轻贴地，动作慢，呼气时收紧核心。","腰部拱起、骨盆晃动。","死虫可单侧手脚分开做；Pallof 可用弹力带。","退阶：只动腿；进阶：延长停留时间。"),
+    cardio("19:00后爬坡","提高心肺和消耗，避免过度冲击","热身5分钟 + 主训练15-20分钟 + 放松3-5分钟","坡度4-6%，速度4.2-4.8km/h，微喘即可。")
+  ]},
+  tue:{name:"周二",label:"恢复日 | 体态矫正 + 步数管理",intro:"晚间以散步和休息为主。重点是放松、纠正、保持活动量。",heat:"1350-1450kcal",items:[
+    item("靠墙收下巴","改善脖子前倾","2组 × 10次","轻收下巴，后脑勺向上延伸，不仰头。","仰头、耸肩、用力过猛。","坐姿收下巴。","退阶：离墙做；进阶：每次停留3秒。"),
+    item("门框胸肌拉伸","打开胸口，缓解圆肩","2组 × 30秒","胸口打开，轻柔拉伸，肋骨别外翻。","用力过猛、塌腰。","墙角拉伸。","退阶：降低手臂高度；进阶：改变手臂角度。"),
+    item("泡沫轴胸椎伸展","改善胸椎僵硬与驼背","2组 × 8次","以胸椎伸展为主，不要折腰。","速度太快、直接压腰。","毛巾卷胸椎伸展。","退阶：小范围；进阶：增加停留时间。"),
+    item("墙天使","提升肩胛控制","2组 × 8-10次","肩膀放松，肋骨收住，动作慢。","耸肩、腰部代偿。","地面天使。","退阶：手臂离墙；进阶：全程贴墙。"),
+    item("弹力带面拉","激活上背与后肩","2组 × 12-15次","拉向眼睛高度，肘部打开，不耸肩。","脖子用力、身体后仰。","毛巾后拉。","退阶：轻弹力带；进阶：顶峰停2秒。"),
+    cardio("轻松散步","增加活动量，促进恢复","20-30分钟","不求速度，微微出汗即可。")
+  ]},
+  wed:{name:"周三",label:"轻活动日 | 快走 / 拉伸 / 普拉提基础",intro:"以轻活动和恢复为主，状态好可加 20 分钟爬坡。",heat:"1400-1500kcal",items:[
+    cardio("轻快走","增加活动量，促进恢复","20-30分钟","步频轻松，自然摆臂。"),
+    item("猫牛式","活动脊柱，放松背部","2组 × 8-10次","配合呼吸，缓慢活动脊柱。","动作过快、耸肩。","坐姿猫牛。","退阶：小幅度；进阶：延长呼吸。"),
+    item("下犬式","拉伸后链与肩背","2组 × 20-30秒","背部延展，膝盖可微屈。","耸肩、强行压脚跟。","扶桌下犬式。","退阶：屈膝；进阶：增加停留。"),
+    item("低弓步拉伸","拉伸髋屈肌，改善久坐紧张","2组 × 30秒/侧","骨盆中立，前膝稳定。","塌腰顶髋。","站姿髋屈肌拉伸。","退阶：垫高膝盖；进阶：手臂上举。"),
+    item("臀桥","激活臀部，改善骨盆稳定","2-3组 × 12次","脚跟踩稳，发力抬髋，避免腰部代偿。","用腰顶起、膝盖外翻不足。","小幅臀桥。","退阶：减少幅度；进阶：单腿臀桥。")
+  ]},
+  thu:{name:"周四",label:"恢复日 | 体态矫正 + 轻活动",intro:"承接周三，保持活动量但不叠加强度。久坐每 1 小时起身 2-3 分钟。",heat:"1350-1450kcal",items:[
+    item("开书式","改善胸椎旋转与打开胸口","2组 × 8次/侧","骨盆尽量稳定，慢慢打开上背。","身体一起翻过去。","坐姿胸椎旋转。","退阶：小幅度；进阶：停留2秒。"),
+    item("靠墙收下巴","改善颈部前伸","2组 × 10次","下巴微收，脖子向上延伸。","仰头、耸肩。","坐姿收下巴。","退阶：离墙；进阶：停留3秒。"),
+    item("弹力带面拉","激活后肩与中下斜方肌","2组 × 15次","拉同眼高度，肩膀放松。","脖子代偿、身体后仰。","毛巾后拉。","退阶：轻阻力；进阶：顶峰停留。"),
+    item("髋屈肌拉伸","缓解久坐导致的髋前侧紧张","2组 × 30秒/侧","骨盆保持中立，不塌腰。","塌腰顶髋。","站姿拉伸。","退阶：缩短时间；进阶：手臂上举。"),
+    item("死虫","增强核心稳定，减少腰椎代偿","2组 × 8次/侧","腰背轻贴地，缓慢伸展手腿。","腰拱起、动作过快。","只动腿。","退阶：脚跟点地；进阶：手脚同时伸长。"),
+    cardio("轻松散步","恢复、放松肩颈和髋部","20-30分钟","不求速度，轻微出汗即可。")
+  ]},
+  fri:{name:"周五",label:"全身塑形 + 核心",intro:"中午力量，晚上爬坡 20-25 分钟。自主训练日不要加太多动作，晚上爬坡以微喘为准。",heat:"1450-1550kcal",items:[
+    item("杯式深蹲","强化臀腿，提升代谢","3组 × 10次","核心收紧，膝盖朝脚尖，下蹲稳定。","膝内扣、塌腰。","徒手深蹲。","退阶：坐椅深蹲；进阶：加重量。"),
+    item("哑铃硬拉","强化臀腿后侧与臀大肌","3组 × 10次","髋向后推，背部平直。","弓背、耸肩。","弹力带硬拉。","退阶：髋铰链；进阶：加重量。"),
+    item("坐姿划船","提升背部力量，改善体态","3组 × 12次","沉肩后拉，夹背发力。","后仰借力、耸肩。","弹力带划船。","退阶：轻阻力；进阶：顶峰停留。"),
+    item("台阶上步","提升单腿稳定与臀腿力量","2组 × 10次/侧","脚掌踩稳，起身时重心稳定。","膝盖内扣、蹬地借力过多。","低台阶上步。","退阶：扶墙；进阶：手持哑铃。"),
+    item("轻重量肩推","强化肩部稳定与上肢线条","2组 × 10次","核心收紧，不耸肩。","腰部后仰、耸肩。","弹力带肩推。","退阶：坐姿轻重量；进阶：慢速下放。"),
+    item("平板支撑 + 死虫","增强核心稳定","各2-3组","骨盆中立，不塌腰。","腰部下沉、动作过快。","跪姿平板。","退阶：缩短时间；进阶：延长停留。"),
+    cardio("19:00后爬坡","提高心肺和消耗","20-25分钟","坡度4-6%，速度4.2-4.8km/h。")
+  ]},
+  sat:{name:"周六",label:"轻活动日 | 快走 / 拉伸 / 普拉提基础",intro:"以恢复为主，若本周疲劳明显就不加有氧。状态好可以爬坡 20 分钟。",heat:"1400-1500kcal",items:[
+    cardio("轻快走","增加活动量，促进恢复","20-30分钟","步频轻松，自然摆臂。"),
+    item("猫牛式","活动脊柱，放松背部","2组 × 8-10次","配合呼吸，缓慢活动脊柱。","动作过快、耸肩。","坐姿猫牛。","退阶：小幅度；进阶：延长呼吸。"),
+    item("下犬式","拉伸后链与肩背","2组 × 20-30秒","背部延展，膝盖可微屈。","耸肩、强行压脚跟。","扶桌下犬式。","退阶：屈膝；进阶：增加停留。"),
+    item("低弓步拉伸","拉伸髋屈肌，改善久坐紧张","2组 × 30秒/侧","骨盆中立，前膝稳定。","塌腰顶髋。","站姿髋屈肌拉伸。","退阶：垫高膝盖；进阶：手臂上举。"),
+    item("臀桥","激活臀部，改善骨盆稳定","2-3组 × 12次","脚跟踩稳，发力抬髋，避免腰部代偿。","用腰顶起、膝盖外翻不足。","小幅臀桥。","退阶：减少幅度；进阶：单腿臀桥。")
+  ]},
+  sun:{name:"周日",label:"休息日 | 主动恢复 + 每周复盘",intro:"不安排正式训练。做复盘、准备下周食材和训练计划，今晚尽量早睡。",heat:"1350-1450kcal",items:[
+    cardio("轻松散步","促进恢复","20-30分钟","轻松走，不求速度。"),
+    item("胸颈拉伸","缓解肩颈紧张","2组 × 30秒","轻拉伸，不疼痛。","用力过猛。","坐姿颈部拉伸。","退阶：缩短时间；进阶：加入胸肌拉伸。"),
+    item("髋屈肌拉伸","缓解久坐紧张","2组 × 30秒/侧","骨盆保持中立。","塌腰顶髋。","站姿拉伸。","退阶：扶墙；进阶：手臂上举。"),
+    item("泡沫轴放松","放松大腿前侧和背部","5-8分钟","慢慢滚动，不要过快。","速度太快、压到关节。","网球或毛巾替代。","退阶：减少压力；进阶：局部停留。"),
+    item("周复盘","建立习惯，检查趋势","10分钟","记录体重、腰围、训练完成率、睡眠和不适。","只看单日体重。","手机备忘录。","退阶：只记3项；进阶：加照片对比。")
+  ]}
+};
+
+function item(name,purpose,sets,points,mistakes,home,level){
+  return {type:"训练",name,purpose,sets,points,mistakes,home,level};
+}
+function cardio(name,purpose,sets,points){
+  return {type:"活动",name,purpose,sets,points,mistakes:"走太快、爬太猛、疲劳时硬做。",home:"户外快走、原地踏步、楼下散步。",level:"退阶：缩短到10-15分钟；进阶：状态好再增加5分钟。"};
+}
+
+const dayOrder = ["mon","tue","wed","thu","fri","sat","sun"];
+const datePicker = document.getElementById("datePicker");
+const daySelect = document.getElementById("daySelect");
+const workoutCards = document.getElementById("workoutCards");
+const mealCards = document.getElementById("mealCards");
+const modal = document.getElementById("detailDialog");
+const metricIds = ["w","steps","sleep","hunger","fatigue","note"];
+
+dayOrder.forEach(k=>{
+  const opt = document.createElement("option");
+  opt.value = k;
+  opt.textContent = `${plan[k].name} - ${plan[k].label}`;
+  daySelect.appendChild(opt);
+});
+
+function todayISO(){
+  const d = new Date();
+  d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+  return d.toISOString().slice(0,10);
+}
+function setDayFromDate(){
+  const d = new Date(datePicker.value + "T00:00:00");
+  daySelect.value = ["sun","mon","tue","wed","thu","fri","sat"][d.getDay()];
+}
+function checkKey(){ return "tealFitnessCheck_" + datePicker.value + "_" + daySelect.value; }
+function metricKey(){ return "tealFitnessMetrics_" + datePicker.value; }
+
+function renderToday(){
+  const key = daySelect.value;
+  const p = plan[key];
+  document.getElementById("todayIntro").innerHTML = `<strong>${p.name}｜${p.label}</strong><br>${p.intro}<br><span class="small">热量：${p.heat}｜蛋白质：75-85g｜饮水：1.8-2.2L</span>`;
+  document.getElementById("dayImage").src = img[key];
+  document.getElementById("dayImage").alt = `${p.name}计划图`;
+  document.getElementById("imageCaption").textContent = `${p.name}计划图：${p.label} · 点击查看大图`;
+  const saved = JSON.parse(localStorage.getItem(checkKey()) || "{}");
+  workoutCards.innerHTML = "";
+  p.items.forEach((it, idx)=>{
+    const label = document.createElement("label");
+    label.className = "task-card";
+    label.innerHTML = `<input type="checkbox" ${saved["task"+idx] ? "checked" : ""}>
+      <div><strong>${it.name}</strong><span>${it.purpose}</span>
+      <div class="meta"><span class="pill">${it.type}</span><span class="pill blue">${it.sets}</span><span class="pill warn">点击看详情</span></div></div>`;
+    label.addEventListener("click", e=>{
+      if(e.target.tagName === "INPUT"){ saveChecks(); return; }
+      e.preventDefault();
+      openDetail(it);
+    });
+    workoutCards.appendChild(label);
+  });
+  mealCards.innerHTML = "";
+  meals[key].forEach((m, idx)=>{
+    const mealDetail = {
+      name:m[0],
+      purpose:"稳定能量、保证蛋白质，帮助训练恢复并控制总热量。",
+      sets:m[2],
+      points:m[1],
+      mistakes:"只吃蔬菜不吃蛋白质，或训练日把主食砍得太低。",
+      home:"同类替换：鸡蛋/牛奶/豆浆/酸奶/鸡胸/鱼虾/豆腐/瘦牛肉互换，主食按米饭/红薯/玉米/燕麦互换。",
+      level:"退阶：没胃口先保证蛋白质；进阶：提前备餐，减少临时外食。"
+    };
+    const div = document.createElement("div");
+    div.className = "meal meal-check";
+    div.innerHTML = `<input type="checkbox" ${saved["meal"+idx] ? "checked" : ""}>
+      <div><b>${m[0]}</b><p>${m[1]}</p><small>${m[2]} · 点击看目的和替换</small></div>`;
+    div.addEventListener("click", e=>{
+      if(e.target.tagName === "INPUT"){ saveChecks(); return; }
+      openDetail(mealDetail);
+    });
+    mealCards.appendChild(div);
+  });
+  updateProgress();
+}
+
+function saveChecks(){
+  const obj = {};
+  [...workoutCards.querySelectorAll("input")].forEach((el,idx)=>obj["task"+idx]=el.checked);
+  [...mealCards.querySelectorAll("input")].forEach((el,idx)=>obj["meal"+idx]=el.checked);
+  localStorage.setItem(checkKey(), JSON.stringify(obj));
+  updateProgress();
+}
+function updateProgress(){
+  const inputs = [...workoutCards.querySelectorAll("input"), ...mealCards.querySelectorAll("input")];
+  const done = inputs.filter(i=>i.checked).length;
+  const total = inputs.length || 1;
+  const pct = Math.round(done / total * 100);
+  document.getElementById("progressBar").style.width = pct + "%";
+  document.getElementById("scoreNum").textContent = pct + "%";
+  document.getElementById("scoreText").textContent = `${done}/${total} 已完成`;
+}
+function loadMetrics(){
+  const saved = JSON.parse(localStorage.getItem(metricKey()) || "{}");
+  metricIds.forEach(id=>document.getElementById(id).value = saved[id] || "");
+}
+function saveMetrics(){
+  const obj = {};
+  metricIds.forEach(id=>obj[id]=document.getElementById(id).value);
+  localStorage.setItem(metricKey(), JSON.stringify(obj));
+  document.getElementById("saveMsg").textContent = "已保存今日记录。";
+  setTimeout(()=>document.getElementById("saveMsg").textContent="",1800);
+}
+function openDetail(it){
+  document.getElementById("modalTitle").textContent = it.name;
+  document.getElementById("modalDetails").innerHTML = [
+    ["目的",it.purpose],
+    ["组数 / 次数",it.sets],
+    ["动作要点",it.points],
+    ["常见错误",it.mistakes],
+    ["居家替代",it.home],
+    ["退阶 / 进阶",it.level]
+  ].map(([k,v])=>`<div class="detail"><b>${k}</b><span>${v}</span></div>`).join("");
+  modal.showModal();
+}
+function openImage(key){
+  const p = plan[key];
+  document.getElementById("imageModalTitle").textContent = `${p.name}｜${p.label}`;
+  document.getElementById("modalImage").src = img[key];
+  document.getElementById("modalImage").alt = `${p.name}计划大图`;
+  document.getElementById("imageDialog").showModal();
+}
+
+function renderGallery(){
+  const grid = document.getElementById("galleryGrid");
+  grid.innerHTML = "";
+  dayOrder.forEach(k=>{
+    const d = document.createElement("button");
+    d.className = "thumb";
+    d.innerHTML = `<img src="${img[k]}" alt="${plan[k].name}计划图"><b>${plan[k].name}</b>`;
+    d.addEventListener("click",()=>{
+      openImage(k);
+    });
+    grid.appendChild(d);
+  });
+}
+function renderDietTable(){
+  const t = document.getElementById("dietTable");
+  t.innerHTML = "<tr><th>日期</th><th>早餐</th><th>午餐</th><th>加餐</th><th>晚餐</th></tr>" + dayOrder.map(k=>{
+    const m = meals[k];
+    return `<tr><td>${plan[k].name}</td><td>${m[0][1]}</td><td>${m[1][1]}</td><td>${m[2][1]}</td><td>${m[3][1]}</td></tr>`;
+  }).join("");
+}
+function switchTab(id){
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active", b.dataset.tab===id));
+  document.querySelectorAll("section").forEach(s=>s.classList.toggle("active", s.id===id));
+}
+
+document.getElementById("tabs").addEventListener("click", e=>{
+  if(e.target.matches(".tab")) switchTab(e.target.dataset.tab);
+});
+datePicker.value = todayISO();
+setDayFromDate();
+renderToday();
+loadMetrics();
+renderGallery();
+renderDietTable();
+
+datePicker.addEventListener("change",()=>{ setDayFromDate(); renderToday(); loadMetrics(); });
+daySelect.addEventListener("change",renderToday);
+document.getElementById("resetDay").addEventListener("click",()=>{ localStorage.removeItem(checkKey()); renderToday(); });
+document.getElementById("saveMetrics").addEventListener("click",saveMetrics);
+metricIds.forEach(id=>document.getElementById(id).addEventListener("change",saveMetrics));
+document.getElementById("closeModal").addEventListener("click",()=>modal.close());
+document.getElementById("dayImage").addEventListener("click",()=>openImage(daySelect.value));
+document.getElementById("imageCaption").addEventListener("click",()=>openImage(daySelect.value));
+document.getElementById("closeImageModal").addEventListener("click",()=>document.getElementById("imageDialog").close());
+document.getElementById("exportData").addEventListener("click",()=>{
+  const data = {};
+  for(let i=0;i<localStorage.length;i++){
+    const k = localStorage.key(i);
+    if(k.startsWith("tealFitness")) data[k] = JSON.parse(localStorage.getItem(k));
+  }
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "fitness_checkin_data.json";
+  a.click();
+  URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
