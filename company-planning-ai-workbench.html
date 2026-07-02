@@ -1,0 +1,2820 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>商品企划 AI 工作台</title>
+  <style>
+    :root {
+      --bg: #f5f3ee;
+      --paper: #fffdfa;
+      --panel: #ffffff;
+      --ink: #1d2430;
+      --muted: #687386;
+      --subtle: #8d98a8;
+      --line: #e2ded7;
+      --line-strong: #cfc7bc;
+      --blue: #2563eb;
+      --blue-soft: #eaf1ff;
+      --green: #16805a;
+      --green-soft: #e7f5ef;
+      --amber: #b46b17;
+      --amber-soft: #fff4df;
+      --red: #c24141;
+      --red-soft: #fff0f0;
+      --purple: #6b55d8;
+      --purple-soft: #f0edff;
+      --orange: #e9782b;
+      --orange-soft: #fff1e8;
+      --shadow: 0 12px 32px rgba(39, 33, 24, .08);
+      --shadow-soft: 0 8px 22px rgba(39, 33, 24, .055);
+      --radius: 8px;
+      --font: Inter, "Microsoft YaHei", "PingFang SC", "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      letter-spacing: 0;
+    }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    .app-header {
+      height: 52px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      color: #253044;
+    }
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      display: grid;
+      place-items: center;
+      background: #111827;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 950;
+    }
+    .app-nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .nav-btn,
+    .action-btn {
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      min-height: 34px;
+      border-radius: 6px;
+      padding: 0 12px;
+      color: #39465a;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .nav-btn.active,
+    .action-btn.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+    .action-btn.dark {
+      background: #17212f;
+      border-color: #17212f;
+      color: #fff;
+    }
+    .action-btn.orange {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: #fff;
+    }
+    .action-btn.green {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 26px 22px 52px;
+    }
+    .paper {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .report-header {
+      padding: 30px 34px 26px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(90deg, rgba(255,255,255,.96), rgba(255,253,250,.92)),
+        radial-gradient(circle at 86% 0%, rgba(37,99,235,.08), transparent 32%);
+    }
+    .report-kicker {
+      color: #8a7567;
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .report-topline {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 20px;
+      align-items: start;
+    }
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      line-height: 1.18;
+      font-weight: 880;
+      color: #111827;
+    }
+    .report-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .report-purpose {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-left: 3px solid var(--blue);
+      background: var(--blue-soft);
+      border-radius: 6px;
+      color: #26364f;
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 800;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0 9px;
+      background: #fff;
+      color: #566274;
+      font-size: 12px;
+      font-weight: 850;
+      white-space: nowrap;
+    }
+    .pill.blue { background: var(--blue-soft); color: var(--blue); border-color: #cddcff; }
+    .pill.green { background: var(--green-soft); color: var(--green); border-color: #bfe7d5; }
+    .pill.amber { background: var(--amber-soft); color: var(--amber); border-color: #efd6a9; }
+    .pill.red { background: var(--red-soft); color: var(--red); border-color: #f0c8c8; }
+    .pill.purple { background: var(--purple-soft); color: var(--purple); border-color: #d9d1ff; }
+    .pill.carried { background: #eeedfe; color: #534ab7; border-color: #d9d4ff; }
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+      max-width: 392px;
+    }
+    .core-judgement {
+      margin-top: 22px;
+      border: 1px solid #d8e5ff;
+      border-left: 5px solid var(--blue);
+      background: linear-gradient(135deg, #f8fbff, #ffffff);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      align-items: center;
+      box-shadow: var(--shadow-soft);
+    }
+    .core-judgement strong {
+      display: block;
+      color: var(--blue);
+      font-size: 12px;
+      letter-spacing: .08em;
+      margin-bottom: 6px;
+    }
+    .core-judgement p {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.48;
+      font-weight: 880;
+      color: #1f2937;
+    }
+    .score-badge {
+      min-width: 96px;
+      min-height: 96px;
+      border: 1px solid #cbdcff;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(135deg, rgba(37,99,235,.08), rgba(255,255,255,.96)),
+        #fff;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(37,99,235,.12);
+    }
+    .score-badge b {
+      display: block;
+      color: var(--blue);
+      font-size: 35px;
+      line-height: 1;
+    }
+    .score-badge span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+      font-weight: 850;
+    }
+
+    .report-body {
+      padding: 24px 34px 34px;
+    }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .metric-card,
+    .overview-card,
+    .section,
+    .create-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+    }
+    .metric-card {
+      padding: 16px 14px;
+      min-height: 104px;
+      position: relative;
+      overflow: hidden;
+    }
+    .metric-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), rgba(37,99,235,.12));
+    }
+    .metric-card label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 850;
+      margin-bottom: 10px;
+    }
+    .metric-card strong {
+      display: block;
+      font-size: 26px;
+      line-height: 1;
+    }
+    .metric-card span {
+      display: block;
+      color: var(--subtle);
+      font-size: 11px;
+      line-height: 1.45;
+      margin-top: 8px;
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .overview-card {
+      padding: 17px;
+      min-height: 178px;
+      border-color: #e8e1d7;
+    }
+    .overview-card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .overview-card h3::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--blue);
+    }
+    .overview-card ul {
+      margin: 0;
+      padding: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.68;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+    .overview-card li {
+      padding-left: 13px;
+      position: relative;
+    }
+    .overview-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .72em;
+      width: 5px;
+      height: 1px;
+      background: var(--subtle);
+    }
+
+    .data-quality {
+      margin: 20px 0;
+      padding: 16px;
+      border: 1px solid #d9e4f7;
+      background: linear-gradient(135deg, #ffffff, #f8fbff);
+      border-radius: var(--radius);
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      box-shadow: var(--shadow-soft);
+    }
+    .quality-number {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: conic-gradient(var(--blue) 88%, #e6edf7 0);
+      position: relative;
+    }
+    .quality-number::after {
+      content: "";
+      position: absolute;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    .quality-number b {
+      position: relative;
+      z-index: 1;
+      font-size: 22px;
+      color: var(--blue);
+    }
+    .data-quality h3 {
+      margin: 0 0 7px;
+      font-size: 16px;
+    }
+    .data-quality p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 13px;
+    }
+    .quality-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 11px;
+    }
+    .quality-item {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+      padding: 9px 10px;
+      min-height: 62px;
+    }
+    .quality-item label {
+      display: block;
+      color: var(--subtle);
+      font-size: 11px;
+      font-weight: 850;
+      margin-bottom: 5px;
+    }
+    .quality-item strong {
+      color: #243047;
+      font-size: 12px;
+      line-height: 1.42;
+    }
+    .foundation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .foundation-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 15px;
+      box-shadow: var(--shadow-soft);
+    }
+    .foundation-card h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+    }
+    .foundation-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.75;
+    }
+    .table-wrap {
+      overflow: auto;
+      border: 1px solid #e8e1d7;
+      border-radius: var(--radius);
+      background: #fff;
+      margin-top: 12px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+    }
+    table {
+      width: 100%;
+      min-width: 840px;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 12px;
+    }
+    th, td {
+      padding: 13px 14px;
+      border-bottom: 1px solid #ece7df;
+      text-align: left;
+      vertical-align: top;
+      line-height: 1.58;
+    }
+    th {
+      background: #f6f2ea;
+      color: #4d596b;
+      font-weight: 900;
+      white-space: nowrap;
+      border-bottom-color: #ddd5ca;
+    }
+    tbody tr:nth-child(even) td { background: #fdfbf7; }
+    tbody tr:hover td { background: #f7fbff; }
+    td { color: #263244; }
+    tr:last-child td { border-bottom: 0; }
+    th.highlight-column,
+    td.highlight-column {
+      background: #f5f8ff;
+    }
+    tbody tr:nth-child(even) td.highlight-column { background: #f1f6ff; }
+    td.highlight-column {
+      color: #1d3f86;
+      font-weight: 760;
+    }
+    .report-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 22px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 900;
+      white-space: nowrap;
+      margin: 1px 4px 1px 0;
+    }
+    .report-badge.grade { background: var(--blue-soft); color: var(--blue); border-color: #cbdcff; }
+    .report-badge.grade-strong { background: var(--green-soft); color: var(--green); border-color: #bfe7d5; }
+    .report-badge.risk-high { background: var(--red-soft); color: var(--red); border-color: #efcaca; }
+    .report-badge.risk-mid { background: var(--amber-soft); color: var(--amber); border-color: #f1d2a2; }
+    .report-badge.risk-low { background: var(--green-soft); color: var(--green); border-color: #c9e8db; }
+    .report-badge.status { background: #f5f6f8; color: #465469; border-color: #dfe3e8; }
+    .report-badge.status-ok { background: var(--green-soft); color: var(--green); border-color: #bfe7d5; }
+    .report-badge.status-warn { background: var(--amber-soft); color: var(--amber); border-color: #f1d2a2; }
+    .report-badge.status-bad { background: var(--red-soft); color: var(--red); border-color: #efcaca; }
+    .badge-tail {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .subtable-stack {
+      display: grid;
+      gap: 14px;
+    }
+    .subtable-block {
+      border: 1px solid #e8e1d7;
+      border-radius: var(--radius);
+      background: #fff;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+    .subtable-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      background: #fbf7ef;
+      border-bottom: 1px solid #e9dfd1;
+      font-weight: 900;
+      color: #2b3546;
+    }
+    .subtable-title span {
+      color: var(--subtle);
+      font-size: 11px;
+      font-weight: 850;
+    }
+    .subtable-body {
+      overflow: auto;
+    }
+    .subtable-body table {
+      min-width: 760px;
+    }
+
+    .toc {
+      margin: 22px 0 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow-soft);
+    }
+    .toc h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 18px;
+    }
+    .toc a {
+      color: #34445a;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 760;
+      display: flex;
+      gap: 8px;
+      line-height: 1.45;
+    }
+    .toc a span { color: var(--orange); font-weight: 950; }
+
+    .section {
+      margin-top: 22px;
+      padding: 24px;
+      position: relative;
+    }
+    .section-title {
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 16px;
+    }
+    .section-num {
+      width: 42px;
+      height: 42px;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      background: #17212f;
+      color: #fff;
+      font-weight: 950;
+    }
+    .section h2 {
+      margin: 0;
+      font-size: 21px;
+      line-height: 1.25;
+    }
+    .section-content {
+      display: grid;
+      gap: 16px;
+    }
+    .conclusion-card {
+      border: 1px solid #d8e5ff;
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #f8fbff, #ffffff);
+      padding: 14px 16px;
+      box-shadow: var(--shadow-soft);
+    }
+    .conclusion-card span {
+      display: block;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 950;
+      letter-spacing: .04em;
+      margin-bottom: 6px;
+    }
+    .conclusion-card strong {
+      display: block;
+      color: #1f2937;
+      font-size: 15px;
+      line-height: 1.58;
+      max-width: 980px;
+    }
+    .insight-card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .insight-card {
+      border: 1px solid #e7e0d8;
+      border-radius: var(--radius);
+      background: #fffdfa;
+      padding: 13px;
+      min-height: 96px;
+      box-shadow: var(--shadow-soft);
+    }
+    .insight-card.green { background: var(--green-soft); border-color: #c9e8db; }
+    .insight-card.orange { background: var(--orange-soft); border-color: #f3d1bd; }
+    .insight-card.purple { background: var(--purple-soft); border-color: #dcd4ff; }
+    .insight-card.red { background: var(--red-soft); border-color: #efcaca; }
+    .insight-card b {
+      display: block;
+      color: #263244;
+      font-size: 13px;
+      line-height: 1.35;
+      margin-bottom: 7px;
+    }
+    .insight-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.58;
+    }
+    .product-definition-summary {
+      border: 1px solid #d7ddf5;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ffffff, #f6f7ff);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+    .product-definition-summary .summary-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid #e3e5f2;
+      padding-bottom: 12px;
+    }
+    .product-definition-summary h3 {
+      margin: 0 0 5px;
+      font-size: 18px;
+    }
+    .product-definition-summary p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+    .summary-grade {
+      min-width: 62px;
+      height: 62px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: #17212f;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 950;
+    }
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .summary-item {
+      border: 1px solid #e7e0d8;
+      border-radius: 8px;
+      background: rgba(255,255,255,.72);
+      padding: 12px;
+    }
+    .summary-item label {
+      display: block;
+      color: var(--subtle);
+      font-size: 11px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .summary-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .summary-tag {
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid #dfe3e8;
+      padding: 5px 8px;
+      color: #39465a;
+      font-size: 12px;
+      font-weight: 820;
+      line-height: 1.15;
+    }
+    .summary-item.next {
+      grid-column: 1 / -1;
+      background: var(--blue-soft);
+      border-color: #cbdcff;
+    }
+    .text-block {
+      background: #fbfaf7;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 15px 16px;
+      box-shadow: var(--shadow-soft);
+    }
+    .text-block h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+    }
+    .text-block p,
+    .text-block li {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .text-block p { margin: 0; }
+    .text-block ul { margin: 0; padding-left: 19px; }
+    .cols-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .evidence-box {
+      border: 1px dashed #d8c9b5;
+      border-radius: var(--radius);
+      padding: 11px 12px;
+      background: #fffdfa;
+      color: #586579;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+    .evidence-box strong {
+      color: #2c384a;
+    }
+    .evidence-box.insufficient {
+      color: var(--red);
+      background: var(--red-soft);
+      border-color: #ecc3c3;
+      font-weight: 780;
+    }
+    .knowledge-reuse-box {
+      border: 1px solid #b8e3d2;
+      border-left: 4px solid #085041;
+      border-radius: var(--radius);
+      padding: 11px 12px;
+      background: #e1f5ee;
+      color: #085041;
+      font-size: 13px;
+      line-height: 1.65;
+      font-weight: 750;
+      margin-bottom: 12px;
+    }
+
+    .bottom-actions {
+      margin-top: 22px;
+      padding: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+    }
+    .bottom-actions p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .create-layout {
+      display: none;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      padding: 28px 30px 30px;
+    }
+    .create-layout.active { display: block; }
+    .paper.hidden { display: none; }
+    .create-head h1 { font-size: 28px; }
+    .create-head p {
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 8px 0 0;
+      font-size: 13px;
+    }
+    .architecture-block {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #ffffff, #fbf8f1);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+    .architecture-block h2 {
+      margin: 0 0 12px;
+      font-size: 16px;
+    }
+    .architecture-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .architecture-layer {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 14px;
+      min-height: 150px;
+      position: relative;
+      box-shadow: var(--shadow-soft);
+    }
+    .architecture-layer::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 0;
+      width: 44px;
+      height: 3px;
+      border-radius: 0 0 999px 999px;
+      background: var(--blue);
+    }
+    .architecture-layer h3 {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+    .architecture-layer ul {
+      margin: 0;
+      padding: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.62;
+      list-style: none;
+      display: grid;
+      gap: 7px;
+    }
+    .architecture-layer li {
+      border-radius: 6px;
+      background: #fbfaf7;
+      padding: 6px 8px;
+    }
+    .horizontal-module-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .horizontal-module-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 15px;
+      box-shadow: var(--shadow-soft);
+    }
+    .horizontal-module-card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+    .horizontal-module-card p {
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+    .horizontal-module-card table {
+      min-width: 0;
+      font-size: 11px;
+    }
+    .horizontal-module-card th,
+    .horizontal-module-card td {
+      padding: 9px 10px;
+    }
+    .module-value {
+      border-left: 3px solid var(--purple);
+      background: var(--purple-soft);
+      border-radius: 6px;
+      padding: 9px 10px;
+      color: #4c3ea4;
+      font-size: 12px;
+      line-height: 1.6;
+      font-weight: 780;
+      margin-top: 10px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+    .field {
+      display: grid;
+      gap: 7px;
+    }
+    .field.full { grid-column: 1 / -1; }
+    .field label {
+      color: #596579;
+      font-size: 12px;
+      font-weight: 900;
+    }
+    .field select,
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      border-radius: 6px;
+      padding: 10px 11px;
+      font-size: 13px;
+      outline: none;
+    }
+    .field textarea {
+      min-height: 74px;
+      resize: vertical;
+    }
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .mode-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 14px;
+      cursor: pointer;
+      box-shadow: var(--shadow-soft);
+    }
+    .mode-card.active {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+    .mode-card h3 { margin: 0 0 8px; font-size: 15px; }
+    .mode-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+    .create-section-title {
+      margin: 22px 0 10px;
+      font-size: 16px;
+    }
+    .create-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .create-source-table th:last-child,
+    .create-source-table td:last-child { min-width: 260px; }
+    .create-source-table td:first-child {
+      font-weight: 860;
+      color: #223047;
+    }
+    .create-source-table td:nth-child(7) {
+      color: var(--blue);
+      font-weight: 900;
+    }
+    .source-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
+    }
+    .mini-btn,
+    .download-menu summary {
+      border: 1px solid var(--line-strong);
+      background: #fff;
+      border-radius: 6px;
+      min-width: 72px;
+      min-height: 28px;
+      padding: 6px 9px;
+      color: #39465a;
+      font-size: 12px;
+      font-weight: 850;
+      line-height: 1;
+      list-style: none;
+      white-space: nowrap;
+    }
+    .mini-btn.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+    .mini-btn.green {
+      background: var(--green-soft);
+      border-color: #bfe7d5;
+      color: var(--green);
+    }
+    .download-menu { position: relative; }
+    .download-menu summary::-webkit-details-marker { display: none; }
+    .download-menu[open] summary {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+    .download-options {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 6px);
+      z-index: 30;
+      min-width: 160px;
+      padding: 6px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+    .download-options button {
+      width: 100%;
+      border: 0;
+      background: transparent;
+      border-radius: 5px;
+      padding: 8px 9px;
+      text-align: left;
+      color: #39465a;
+      font-size: 12px;
+      font-weight: 750;
+    }
+    .download-options button:hover { background: #f4f6fa; }
+    .small-note {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .create-validation {
+      margin-top: 16px;
+      border: 1px solid #d9e4f7;
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, #ffffff, #f8fbff);
+      padding: 15px 16px;
+      box-shadow: var(--shadow-soft);
+    }
+    .create-validation h3 {
+      margin: 0 0 10px;
+      font-size: 15px;
+    }
+    .validation-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .validation-item {
+      background: #fff;
+      border: 1px solid #e2e6ef;
+      border-radius: 7px;
+      padding: 11px;
+      min-height: 78px;
+    }
+    .validation-item label {
+      display: block;
+      color: var(--subtle);
+      font-size: 11px;
+      font-weight: 900;
+      margin-bottom: 5px;
+    }
+    .validation-item strong {
+      display: block;
+      color: #1f2937;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+      background: rgba(20, 27, 38, .38);
+    }
+    .modal-backdrop.hidden { display: none; }
+    .modal-panel {
+      width: min(860px, calc(100vw - 44px));
+      max-height: min(760px, calc(100vh - 44px));
+      overflow: auto;
+      background: #fffdfa;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: 0 28px 80px rgba(20, 27, 38, .28);
+    }
+    .modal-head,
+    .modal-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+    .modal-foot {
+      border-top: 1px solid var(--line);
+      border-bottom: 0;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+    .modal-head h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    .modal-body {
+      padding: 18px;
+      display: grid;
+      gap: 16px;
+    }
+    .modal-section {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      padding: 13px 14px;
+    }
+    .modal-section h4 {
+      margin: 0 0 10px;
+      font-size: 14px;
+    }
+    .step-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .step-list li,
+    .check-chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fbfaf7;
+      padding: 7px 10px;
+      color: #4b5566;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .check-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      background: #111827;
+      color: #fff;
+      border-radius: 8px;
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      font-size: 13px;
+      font-weight: 820;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: .2s ease;
+      z-index: 50;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 960px) {
+      .report-topline,
+      .core-judgement,
+      .data-quality,
+      .bottom-actions {
+        grid-template-columns: 1fr;
+      }
+      .metrics-grid,
+      .overview-grid,
+      .quality-grid,
+      .insight-card-grid,
+      .summary-grid,
+      .form-grid,
+      .mode-grid,
+      .validation-grid,
+      .step-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .header-actions,
+      .actions {
+        justify-content: flex-start;
+      }
+    }
+    @media (max-width: 680px) {
+      html, body { overflow-x: hidden; }
+      .app-header {
+        height: auto;
+        padding: 12px;
+        gap: 12px;
+        display: block;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        max-width: 100vw;
+        overflow: hidden;
+      }
+      .brand {
+        width: 100%;
+        min-width: 0;
+        margin-bottom: 12px;
+      }
+      .brand span {
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+      .app-nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+        width: 100%;
+        max-width: calc(100vw - 24px);
+        min-width: 0;
+      }
+      .app-nav .nav-btn,
+      .app-nav .action-btn {
+        width: 100%;
+        min-width: 0;
+      }
+      .page {
+        padding: 14px 10px 32px;
+        max-width: 100vw;
+        overflow: hidden;
+      }
+      .paper,
+      .create-layout {
+        width: 100%;
+        max-width: calc(100vw - 20px);
+      }
+      .report-header,
+      .report-body,
+      .create-layout { padding: 20px 16px; }
+      h1 {
+        font-size: 25px;
+        overflow-wrap: anywhere;
+      }
+      .report-topline,
+      .report-topline > div,
+      .report-header,
+      .report-body,
+      .core-judgement,
+      .overview-card,
+      .metric-card {
+        min-width: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+      }
+      .report-meta .pill {
+        display: inline-block;
+        white-space: normal;
+        max-width: 100%;
+        word-break: break-word;
+      }
+      .pill {
+        min-width: 0;
+      }
+      .header-actions .action-btn,
+      .actions .action-btn {
+        width: 100%;
+        min-width: 0;
+      }
+      .header-actions,
+      .actions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+      }
+      .core-judgement p { font-size: 16px; }
+      .metrics-grid,
+      .overview-grid,
+      .toc-grid,
+      .cols-2,
+      .quality-grid,
+      .insight-card-grid,
+      .summary-grid,
+      .form-grid,
+      .mode-grid,
+      .architecture-grid,
+      .horizontal-module-grid,
+      .foundation-grid,
+      .validation-grid,
+      .step-list {
+        grid-template-columns: 1fr;
+      }
+      .section-title {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-mark">AI</div>
+      <span>商品企划 AI 工作台</span>
+    </div>
+    <nav class="app-nav">
+      <button class="nav-btn" id="showCreate">创建任务</button>
+      <button class="nav-btn active" id="showReport">报告输出</button>
+      <button class="action-btn" id="regenTop">重新生成</button>
+      <button class="action-btn" id="editTop">编辑结论</button>
+      <button class="action-btn primary" id="exportTop">导出报告</button>
+      <button class="action-btn green" id="confirmTop">确认入库</button>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="create-layout" id="createPage">
+      <div class="create-head">
+        <div class="report-kicker">CREATE AI ANALYSIS TASK</div>
+        <h1>创建商品企划 AI 分析任务</h1>
+        <p>选择分析类型、品牌、站点和数据获取方式。系统校验数据完整度后生成对应的企划报告。</p>
+      </div>
+      <div id="platformArchitecture"></div>
+      <div id="horizontalModuleCards"></div>
+      <div class="form-grid">
+        <div class="field">
+          <label>选择分析类型</label>
+          <select id="createReportType">
+            <option value="market">AI市场机会雷达</option>
+            <option value="category" selected>AI类目机会研究</option>
+            <option value="competitor">AI竞品分析与产品定义输出</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>选择品牌</label>
+          <select>
+            <option>Loday</option>
+            <option>Tailong</option>
+            <option>其他品牌</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>选择站点</label>
+          <select>
+            <option>Amazon US</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label id="objectLabel">输入分析对象</label>
+          <input id="analysisObject" value="Women's Shapewear Tops" placeholder="输入类目名称 / 细分类目 / 类目节点">
+        </div>
+      </div>
+
+      <h2 class="create-section-title">选择数据获取方式</h2>
+      <div class="mode-grid">
+        <article class="mode-card" data-mode="manual">
+          <h3>A. 手动导入</h3>
+          <p>企划从卖家精灵、西柚、Amazon、Keepa、ERP 等平台下载 Excel/CSV 后上传。</p>
+        </article>
+        <article class="mode-card" data-mode="auto">
+          <h3>B. 系统自动抓取</h3>
+          <p>系统根据类目、关键词、ASIN 或链接自动抓取市场、Listing、评论、关键词、价格、评分等数据。</p>
+        </article>
+        <article class="mode-card active" data-mode="mixed">
+          <h3>C. 混合模式（推荐）</h3>
+          <p>部分数据由系统自动抓取，缺失数据由人工上传补齐。真实工作流里最常见。</p>
+        </article>
+      </div>
+
+      <h2 class="create-section-title">数据源配置</h2>
+      <div class="table-wrap">
+        <table id="createDataTable"></table>
+      </div>
+      <div class="create-validation" id="createValidationSummary"></div>
+      <div class="create-actions">
+        <button class="action-btn" id="backFromCreate">返回</button>
+        <button class="action-btn">保存任务</button>
+        <button class="action-btn primary" id="startReport">开始生成报告</button>
+      </div>
+    </section>
+
+    <article class="paper" id="reportPage">
+      <header class="report-header">
+        <div class="report-topline">
+          <div>
+            <div class="report-kicker">AI GENERATED PLANNING REPORT</div>
+            <h1 id="reportTitle"></h1>
+            <div class="report-meta" id="reportMeta"></div>
+            <div class="report-purpose" id="reportPurpose"></div>
+          </div>
+          <div class="header-actions">
+            <button class="action-btn" id="regenReport">重新生成</button>
+            <button class="action-btn" id="editReport">编辑结论</button>
+            <button class="action-btn primary" id="exportReport">导出报告</button>
+            <button class="action-btn green" id="confirmReport">确认入库</button>
+          </div>
+        </div>
+        <div class="core-judgement">
+          <div>
+            <strong>一句话核心判断</strong>
+            <p id="coreConclusion"></p>
+          </div>
+          <div class="score-badge">
+            <div><b id="reportGrade"></b><span>推荐等级</span></div>
+          </div>
+        </div>
+      </header>
+
+      <section class="report-body">
+        <div class="metrics-grid" id="metricsGrid"></div>
+        <div class="overview-grid" id="overviewGrid"></div>
+        <div class="data-quality" id="dataQuality"></div>
+        <div class="foundation-grid" id="reportFoundation"></div>
+
+        <section>
+          <h2>本次报告数据来源</h2>
+          <div class="table-wrap">
+            <table id="dataSourceTable"></table>
+          </div>
+        </section>
+
+        <nav class="toc">
+          <h3>目录</h3>
+          <div class="toc-grid" id="tocGrid"></div>
+        </nav>
+
+        <div id="sections"></div>
+
+        <footer class="bottom-actions">
+          <p><strong>AI 只输出草稿。</strong>企划确认后，报告才能入库或进入下一步流程。</p>
+          <div class="actions">
+            <button class="action-btn" id="editBottom">编辑结论</button>
+            <button class="action-btn primary" id="exportBottom">导出报告</button>
+            <button class="action-btn green" id="confirmBottom">确认入库</button>
+            <button class="action-btn dark" id="nextBottom">进入下一步</button>
+          </div>
+        </footer>
+      </section>
+    </article>
+  </main>
+
+  <div class="modal-backdrop hidden" id="configModal">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <h3 id="modalTitle"></h3>
+        <button class="action-btn" id="modalClose">关闭</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+      <div class="modal-foot" id="modalFooter"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">已更新</div>
+
+  <script>
+    let carriedContext = null;
+
+    const platformArchitecture = {
+      inputLayer: ["手动导入", "系统抓取", "VOC系统关联", "ERP/BI内部关联", "人工补充"],
+      businessModules: [
+        { name: "AI市场机会雷达", desc: "筛选值得继续研究的大类和细分机会" },
+        { name: "AI类目机会研究", desc: "把类目调研转化为机会点池" },
+        { name: "AI竞品分析与产品定义输出", desc: "输出产品定义书雏形" }
+      ],
+      horizontalModules: [
+        {
+          name: "数据资产与知识库",
+          desc: "用于沉淀历史企划工作，避免每次从0开始调研。",
+          columns: ["数据资产", "作用"],
+          rows: [
+            ["历史类目调研报告", "后续类目判断可以复用"],
+            ["历史机会点池", "避免重复调研同一方向"],
+            ["竞品库", "沉淀品牌、ASIN、卖点、价格、销量"],
+            ["VOC标签库", "统一人群、场景、痛点、需求口径"],
+            ["关键词词库", "沉淀品类词、功能词、痛点词、场景词"],
+            ["产品基线库", "沉淀每个类目的必备条件N"],
+            ["风险库", "沉淀高退货、高差评、高成本配置"],
+            ["Tailong/Loday能力库", "记录公司能做什么、不能做什么"]
+          ],
+          value: "新数据进来后，AI先和历史数据对比，判断新增了什么、变化了什么、是否值得重新评估。"
+        },
+        {
+          name: "AI结论校验与人工确认",
+          desc: "公司级工具不能让AI直接下结论，必须有证据链和人工确认。",
+          columns: ["校验项", "说明"],
+          rows: [
+            ["数据完整性", "是否缺少市场数据、评论、关键词、竞品信息"],
+            ["占比准确性", "VOC提及条数占比是否计算正确"],
+            ["证据链完整性", "每个结论是否能追溯到数据来源"],
+            ["逻辑跳跃", "是否从一个差评直接推成大机会"],
+            ["口径一致", "人群、场景、痛点、需求是否混淆"],
+            ["品牌适配", "是否符合Tailong/Loday能力边界"],
+            ["风险提示", "是否识别退货、尺码、成本、同质化风险"]
+          ],
+          value: "人工确认流程：AI初步输出 → 企划确认/修改 → 系统记录版本 → 进入下一模块。"
+        }
+      ],
+      outputLayer: ["机会点池", "产品定义书", "进入评审 / 打样 / PLM流转", "报告入库与知识沉淀"]
+    };
+
+    const reports = {
+      market: {
+        task: {
+          reportType: "market",
+          title: "Amazon US 春夏服装类目 AI市场机会雷达报告",
+          brand: "Tailong / Loday",
+          site: "Amazon US",
+          object: "春夏服装类目 / 功能服装方向",
+          dateRange: "近12个月市场 / 近3个月关键词",
+          generatedAt: "2026-06-30",
+          status: "AI草稿",
+          dataCompleteness: "86%",
+          grade: "A",
+          finalUse: "本报告最终用于筛选值得进入类目调研的方向。",
+          coreConclusion: "当前更有价值的机会不在大类目本身，而在大类下面由功能、结构、场景和痛点组合形成的细分机会，例如 shapewear with built in bra、swim trunks with compression liner。",
+          nextAction: "选择1-3个细分机会进入AI类目机会研究",
+          carryOut: { targetReport: "category", selectedItem: "女士塑身上衣 / shapewear with built in bra", reason: "大类市场成立，built in bra、shapewear cami、tummy control 等需求组合词增长，榜单和VOC均验证缺口，推荐等级A" }
+        },
+        metrics: [
+          ["候选类目数量", "18", "来自大类榜单与关键词池"],
+          ["细分机会数量", "12", "功能/结构/场景/痛点组合"],
+          ["高机会细分", "3", "推荐等级 A/A-"],
+          ["关键词样本量", "1,260", "近3个月"],
+          ["榜单快照", "Top500", "Best Seller/New Releases"],
+          ["推荐进入机会", "3", "进入类目调研或VOC验证"]
+        ],
+        dataSources: [
+          ["市场数据", "手动导入", "卖家精灵", "近12个月", "18个类目", "90%", "已校验", "支持市场机会判断"],
+          ["关键词趋势数据", "手动导入", "卖家精灵/西柚", "近3个月", "1,260词", "88%", "已校验", "支持需求组合词识别"],
+          ["ASIN反查关键词", "手动导入", "卖家精灵/西柚", "近3个月", "Top ASIN", "82%", "部分缺失", "支持细分词入口判断"],
+          ["Best Seller榜单快照", "系统抓取", "Amazon", "近4周", "Top500", "84%", "部分缺失", "支持榜单频次和排名变化判断"],
+          ["New Releases / Movers & Shakers", "系统抓取", "Amazon", "近4周", "Top200", "78%", "部分缺失", "支持新品和上升ASIN判断"],
+          ["榜单产品Listing", "系统抓取", "Amazon", "当前页面", "120个ASIN", "80%", "部分缺失", "支持标题、五点、主图、A+卖点识别"],
+          ["Top ASIN评论痛点", "VOC系统关联", "公司VOC系统", "评论样本", "8,600条", "86%", "已校验", "支持VOC缺口判断"],
+          ["ERP毛利数据", "内部数据", "ERP", "近12个月", "未接入", "0%", "依据不足", "影响我方适配与利润判断"]
+        ],
+        overview: {
+          inputs: ["市场数据｜手动导入", "关键词趋势/ASIN反查｜手动导入", "Best Seller/New Releases榜单｜系统抓取", "榜单Listing卖点｜系统抓取", "Top ASIN评论｜VOC系统关联"],
+          outputs: ["大类机会池", "细分机会池", "关键词需求结构", "榜单趋势", "风险与品牌适配"],
+          conclusions: ["大类短期变化小，细分机会变化更快", "机会来自功能+结构+场景+痛点组合", "shapewear with built in bra 优先进入类目研究", "ERP毛利仍需补充"],
+          next: ["选择1-3个细分机会", "进入AI类目机会研究", "补充ASIN反查和榜单快照", "导出给IT评审接口"]
+        },
+        knowledgeReuse: {
+          title: "本次调用的知识资产",
+          items: ["已调用历史类目调研报告：3份", "已调用历史机会点池：8条", "已调用竞品库：12个ASIN", "已调用VOC标签库：v2.1", "已调用产品基线库：塑身上衣类目"]
+        },
+        validationStatus: {
+          title: "本次AI结论校验状态",
+          items: ["数据完整度：86%", "证据链完整度：82%", "逻辑跳跃风险：低", "品牌适配：已校验", "人工确认状态：待企划确认"]
+        },
+        sections: [
+          {
+            title: "市场机会总览",
+            coreFinding: "大类目短期变化不大，真正需要雷达捕捉的是大类下面正在形成的功能、结构、场景、痛点组合机会。",
+            body: [
+              { h: "大类机会池回答什么", p: "哪些大类值得继续看，例如 Women’s Shapewear、Men’s Swimwear、Men’s Sun Protection Apparel。" },
+              { h: "细分机会池回答什么", p: "大类下面哪些功能/结构/场景/痛点组合正在形成机会，例如 shapewear with built in bra、swim trunks with compression liner。" }
+            ],
+            evidence: "依据来源：市场数据 + 关键词趋势 + 榜单快照 + 新上榜ASIN + Listing卖点 + VOC痛点｜置信度86%｜待人工确认"
+          },
+          {
+            title: "大类机会池",
+            coreFinding: "Women’s Shapewear、Men’s Swimwear、Men’s Sun Protection Apparel 仍值得看，但下一步必须下钻到细分机会。",
+            table: {
+              headers: ["大类目", "市场体量", "增长趋势", "竞争风险", "新品表现", "我方适配", "推荐等级", "下一步"],
+              rows: [
+                ["Women’s Shapewear", "高", "稳定增长", "尺码/退货风险高", "新品能跑出", "高", "A", "下钻 built in bra / lower belly 机会"],
+                ["Men’s Swimwear", "中高", "季节增长", "同质化高", "2-in-1新品活跃", "中高", "A-", "下钻 compression liner 机会"],
+                ["Men’s Sun Protection Apparel", "高", "季节增长", "低价内卷", "新品活跃", "中高", "A-", "下钻 UPF fishing hoodie 机会"]
+              ]
+            },
+            evidence: "依据来源：市场数据 + Best Seller榜单快照｜18个候选大类｜置信度82%｜待人工确认"
+          },
+          {
+            title: "细分机会雷达",
+            coreFinding: "系统从关键词趋势、ASIN反查、榜单变化、Listing卖点和VOC缺口中识别需求组合词，而不是只依赖官方类目节点。",
+            table: {
+              headers: ["子表", "内容"],
+              rows: [
+                ["细分机会评分表", `<table><thead><tr><th>评分维度</th><th>判断问题</th><th>当前用途</th></tr></thead><tbody><tr><td>关键词搜索量</td><td>是否有足够入口</td><td>判断需求规模</td></tr><tr><td>关键词增长率</td><td>是否在变热</td><td>识别上升机会</td></tr><tr><td>排名变化</td><td>是否有ASIN快速上升</td><td>识别新品窗口</td></tr><tr><td>转化率</td><td>搜索是否接近购买</td><td>判断商业价值</td></tr><tr><td>相关长尾词数量</td><td>需求是否可扩展</td><td>判断内容和广告入口</td></tr><tr><td>关联ASIN数量</td><td>是否已有供给验证</td><td>判断市场教育程度</td></tr><tr><td>Best Seller榜单出现频次</td><td>榜单是否重复出现</td><td>判断稳定性</td></tr><tr><td>新品/新上榜ASIN数量</td><td>新品是否能跑出</td><td>判断进入窗口</td></tr><tr><td>Listing卖点出现频次</td><td>竞品是否在集中表达</td><td>判断卖点共识</td></tr><tr><td>VOC痛点是否存在</td><td>用户是否仍不满意</td><td>判断缺口</td></tr><tr><td>我方品牌/供应链适配度</td><td>我们能否做</td><td>判断可落地性</td></tr><tr><td>竞争风险</td><td>是否已过度拥挤</td><td>判断进入风险</td></tr></tbody></table>`],
+                ["细分机会池", `<table><thead><tr><th>细分机会</th><th>所属大类</th><th>关键词信号</th><th>榜单信号</th><th>产品信号</th><th>VOC缺口</th><th>我方适配</th><th>推荐等级</th><th>下一步</th></tr></thead><tbody><tr><td>shapewear with built in bra</td><td>Women’s Shapewear</td><td>built in bra、shapewear cami、tummy control相关词增长</td><td>多个Best Seller ASIN标题/五点出现built-in bra/no bra</td><td>Listing主图和A+强调免穿bra、胸部支撑、腰腹控制</td><td>胸部不稳、支撑不足、卷边、尺码容错仍有差评</td><td>高</td><td>A</td><td>进入AI类目调研</td></tr><tr><td>lower belly control shapewear</td><td>Women’s Shapewear</td><td>lower belly、FUPA、tummy control相关词出现</td><td>长款/高腰/下腹覆盖产品上榜</td><td>主图强调下腹覆盖和前后对比</td><td>下腹覆盖不足、卷边滑落</td><td>高</td><td>A-</td><td>进入VOC验证</td></tr><tr><td>swim trunks with compression liner</td><td>Men’s Swimwear</td><td>compression liner、2 in 1、anti chafing相关词增长</td><td>内衬泳裤在榜单中出现频次提升</td><td>主图强调2-in-1内衬、防磨、快干</td><td>内衬勒、不透气、摩擦</td><td>中高</td><td>A-</td><td>进入AI类目调研</td></tr></tbody></table>`]
+              ]
+            },
+            evidence: "依据来源：关键词趋势 + ASIN反查 + Best Seller/New Releases榜单 + Listing标题/五点/主图/A+ + VOC痛点｜置信度86%｜待人工确认"
+          },
+          {
+            title: "关键词需求结构",
+            coreFinding: "细分机会来自需求组合词拆解，需要同时识别品类、功能、结构、人群、场景、痛点、材质和款式词。",
+            table: {
+              headers: ["需求组合词", "品类词", "结构词", "功能词", "人群/场景词", "痛点词", "企划含义"],
+              rows: [
+                ["shapewear with built in bra", "shapewear", "built in bra", "tummy control / support", "everyday / under dress", "no bra / support / lower belly", "包胸+塑腰一体化机会"],
+                ["swim trunks with compression liner", "swim trunks", "compression liner / 2 in 1", "anti chafing / quick dry", "beach / workout / vacation", "chafing / liner tight / breathable", "防磨内衬泳裤机会"],
+                ["UPF fishing hoodie with face cover", "fishing hoodie", "face cover / hood", "UPF / sun protection", "fishing / hiking / outdoor", "sunburn / neck cover / breathable", "户外防晒结构机会"]
+              ]
+            },
+            evidence: "依据来源：关键词下载表｜1,260词｜拆解为品类/功能/结构/人群/场景/痛点/材质/款式｜置信度88%｜已复核"
+          },
+          {
+            title: "Best Seller榜单趋势",
+            coreFinding: "榜单快照显示，新上榜和排名上升ASIN更容易暴露细分机会，而不是只反映稳定大类规模。",
+            table: {
+              headers: ["榜单信号", "观察对象", "当前发现", "代表机会", "企划判断"],
+              rows: [
+                ["Best Seller出现频次", "近4周Top500快照", "built-in bra/no bra在塑身上衣标题和五点中重复出现", "shapewear with built in bra", "需求稳定性较好"],
+                ["New Releases", "新上榜ASIN", "长款/高腰/下腹覆盖产品进入榜单", "lower belly control shapewear", "需要VOC进一步验证"],
+                ["Movers & Shakers", "排名快速上升ASIN", "2-in-1 compression liner泳裤上升", "swim trunks with compression liner", "有季节窗口"],
+                ["Listing卖点频次", "标题/五点/主图/A+", "免穿bra、防磨、UPF、防晒面罩等卖点重复出现", "功能结构组合机会", "可转入类目调研"]
+              ]
+            },
+            evidence: "依据来源：Best Seller榜单周期快照 + New Releases + Movers & Shakers + 榜单产品Listing｜完整度80%｜部分A+需人工复核"
+          },
+          {
+            title: "风险与品牌适配",
+            coreFinding: "细分机会必须同时看VOC缺口、竞争风险和我方供应链适配，避免只追关键词热度。",
+            table: {
+              headers: ["细分机会", "VOC痛点是否存在", "竞争风险", "我方适配", "主要风险", "处理建议"],
+              rows: [
+                ["shapewear with built in bra", "存在：胸部不稳、支撑不足、卷边、尺码容错", "中高", "高", "尺码/支撑/退货", "进入AI类目机会研究，优先验证胸部结构"],
+                ["lower belly control shapewear", "存在：下腹覆盖不足、卷边滑落", "中", "高", "下摆稳定和舒适度", "先做VOC验证，再判断是否单独开款"],
+                ["swim trunks with compression liner", "存在：内衬勒、不透气、摩擦", "中", "中高", "面料和版型经验需补", "进入AI类目机会研究，补供应链判断"],
+                ["UPF fishing hoodie with face cover", "存在：闷热、面罩不稳、尺码", "中高", "中", "面料和户外场景经验不足", "列入观察，不作为第一优先级"]
+              ]
+            },
+            evidence: "依据来源：Top ASIN评论痛点 + Listing卖点 + 我方供应链能力判断｜ERP毛利依据不足，需补充数据"
+          },
+          {
+            title: "推荐进入类目/机会点",
+            coreFinding: "建议优先围绕 shapewear with built in bra 进入AI类目机会研究，同时保留 lower belly control shapewear 和 swim trunks with compression liner 作为下一轮候选。",
+            table: {
+              headers: ["优先级", "推荐方向", "推荐理由", "需要补充的数据", "下一步"],
+              rows: [
+                ["P1", "shapewear with built in bra", "关键词增长、榜单卖点、VOC痛点和我方塑身能力同时成立", "ASIN反查关键词、Top品A+截图、尺码退货数据", "进入AI类目机会研究"],
+                ["P2", "lower belly control shapewear", "痛点明确，但需要确认是否能独立支撑产品方向", "更多VOC原声、下腹覆盖产品销量表现", "进入VOC验证"],
+                ["P2", "swim trunks with compression liner", "榜单和关键词有季节机会，但供应链适配需确认", "竞品结构、面料成本、季节销量", "进入AI类目机会研究"]
+              ]
+            },
+            evidence: "依据来源：细分机会综合评分｜关键词、榜单、Listing、VOC四类信号交叉验证｜置信度84%｜待人工确认"
+          }
+        ]
+      },
+      category: {
+        task: {
+          reportType: "category",
+          title: "Amazon US 女士塑身上衣 AI类目机会研究报告",
+          brand: "Loday",
+          site: "Amazon US",
+          object: "Women's Shapewear Tops",
+          dateRange: "近12个月 / 近3个月关键词",
+          generatedAt: "2026-06-30",
+          status: "AI草稿",
+          dataCompleteness: "88%",
+          grade: "A",
+          finalUse: "本报告最终用于沉淀机会点池，并筛选进入竞品下钻的机会点。",
+          coreConclusion: "该类目仍有进入价值，但不适合做泛塑身基础款，应优先围绕外穿化、胸部方案细分、日常舒适塑形寻找机会点。",
+          nextAction: "选择1-2个机会点进入AI竞品分析与产品定义输出",
+          carryOut: { targetReport: "competitor", selectedItem: "大胸友好型包胸塑腰带", reason: "用户痛点明确、关键词有入口、竞品已验证、市场缺口未被做透，推荐等级A" }
+        },
+        metrics: [
+          ["Top100销售额", "$287.6M", "近12个月估算"],
+          ["增长趋势", "+18.6%", "YoY"],
+          ["新品销量占比", "21%", "近3个月新品"],
+          ["主流价格带", "$25-$35", "机会价格带"],
+          ["评论样本量", "6,413", "VOC系统关联"],
+          ["关键词样本量", "200", "近3个月"]
+        ],
+        dataSources: [
+          ["类目市场数据", "手动导入", "卖家精灵", "近12个月", "Top100", "95%", "已校验", "支持市场概况判断"],
+          ["Top产品数据", "手动导入", "卖家精灵Top产品表", "当前周期", "Top100", "92%", "已校验", "支持爆品基线判断"],
+          ["新品数据", "手动导入", "卖家精灵新品表", "近3个月", "30个ASIN", "85%", "已校验", "支持新品趋势判断"],
+          ["Top品Listing", "系统抓取", "Amazon", "当前页面", "5个ASIN", "80%", "部分缺失", "视觉趋势需人工复核"],
+          ["Top品评论", "VOC系统关联", "公司VOC系统", "全量评论", "6,413条", "100%", "已校验", "支持VOC人群场景和痛点判断"],
+          ["关键词数据", "手动导入", "西柚/卖家精灵", "近3个月", "200词", "90%", "已校验", "支持关键词机会判断"]
+        ],
+        overview: {
+          inputs: ["市场数据｜手动导入", "Top产品/新品｜手动导入", "Listing数据｜系统抓取", "评论数据｜VOC系统关联", "关键词数据｜手动导入"],
+          outputs: ["市场概况", "VOC洞察", "爆品/新品趋势", "关键词机会", "机会点池"],
+          conclusions: ["类目仍有进入价值", "不适合泛塑身基础款", "机会点集中在胸部方案、外穿化、日常舒适", "A+视觉趋势需人工复核"],
+          next: ["选择1-2个机会点", "进入AI竞品分析与产品定义输出", "补充Listing视觉数据", "导出报告给设计/开发"]
+        },
+        knowledgeReuse: {
+          title: "本次调用的知识资产",
+          items: ["已调用历史类目调研报告：3份", "已调用历史机会点池：8条", "已调用竞品库：12个ASIN", "已调用VOC标签库：v2.1", "已调用产品基线库：塑身上衣类目"]
+        },
+        validationStatus: {
+          title: "本次AI结论校验状态",
+          items: ["数据完整度：88%", "证据链完整度：84%", "逻辑跳跃风险：低", "品牌适配：已校验", "人工确认状态：待企划确认"]
+        },
+        sections: [
+          {
+            title: "市场概况",
+            coreFinding: "女士塑身上衣基本盘成立，但泛基础款竞争强，应从细分痛点切入。",
+            body: [
+              { h: "核心判断", p: "Top100销售额规模足够，增长趋势健康，主流价格带集中在$25-$35。类目仍有需求，但不能用基础塑身款进入。" },
+              { h: "风险提示", p: "尺码、退货、闷热、强压缩舒适度是进入该类目必须提前控制的风险。" }
+            ],
+            evidence: "依据来源：卖家精灵市场数据｜Top100｜销售额、增长、价格带、评分｜置信度88%｜待人工确认"
+          },
+          {
+            title: "VOC人群场景洞察",
+            coreFinding: "核心用户不是单一塑形人群，而是围绕胸部支撑、日常外穿、腰腹遮盖形成多个细分场景。",
+            table: {
+              headers: ["核心人群", "提及条数", "占比", "购买动机", "核心场景", "典型原声", "产品启发"],
+              rows: [
+                ["大胸/丰满女性", "1,128", "17.6%", "希望胸部稳定且腰腹被覆盖", "日常内穿/外穿", "I need support without rolling down", "包胸+塑腰一体结构"],
+                ["产后/腰腹松弛人群", "884", "13.8%", "希望轻支撑且不勒", "日常通勤", "comfortable enough for all day", "舒适压缩和尺码容错"],
+                ["运动/出汗场景用户", "642", "10.0%", "希望透气不闷", "健身/夏季", "not breathable enough", "透气面料和分区结构"]
+              ]
+            },
+            evidence: "依据来源：VOC评论标签｜评论样本6,413条｜痛点标签占比｜置信度86%｜待人工确认"
+          },
+          {
+            title: "好评基线与差评痛点",
+            coreFinding: "强支撑、稳定不卷边、尺码容错、面料舒适是产品基线N；胸部不稳和下摆卷边是主要机会点。",
+            body: [
+              { h: "好评基线", p: "竞品做对的是压缩有效、腰腹支撑明显、外穿不突兀、面料有一定弹性。低于这些基线容易直接形成差评。" },
+              { h: "差评痛点", p: "卷边滑落、尺码不准、胸部支撑不足、面料闷热、穿脱困难是高频负面反馈。" }
+            ],
+            evidence: "依据来源：VOC系统｜好评/差评标签｜评论原声抽样｜置信度84%｜待人工确认"
+          },
+          {
+            title: "爆品与新品分析",
+            coreFinding: "爆品以稳定塑形和强视觉结果表达为主，新品开始向外穿化、Cami化和舒适日常化变化。",
+            body: [
+              { h: "爆品共性", p: "腰腹控制、强压缩、模特前后对比、黑/肤基础色、价格带$25-$35。" },
+              { h: "新品变化", p: "更多产品弱化传统束身衣感，强调Cami、Tank、外穿叠搭和日常舒适。" }
+            ],
+            evidence: "依据来源：Top产品表 + 新品数据 + Listing抓取｜Listing视觉完整度80%｜需人工复核"
+          },
+          {
+            title: "关键词趋势分析",
+            coreFinding: "built in bra、tummy control、shapewear tank、waist trainer 等词可作为机会入口。",
+            body: [
+              { h: "开发启发", p: "关键词结构显示用户不是只搜索塑身，而是在寻找有胸部方案、腰腹控制、日常外穿属性的产品。" },
+              { h: "规避词", p: "cheap、dupe、extreme waist training 等词可能带来低价或高退货风险，不建议作为主打法。" }
+            ],
+            evidence: "依据来源：关键词数据｜200词｜近3个月搜索量/增速/词性分类｜置信度90%｜已校验"
+          },
+          {
+            title: "机会点池",
+            coreFinding: "大胸友好型包胸塑腰带、外穿型塑身Cami、日常舒适型塑身上衣是本轮优先机会点。",
+            table: {
+              headers: ["机会点", "核心人群", "核心场景", "用户痛点", "关键词入口", "竞品验证", "市场缺口", "我方适配", "推荐等级", "风险"],
+              rows: [
+                ["大胸友好型包胸塑腰带", "大胸/丰满女性", "日常内穿/塑形", "胸部不稳、下腹覆盖不足", "built in bra / tummy control", "有", "胸腹兼容未做透", "高", "A", "尺码和支撑验证"],
+                ["外穿型塑身Cami", "日常外穿女性", "通勤/叠搭", "传统塑身衣不适合外穿", "shapewear cami / tank", "有", "外穿视觉未做透", "中高", "A-", "视觉和面料要求高"],
+                ["日常舒适型塑身上衣", "轻塑形用户", "长时间穿着", "闷热、勒、穿脱困难", "comfortable shapewear", "有", "舒适和塑形平衡不足", "高", "A-", "塑形效果感知需控制"]
+              ]
+            },
+            evidence: "依据来源：市场数据 + VOC + 关键词 + 竞品Listing｜综合置信度85%｜待人工确认"
+          },
+          {
+            title: "推荐机会点与下一步竞品分析",
+            coreFinding: "建议优先选择“大胸友好型包胸塑腰带”进入AI竞品分析与产品定义输出。",
+            body: [
+              { h: "为什么成立", p: "用户痛点明确，关键词有入口，竞品已验证需求，但胸腹兼容、尺码容错和舒适支撑尚未做透。" },
+              { h: "下一步需要补充的数据", p: "确定3-5个对标竞品ASIN，补充竞品关键词流量、完整A+视觉截图、面料/工艺成本预估。" }
+            ],
+            evidence: "依据来源：机会点池综合评分｜推荐等级A｜企划待确认"
+          }
+        ]
+      },
+      competitor: {
+        task: {
+          reportType: "competitor",
+          title: "Amazon US 大胸友好型包胸塑腰带 AI竞品分析与产品定义输出报告",
+          brand: "Loday",
+          site: "Amazon US",
+          object: "5个对标ASIN / 大胸友好型包胸塑腰带",
+          dateRange: "当前Listing / 全量评论 / 近3个月关键词",
+          generatedAt: "2026-06-30",
+          status: "AI草稿",
+          dataCompleteness: "76%",
+          grade: "B+",
+          finalUse: "本报告最终用于输出产品定义书雏形，仅供参考不是最终定义。",
+          coreConclusion: "该方向可进入产品定义，但需优先验证胸腹兼容、尺码容错、支撑舒适度三项能力，避免只做强压缩导致差评和退货。",
+          nextAction: "进入产品定义评审/打样沟通",
+          carryOut: null
+        },
+        metrics: [
+          ["对标竞品", "5", "ASIN"],
+          ["评论样本", "4,286", "VOC/Review"],
+          ["关键词样本", "160", "近3个月"],
+          ["主流价格带", "$29-$36", "竞品区间"],
+          ["平均评分", "4.2", "Top竞品"],
+          ["推荐等级", "B+", "需补数据"]
+        ],
+        dataSources: [
+          ["竞品Listing", "系统抓取", "Amazon", "当前页面", "5个ASIN", "80%", "部分缺失", "A+视觉需人工复核"],
+          ["竞品评论", "VOC系统关联", "公司VOC系统", "全量评论", "4,286条", "100%", "已校验", "支持VOC洞察"],
+          ["关键词流量", "手动导入", "卖家精灵/西柚", "近3个月", "160词", "70%", "部分缺失", "影响关键词打法判断"],
+          ["竞品销售", "手动导入", "卖家精灵", "近30天", "5个ASIN", "85%", "已校验", "支持价格和销量判断"],
+          ["供应链信息", "内部数据", "开发/供应链", "当前", "待确认", "40%", "依据不足", "影响成本可行性"]
+        ],
+        overview: {
+          inputs: ["竞品Listing｜系统抓取", "竞品评论｜VOC系统关联", "关键词流量｜手动导入", "竞品销售｜手动导入", "供应链信息｜内部待补"],
+          outputs: ["竞品概览", "Listing视觉策略", "VOC洞察", "产品基线N", "差异化+1", "最终产品定义"],
+          conclusions: ["方向可进入产品定义", "产品基线是强支撑、防卷边、尺码容错、透气", "差异化在胸腹兼容和外穿不显痕", "供应链成本需补充"],
+          next: ["补充关键词流量", "供应链确认工艺成本", "进入产品定义评审", "发起打样沟通"]
+        },
+        knowledgeReuse: {
+          title: "本次调用的知识资产",
+          items: ["已调用历史类目调研报告：3份", "已调用历史机会点池：8条", "已调用竞品库：12个ASIN", "已调用VOC标签库：v2.1", "已调用产品基线库：塑身上衣类目"]
+        },
+        validationStatus: {
+          title: "本次AI结论校验状态",
+          items: ["数据完整度：76%", "证据链完整度：84%", "逻辑跳跃风险：低", "品牌适配：已校验", "人工确认状态：待企划确认"]
+        },
+        sections: [
+          {
+            title: "竞品概览",
+            coreFinding: "对标竞品已验证该方向存在需求，但不同竞品在定位、价格、销量、评分和卖点侧重点上存在差异，需要先判断哪些值得作为标杆，哪些只适合作为风险参考。",
+            table: {
+              headers: ["子表", "内容"],
+              rows: [
+                ["表格1：竞品基础信息", `<table><thead><tr><th>ASIN</th><th>品牌</th><th>价格</th><th>评分</th><th>评论数</th><th>月销量</th><th>核心卖点</th><th>定位判断</th><th>对标价值</th></tr></thead><tbody><tr><td>B0XXXX01</td><td>Brand A</td><td>$32.99</td><td>4.3</td><td>1,928</td><td>3,400</td><td>Built-in bra + tummy control</td><td>强支撑塑形</td><td>高</td></tr><tr><td>B0XXXX02</td><td>Brand B</td><td>$29.99</td><td>4.1</td><td>2,114</td><td>2,900</td><td>Seamless cami shapewear</td><td>日常舒适</td><td>中高</td></tr><tr><td>B0XXXX03</td><td>Brand C</td><td>$35.99</td><td>4.2</td><td>1,406</td><td>1,820</td><td>Full coverage compression</td><td>大胸覆盖</td><td>高</td></tr></tbody></table>`],
+                ["表格2：竞品概览结论", `<table><thead><tr><th>分析项</th><th>共性分析</th><th>差异分析</th><th>机会缺口</th><th>我方启发</th></tr></thead><tbody><tr><td>价格带</td><td>集中在$29-$36</td><td>高价竞品强调覆盖和支撑，低价竞品强调基础舒适</td><td>中价位仍可通过结构差异提高价值感</td><td>不打低价，走中价功能差异</td></tr><tr><td>定位</td><td>都围绕塑形/支撑</td><td>部分偏强塑形，部分偏舒适日常</td><td>胸腹兼容定位不够清晰</td><td>做胸腹兼容+日常可穿</td></tr><tr><td>卖点</td><td>tummy control、built-in bra 高频</td><td>不同竞品对胸部/腹部侧重不同</td><td>下腹覆盖和尺码容错表达不足</td><td>重点放大下腹与尺码容错</td></tr></tbody></table>`]
+              ]
+            },
+            evidence: "依据来源：竞品Listing + 销售数据｜5个ASIN｜置信度78%｜待人工确认"
+          },
+          {
+            title: "Listing与视觉拆解",
+            coreFinding: "竞品前台普遍强调塑形结果和腰腹控制，但对胸部稳定、下腹覆盖、日常外穿和尺码容错的表达不足。",
+            table: {
+              headers: ["子表", "内容"],
+              rows: [
+                ["表格1：单个竞品Listing与视觉拆解", `<table><thead><tr><th>竞品</th><th>标题关键词</th><th>五点卖点</th><th>主图策略</th><th>A+表达</th><th>场景表达</th><th>视觉问题</th></tr></thead><tbody><tr><td>Brand A</td><td>built in bra / tummy control</td><td>强调强支撑、塑形、舒适</td><td>基于图片判断：模特正面展示塑形效果</td><td>前后对比+功能解释</td><td>日常内穿</td><td>胸部结构解释不足</td></tr><tr><td>Brand B</td><td>seamless cami shapewear</td><td>强调舒适、无痕、日常穿</td><td>基于图片判断：基础色模特图</td><td>场景化较弱</td><td>通勤/叠搭</td><td>塑形结果感弱</td></tr><tr><td>Brand C</td><td>full coverage compression</td><td>强调覆盖和压缩</td><td>基于图片判断：大胸覆盖展示明显</td><td>功能图较多</td><td>塑形穿搭</td><td>舒适感表达不足</td></tr></tbody></table>`],
+                ["表格2：Listing与视觉共性/差异/机会", `<table><thead><tr><th>拆解维度</th><th>共性分析</th><th>差异分析</th><th>机会缺口</th><th>我方启发</th></tr></thead><tbody><tr><td>标题策略</td><td>built in bra、tummy control、shapewear cami 高频</td><td>有的偏胸部，有的偏腰腹，有的偏日常舒适</td><td>胸腹兼容没有被清晰表达</td><td>标题同时表达胸部方案+腰腹控制</td></tr><tr><td>五点卖点</td><td>普遍强调塑形、舒适、弹性、日常穿着</td><td>卖点排序不同，强塑形款更强调控制力</td><td>尺码容错、防卷边表达不足</td><td>增加尺码容错、防卷边、长时间穿着</td></tr><tr><td>主图策略</td><td>多用黑/肤基础色+模特上身</td><td>有的强调结果，有的强调舒适外穿</td><td>支撑结构和下腹覆盖不够直观</td><td>强化结构价值和外穿安全感</td></tr><tr><td>A+表达</td><td>多有前后对比或功能说明</td><td>部分A+偏营销话术，结构解释弱</td><td>缺少胸部支撑和分区压缩说明</td><td>A+加入结构图、痛点图、场景图</td></tr><tr><td>场景表达</td><td>日常/塑形场景为主</td><td>外穿场景表达不充分</td><td>通勤叠穿、长时间穿着场景缺口明显</td><td>补足外穿、叠搭、全天穿着场景</td></tr></tbody></table>`]
+              ]
+            },
+            evidence: "依据来源：Amazon页面抓取｜标题/五点/主图/A+｜完整度80%｜部分A+需人工复核"
+          },
+          {
+            title: "产品结构拆解",
+            coreFinding: "竞品产品结构主要围绕胸部支撑、腰腹压缩、下摆稳定和面料弹性展开，但多数产品在胸腹兼容、下腹覆盖、尺码容错上仍未做透。",
+            reusedKnowledge: "本结论复用了2026年5月已确认的【胸部稳定支撑】产品基线判断（来源：女士塑身上衣类目调研机会点分析），相关VOC证据已在历史分析中验证，本次无需重复核实。",
+            table: {
+              headers: ["子表", "内容"],
+              rows: [
+                ["表格1：单个竞品产品结构拆解", `<table><thead><tr><th>竞品</th><th>版型</th><th>胸部结构</th><th>腰腹结构</th><th>下摆设计</th><th>面料/弹性</th><th>尺码策略</th><th>结构风险</th></tr></thead><tbody><tr><td>Brand A</td><td>长款Cami</td><td>内置胸托</td><td>腰腹中高压缩</td><td>下摆加宽</td><td>锦纶+氨纶</td><td>常规尺码</td><td>胸部压迫风险</td></tr><tr><td>Brand B</td><td>无痕背心</td><td>轻支撑</td><td>轻塑形</td><td>无痕边</td><td>高弹面料</td><td>尺码宽容</td><td>塑形感不足</td></tr><tr><td>Brand C</td><td>高覆盖塑身上衣</td><td>全覆盖胸部</td><td>强压缩</td><td>长下摆</td><td>厚实面料</td><td>尺码偏紧</td><td>闷热/勒感风险</td></tr></tbody></table>`],
+                ["表格2：产品结构共性/差异/机会", `<table><thead><tr><th>结构维度</th><th>共性分析</th><th>差异分析</th><th>机会缺口</th><th>我方启发</th></tr></thead><tbody><tr><td>版型长度</td><td>多为中长款或长款</td><td>部分偏Cami，部分偏强塑形上衣</td><td>下腹覆盖表达不一致</td><td>强化下腹覆盖但避免过长</td></tr><tr><td>胸部结构</td><td>多数有包覆或支撑表达</td><td>支撑强度和舒适度差异大</td><td>大胸支撑与舒适兼容不足</td><td>做胸部稳定支撑但控制压迫感</td></tr><tr><td>腰腹结构</td><td>腰腹控制是共性配置</td><td>强压缩和轻塑形分化明显</td><td>分区压缩表达不足</td><td>腹部加强，胸部/侧腰舒适过渡</td></tr><tr><td>下摆设计</td><td>都需要解决卷边问题</td><td>部分竞品下摆处理不明显</td><td>防卷边仍是差评风险</td><td>下摆稳定作为产品基线</td></tr><tr><td>面料弹性</td><td>普遍强调弹性舒适</td><td>透气性和恢复性差异大</td><td>闷热、勒、变形风险仍在</td><td>优先验证高弹透气面料</td></tr><tr><td>尺码策略</td><td>尺码表复杂，评价分化</td><td>部分尺码偏紧，部分包容度更高</td><td>尺码容错不足</td><td>优化尺码推荐和弹性容错</td></tr></tbody></table>`]
+              ]
+            },
+            evidence: "依据来源：竞品Listing + 图片判断 + VOC差评｜5个ASIN｜置信度80%｜待人工确认"
+          },
+          {
+            title: "VOC洞察",
+            coreFinding: "用户好评集中在塑形有效、支撑稳定、穿着舒适；差评集中在尺码不准、卷边滑落、胸部不稳、闷热勒感和穿脱困难。",
+            table: {
+              headers: ["子表", "内容"],
+              rows: [
+                ["表格1：核心人群", `<table><thead><tr><th>核心人群</th><th>典型需求</th><th>高频痛点</th><th>对应竞品</th><th>我方启发</th></tr></thead><tbody><tr><td>大胸/丰满女性</td><td>免文胸、稳定支撑、不外溢</td><td>压胸、支撑不足、肩带勒</td><td>Brand A/Brand C</td><td>胸部支撑必须显性表达，并控制压迫感</td></tr><tr><td>腰腹松弛女性</td><td>腰腹收紧、下腹覆盖、穿衣更平整</td><td>下腹遮不住、坐下卷边</td><td>Brand A/Brand C</td><td>下腹覆盖和防卷边作为开发基线</td></tr><tr><td>日常轻塑形用户</td><td>舒适、可长时间穿、可通勤叠搭</td><td>闷热、勒、穿脱困难</td><td>Brand B</td><td>不能只做强压缩，要做日常可穿</td></tr><tr><td>尺码敏感用户</td><td>买对尺码、弹性包容、退货风险低</td><td>偏小、太紧、尺码表不准</td><td>多竞品共性</td><td>尺码容错和尺码推荐需要前置设计</td></tr></tbody></table>`],
+                ["表格2：核心场景", `<table><thead><tr><th>核心场景</th><th>用户目标</th><th>场景痛点</th><th>竞品承接</th><th>我方启发</th></tr></thead><tbody><tr><td>日常内穿</td><td>稳定塑形但不影响活动</td><td>勒、闷、卷边</td><td>Brand A/Brand B均有表达</td><td>强调全天舒适和稳定下摆</td></tr><tr><td>轻外穿/叠搭</td><td>像Cami一样自然外露</td><td>传统塑身衣尴尬、不够平整</td><td>Brand B表达较强</td><td>补足外穿不显痕和基础色视觉</td></tr><tr><td>通勤长时间穿着</td><td>坐站活动不卷边、不勒胃</td><td>坐下卷边、腹部压迫</td><td>竞品表达不足</td><td>验证下摆稳定和分区压缩</td></tr><tr><td>塑形穿搭/裙装</td><td>腰腹平整、胸部稳定</td><td>胸腹不能兼容</td><td>Brand A/Brand C偏强</td><td>主打胸腹兼容的穿搭结果</td></tr></tbody></table>`],
+                ["表格3：购买驱动", `<table><thead><tr><th>购买驱动</th><th>用户为什么买</th><th>触发关键词/表达</th><th>竞品承接</th><th>我方启发</th></tr></thead><tbody><tr><td>塑形结果</td><td>希望腰腹立刻更平整</td><td>tummy control / compression</td><td>Brand A/Brand C强</td><td>主图和A+要展示结果前后对比</td></tr><tr><td>胸部方案</td><td>不想额外穿bra，但需要稳定</td><td>built in bra / full coverage</td><td>Brand A强</td><td>作为差异化主入口</td></tr><tr><td>舒适日常</td><td>想长时间穿，不想硬勒</td><td>comfortable / everyday / seamless</td><td>Brand B强</td><td>用面料和分区压缩承接</td></tr><tr><td>风险规避</td><td>担心尺码、卷边、闷热导致踩雷</td><td>plus size / roll up / breathable</td><td>多竞品承接不足</td><td>把尺码容错、防卷边、透气作为信任点</td></tr></tbody></table>`],
+                ["表格4：VOC好评驱动", `<table><thead><tr><th>好评点</th><th>提及条数</th><th>占比</th><th>具体表现</th><th>对应竞品</th><th>产品基线启发</th></tr></thead><tbody><tr><td>塑形有效</td><td>586</td><td>13.7%</td><td>腰腹收紧明显、穿衣更平整</td><td>Brand A/Brand C</td><td>腰腹控制必须保留</td></tr><tr><td>胸部支撑</td><td>412</td><td>9.6%</td><td>不需要额外穿bra、胸部更稳定</td><td>Brand A</td><td>胸部稳定支撑是基线</td></tr><tr><td>舒适日常</td><td>529</td><td>12.3%</td><td>可长时间穿、不勒</td><td>Brand B</td><td>舒适性决定复购和评分</td></tr><tr><td>不卷边</td><td>218</td><td>5.1%</td><td>活动时下摆不往上跑</td><td>Brand A</td><td>下摆稳定必须验证</td></tr></tbody></table>`],
+                ["表格5：VOC差评痛点", `<table><thead><tr><th>差评点</th><th>提及条数</th><th>占比</th><th>具体表现</th><th>影响结果</th><th>对应竞品</th><th>我方机会/规避</th></tr></thead><tbody><tr><td>尺码不准</td><td>463</td><td>10.8%</td><td>偏小、太紧、尺码表不准</td><td>退货/差评</td><td>多竞品共性</td><td>增强尺码容错</td></tr><tr><td>卷边滑落</td><td>304</td><td>7.1%</td><td>下摆往上卷、坐下不稳定</td><td>穿着失败</td><td>Brand A/C</td><td>下摆防卷边</td></tr><tr><td>胸部不稳</td><td>286</td><td>6.7%</td><td>支撑不够、压胸、外溢</td><td>体验差</td><td>Brand B</td><td>胸部支撑结构优化</td></tr><tr><td>面料闷热</td><td>241</td><td>5.6%</td><td>夏天热、不透气</td><td>低评分</td><td>强压缩款</td><td>透气弹力面料</td></tr><tr><td>穿脱困难</td><td>197</td><td>4.6%</td><td>太紧、费力</td><td>使用门槛高</td><td>强塑形款</td><td>控制压缩强度</td></tr></tbody></table>`],
+                ["表格6：VOC共性/差异/机会", `<table><thead><tr><th>VOC维度</th><th>共性分析</th><th>差异分析</th><th>机会缺口</th><th>我方启发</th></tr></thead><tbody><tr><td>好评共性</td><td>塑形有效、支撑稳定、舒适是核心好评</td><td>强塑形竞品更容易获得结果好评，舒适款更容易获得日常好评</td><td>兼顾效果和舒适的产品不足</td><td>做有效但不硬勒</td></tr><tr><td>差评共性</td><td>尺码、卷边、闷热、支撑不足反复出现</td><td>不同竞品差评集中点不同</td><td>没有产品完全解决胸腹兼容和尺码容错</td><td>把差评转成开发基线</td></tr><tr><td>用户期待</td><td>既要塑形也要能长时间穿</td><td>大胸用户更关注胸部稳定，日常用户更关注舒适</td><td>人群需求被泛化表达</td><td>按人群/场景拆产品卖点</td></tr></tbody></table>`]
+              ]
+            },
+            evidence: "依据来源：VOC评论标签｜评论样本4,286条｜置信度84%｜待人工确认"
+          },
+          {
+            title: "关键词流量分析",
+            coreFinding: "竞品主要依靠 built in bra、tummy control、shapewear cami、waist trainer 等词获取流量，但不同竞品在功能词、场景词、痛点词上的承接能力不同。",
+            table: {
+              headers: ["子表", "内容"],
+              rows: [
+                ["表格1：关键词流量结构", `<table><thead><tr><th>关键词类型</th><th>代表词</th><th>搜索/流量表现</th><th>对应竞品</th><th>用户需求</th><th>我方启发</th></tr></thead><tbody><tr><td>品类词</td><td>shapewear cami / waist trainer</td><td>流量入口大</td><td>多竞品共用</td><td>用户明确找品类</td><td>必须覆盖</td></tr><tr><td>功能词</td><td>tummy control / compression</td><td>转化相关强</td><td>Brand A/C</td><td>腰腹塑形</td><td>标题和五点重点表达</td></tr><tr><td>胸部方案词</td><td>built in bra / full coverage</td><td>精准需求强</td><td>Brand A</td><td>免文胸/胸部稳定</td><td>作为差异化主入口</td></tr><tr><td>场景词</td><td>everyday / outfit / under dress</td><td>中长尾机会</td><td>Brand B</td><td>日常穿搭</td><td>强化外穿和通勤场景</td></tr><tr><td>痛点词</td><td>roll up / lower belly / plus size</td><td>痛点导向</td><td>部分竞品承接不足</td><td>下腹、卷边、尺码</td><td>作为产品开发依据</td></tr><tr><td>规避词</td><td>cheap / extreme waist trainer</td><td>低价或高风险</td><td>低价竞品</td><td>极限压缩/低价心智</td><td>不作为主打方向</td></tr></tbody></table>`],
+                ["表格2：多竞品关键词差异", `<table><thead><tr><th>关键词维度</th><th>竞品A</th><th>竞品B</th><th>竞品C</th><th>共性词</th><th>独占/强势词</th><th>我方可切入词</th><th>需规避词</th></tr></thead><tbody><tr><td>品类词</td><td>shapewear cami</td><td>shapewear tank</td><td>waist trainer</td><td>shapewear</td><td>built in bra</td><td>built in bra tummy control</td><td>cheap shapewear</td></tr><tr><td>功能词</td><td>tummy control</td><td>seamless</td><td>compression</td><td>tummy control</td><td>full coverage</td><td>lower belly control</td><td>extreme compression</td></tr><tr><td>场景词</td><td>under dress</td><td>everyday</td><td>outfit</td><td>daily wear</td><td>seamless outfit</td><td>workwear shapewear</td><td>party cheap dupe</td></tr></tbody></table>`],
+                ["表格3：关键词共性/差异/机会", `<table><thead><tr><th>分析项</th><th>共性分析</th><th>差异分析</th><th>机会缺口</th><th>我方启发</th></tr></thead><tbody><tr><td>共用流量词</td><td>品类词和腰腹控制词是所有竞品共同入口</td><td>竞品在built in bra、seamless、full coverage上各有侧重</td><td>胸腹兼容词组承接不足</td><td>组合词打法：built in bra + tummy control</td></tr><tr><td>精准转化词</td><td>功能词和痛点词更接近购买决策</td><td>舒适款更偏seamless，强塑形款更偏compression</td><td>lower belly、roll up未被充分产品化</td><td>开发下腹覆盖和防卷边卖点</td></tr><tr><td>规避词</td><td>低价和极限塑形词风险较高</td><td>低价竞品更容易吸引价格敏感用户</td><td>不适合Loday做低价心智</td><td>规避cheap/extreme类词</td></tr></tbody></table>`]
+              ]
+            },
+            evidence: "依据来源：关键词流量数据｜160词｜完整度70%｜部分字段缺失，需补充转化数据"
+          },
+          {
+            title: "我方切入判断",
+            coreFinding: "我方不应只复制竞品或做更强压缩，而应在保留产品基线N的基础上，围绕胸腹兼容、分区压缩、外穿不显痕和尺码容错建立差异化。",
+            table: {
+              headers: ["子表", "内容"],
+              rows: [
+                ["表格1：产品基线N", `<table><thead><tr><th>基线项</th><th>为什么必须保留</th><th>依据来源</th><th>我方处理建议</th><th>风险</th></tr></thead><tbody><tr><td>胸部稳定支撑</td><td>大胸/丰满用户核心诉求</td><td>VOC好评+关键词built in bra</td><td>必须保留并显性表达</td><td>支撑不足直接差评</td></tr><tr><td>腰腹控制</td><td>塑身类购买基础需求</td><td>tummy control高频</td><td>必须保留但避免极限强压缩</td><td>过度压缩影响舒适</td></tr><tr><td>下摆防卷边</td><td>卷边滑落是高频差评</td><td>roll up差评</td><td>重点验证下摆结构</td><td>卷边影响复购和评分</td></tr><tr><td>尺码容错</td><td>塑身类高退货风险</td><td>size issue差评</td><td>优化尺码表和弹力容错</td><td>尺码不准导致退货</td></tr><tr><td>透气舒适</td><td>日常长时间穿着基础要求</td><td>comfortable/breathable反馈</td><td>选择高弹透气面料</td><td>闷热、勒、穿脱困难</td></tr></tbody></table>`],
+                ["表格2：差异化+1", `<table><thead><tr><th>差异化方向</th><th>解决什么痛点</th><th>竞品缺口</th><th>关键词入口</th><th>我方做法</th><th>预期用户感知</th><th>风险控制</th></tr></thead><tbody><tr><td>胸腹兼容结构</td><td>胸部不稳+下腹覆盖不足</td><td>竞品多只强调腰腹</td><td>built in bra / tummy control</td><td>上胸支撑+下腹覆盖一体化</td><td>更安全稳定</td><td>控制压迫感和尺码容错</td></tr><tr><td>分区压缩</td><td>强压缩勒、闷、不舒服</td><td>竞品压缩区域表达不清</td><td>compression</td><td>腹部加强，胸部/侧腰舒适过渡</td><td>有效但不硬勒</td><td>打样验证压缩分区</td></tr><tr><td>外穿不显痕</td><td>传统塑身衣尴尬</td><td>外穿表达不足</td><td>shapewear cami / seamless</td><td>平整边缘+基础色+肩带优化</td><td>可叠搭可通勤</td><td>控制面料和边缘成本</td></tr><tr><td>下腹覆盖强化</td><td>下腹/FUPA遮盖不足</td><td>下腹覆盖表达不充分</td><td>lower belly / tummy control</td><td>适当加长前片覆盖+防卷边</td><td>坐下更安心</td><td>避免过长影响活动</td></tr><tr><td>尺码容错设计</td><td>尺码不准导致退货</td><td>竞品尺码评价分化</td><td>plus size / size issue</td><td>弹性容错+尺码推荐优化</td><td>更容易买对</td><td>确认弹力恢复性</td></tr></tbody></table>`],
+                ["表格3：主动规避项", `<table><thead><tr><th>规避项</th><th>为什么不建议做</th><th>竞品/用户依据</th><th>替代方案</th></tr></thead><tbody><tr><td>极限强压缩</td><td>容易勒、闷、难穿脱</td><td>强压缩款差评集中</td><td>分区压缩</td></tr><tr><td>复杂开合</td><td>成本高且增加穿脱门槛</td><td>用户抱怨穿脱困难</td><td>简化穿脱结构</td></tr><tr><td>低透气厚面料</td><td>夏季闷热，影响日常穿着</td><td>breathability差评</td><td>高弹透气面料</td></tr><tr><td>过度设计细节</td><td>用户感知弱但成本增加</td><td>视觉感知不强</td><td>把成本放在支撑和尺码容错</td></tr><tr><td>低价基础款</td><td>同质化高，难建立品牌价值</td><td>低价竞品多</td><td>中价位功能差异</td></tr></tbody></table>`],
+                ["表格4：最终产品定义", `<table><thead><tr><th>输出项</th><th>当前结论</th><th>依据</th><th>状态</th></tr></thead><tbody><tr><td>机会点名称</td><td>大胸友好型包胸塑腰带</td><td>类目调研机会点 + 竞品验证</td><td>待确认</td></tr><tr><td>对标竞品</td><td>5个对标ASIN / Brand A、Brand B、Brand C</td><td>竞品价格、销量、评分、Listing卖点</td><td>已初筛</td></tr><tr><td>共性分析</td><td>胸部支撑、腰腹控制、防卷边、尺码容错已成为基线</td><td>竞品概览 + 产品结构 + VOC</td><td>待人工确认</td></tr><tr><td>差异分析</td><td>Brand A强在支撑，Brand B强在舒适，Brand C强在覆盖和压缩</td><td>Listing与结构横向对比</td><td>待人工确认</td></tr><tr><td>机会缺口</td><td>胸腹兼容、下腹覆盖、外穿不显痕、尺码容错未被做透</td><td>VOC差评 + 关键词痛点词</td><td>待确认</td></tr><tr><td>核心人群</td><td>大胸/丰满女性、腰腹松弛女性、日常塑形用户</td><td>VOC人群标签+评论原声</td><td>待确认</td></tr><tr><td>核心场景</td><td>日常内穿、轻外穿、通勤叠搭、塑形穿搭</td><td>VOC场景标签+Listing场景表达</td><td>待确认</td></tr><tr><td>核心痛点</td><td>胸部不稳、下腹覆盖不足、卷边滑落、尺码容错低</td><td>VOC差评+关键词痛点词</td><td>待确认</td></tr><tr><td>产品基线N</td><td>胸部稳定支撑、防卷边、尺码容错、透气舒适、腰腹控制</td><td>好评基线+竞品共性配置</td><td>必须保留</td></tr><tr><td>差异化+1</td><td>胸腹兼容+分区压缩+外穿不显痕</td><td>竞品缺口+用户痛点+关键词入口</td><td>待打样验证</td></tr><tr><td>主动规避项</td><td>极限强压缩、复杂开合、低透气面料、低价基础款</td><td>竞品差评+成本风险</td><td>建议规避</td></tr><tr><td>推荐价格带</td><td>$29-$36</td><td>竞品价格带+用户感知价值</td><td>待成本确认</td></tr><tr><td>关键词打法</td><td>built in bra、tummy control、shapewear cami、waist trainer</td><td>关键词流量数据</td><td>需补充转化数据</td></tr><tr><td>视觉表达</td><td>胸部支撑结构、腰腹前后对比、外穿叠搭场景、下腹覆盖细节</td><td>Listing视觉拆解+竞品表达缺口</td><td>待设计确认</td></tr><tr><td>风险控制</td><td>尺码、退货、支撑舒适度、面料闷热、结构成本</td><td>VOC差评+供应链信息不足</td><td>需重点验证</td></tr><tr><td>推荐等级</td><td>B+，补齐关键词流量和供应链成本后可进入打样评审</td><td>当前数据完整度76%</td><td>待人工确认</td></tr><tr><td>下一步动作</td><td>补充关键词流量数据、确认供应链成本、输出打样需求、进入产品定义评审</td><td>AI只输出草稿，企划确认后流转</td><td>待推进</td></tr></tbody></table>`]
+              ]
+            },
+            evidence: "依据来源：竞品Listing、VOC、关键词流量、销售数据｜供应链成本依据不足，需补充数据"
+          }
+        ]
+      }
+    };
+
+    const createConfigs = {
+      market: [
+        { type: "市场数据", required: "必填", method: "手动导入", source: "卖家精灵", range: "近12个月", sample: "18个类目", completeness: 90, status: "字段校验通过", impact: "支持市场规模、增长趋势和竞争格局判断" },
+        { type: "种子关键词/关键词趋势", required: "必填", method: "手动导入", source: "卖家精灵/西柚", range: "近3个月", sample: "1,260词", completeness: 88, status: "已上传，字段校验通过", impact: "影响需求组合词和关键词增长判断" },
+        { type: "品牌说明", required: "必填", method: "内部填写", source: "企划/品牌资料", range: "当前品牌策略", sample: "品牌定位/目标人群/价格带/供应链边界", completeness: 70, status: "待补充品牌定位、价格带和能力边界", impact: "影响哪些细分机会适合该品牌，以及我方适配度判断" },
+        { type: "Best Seller榜单范围", required: "必填", method: "系统抓取", source: "Amazon", range: "近4周", sample: "Top500", completeness: 84, status: "部分抓取失败，需补抓", impact: "影响榜单出现频次和排名变化判断" },
+        { type: "New Releases", required: "必填", method: "系统抓取", source: "Amazon", range: "近4周", sample: "Top100", completeness: 78, status: "待补充周期快照", impact: "影响新品和新上榜ASIN判断" },
+        { type: "Movers & Shakers", required: "必填", method: "系统抓取", source: "Amazon", range: "近4周", sample: "Top100", completeness: 76, status: "待补充排名变化", impact: "影响排名上升ASIN和短期机会判断" },
+        { type: "ERP毛利/退货", required: "可选", method: "ERP/BI内部关联", source: "ERP/BI", range: "近12个月", sample: "未接入", completeness: 0, status: "待关联", impact: "影响我方适配和利润风险判断" }
+      ],
+      category: [
+        { type: "类目市场数据", required: "必填", method: "手动导入", source: "卖家精灵", range: "近12个月", sample: "Top100", completeness: 95, status: "字段校验通过", impact: "支持市场概况和机会判断" },
+        { type: "Top产品数据", required: "必填", method: "手动导入", source: "卖家精灵Top产品表", range: "当前周期", sample: "Top100", completeness: 92, status: "已上传，字段校验通过", impact: "支持爆品基线判断" },
+        { type: "新品数据", required: "必填", method: "手动导入", source: "卖家精灵新品表", range: "近3个月", sample: "30个ASIN", completeness: 85, status: "已上传，字段校验通过", impact: "支持新品趋势判断" },
+        { type: "Top品Listing", required: "必填", method: "系统抓取 + 人工补充", source: "Amazon商品页", range: "当前页面", sample: "5个ASIN", completeness: 80, status: "4/5个ASIN抓取完成，1个ASIN A+缺失", impact: "影响Listing卖点和视觉趋势判断" },
+        { type: "Top品评论", required: "必填", method: "VOC系统关联", source: "公司VOC工具", range: "全量评论", sample: "6,413条", completeness: 100, status: "已关联，评论样本6,413条", impact: "支持VOC痛点和人群场景判断" },
+        { type: "关键词数据", required: "必填", method: "手动导入", source: "西柚/卖家精灵/ASIN反查", range: "近3个月", sample: "200词", completeness: 90, status: "已上传，字段校验通过", impact: "影响关键词机会判断" },
+        { type: "A+截图/视觉资料", required: "可选", method: "系统抓取 + 人工补充", source: "Amazon", range: "当前页面", sample: "部分ASIN", completeness: 60, status: "仍有缺失，需上传补充截图", impact: "视觉趋势和A+结构需人工复核" },
+        { type: "ERP销售/退货/毛利", required: "可选", method: "ERP/BI内部关联", source: "ERP", range: "近12个月", sample: "未接入", completeness: 0, status: "待配置", impact: "成本可行性和退货风险需人工复核" }
+      ],
+      competitor: [
+        { type: "竞品Listing", required: "必填", method: "系统抓取", source: "Amazon", range: "当前页面", sample: "5个ASIN", completeness: 80, status: "需人工补充A+截图", impact: "影响Listing与视觉拆解" },
+        { type: "竞品评论", required: "必填", method: "VOC系统关联", source: "公司VOC工具", range: "全量评论", sample: "4,286条", completeness: 100, status: "已关联，评论样本4,286条", impact: "支持VOC洞察" },
+        { type: "关键词流量数据", required: "必填", method: "手动导入", source: "卖家精灵/西柚", range: "近3个月", sample: "160词", completeness: 70, status: "字段缺失，需补充转化数据", impact: "影响关键词打法和规避词判断" },
+        { type: "竞品销售数据", required: "必填", method: "手动导入", source: "卖家精灵", range: "近30天", sample: "5个ASIN", completeness: 85, status: "已校验", impact: "支持价格和销量判断" },
+        { type: "竞品视觉资料", required: "必填", method: "系统抓取 + 人工补充", source: "Amazon", range: "当前页面", sample: "5个ASIN", completeness: 65, status: "人工补充中", impact: "影响主图/A+和场景表达判断" },
+        { type: "我方供应链信息", required: "必填", method: "内部填写", source: "供应链/开发", range: "当前", sample: "待确认", completeness: 40, status: "需人工补充", impact: "影响产品定义、成本和打样可行性" }
+      ]
+    };
+
+    let currentReport = "category";
+    let currentView = "report";
+    let confirmed = false;
+    let currentCreateMode = "mixed";
+    let activeDataRow = null;
+
+    const $ = (id) => document.getElementById(id);
+
+    function toast(message) {
+      const node = $("toast");
+      node.textContent = message;
+      node.classList.add("show");
+      clearTimeout(toast.timer);
+      toast.timer = setTimeout(() => node.classList.remove("show"), 1700);
+    }
+
+    function report() {
+      return reports[currentReport];
+    }
+
+    function statusClass(status) {
+      if (/已校验|已关联|已上传|成功|通过|已填写/.test(status)) return "green";
+      if (/部分|缺失|补充|失败|需|人工补充|仍有/.test(status)) return "amber";
+      if (/依据不足|未接入|待配置|待关联|待确认/.test(status)) return "red";
+      return "blue";
+    }
+
+    function createRows() {
+      return createConfigs[$("createReportType").value];
+    }
+
+    function methodKind(method) {
+      if (method === "系统抓取 + 人工补充") return "mixed";
+      if (method === "手动导入") return "manual";
+      if (method === "系统抓取") return "crawl";
+      if (/VOC系统关联|ERP\/BI内部关联/.test(method)) return "link";
+      if (method === "内部填写") return "internal";
+      return "manual";
+    }
+
+    function miniButton(label, action, index, variant = "") {
+      return `<button class="mini-btn ${variant}" data-action="${action}" data-row-index="${index}">${label}</button>`;
+    }
+
+    function downloadMenu(index, label = "下载") {
+      return `
+        <details class="download-menu">
+          <summary>${label}</summary>
+          <div class="download-options">
+            ${["下载模板", "下载原始数据", "下载清洗后数据", "下载错误报告", "下载合并数据"].map(item => `<button data-action="download" data-row-index="${index}" data-download-type="${item}">${item}</button>`).join("")}
+          </div>
+        </details>
+      `;
+    }
+
+    function renderSourceActions(row, index) {
+      const kind = methodKind(row.method);
+      if (kind === "manual") {
+        return `<div class="source-actions">${miniButton(row.status.includes("已上传") ? "重新上传" : "上传", "upload", index, "primary")}${miniButton("下载模板", "download-template", index)}${miniButton("字段映射", "mapping", index)}${downloadMenu(index, "下载数据")}</div>`;
+      }
+      if (kind === "crawl") {
+        const crawlText = /成功|失败|抓取/.test(row.status) ? "重新抓取" : "开始抓取";
+        return `<div class="source-actions">${miniButton("配置抓取", "crawl-config", index, "primary")}${miniButton(crawlText, "crawl-start", index)}${miniButton("查看进度", "crawl-progress", index)}${downloadMenu(index, "下载结果")}</div>`;
+      }
+      if (kind === "link") {
+        return `<div class="source-actions">${miniButton("关联数据", "link-data", index, "primary")}${miniButton("查看关联", "view-link", index)}${miniButton("重新关联", "relink-data", index)}${downloadMenu(index, "下载数据")}</div>`;
+      }
+      if (kind === "mixed") {
+        return `<div class="source-actions">${miniButton("配置抓取", "crawl-config", index, "primary")}${miniButton("上传补充", "upload", index)}${miniButton("重新校验", "validate-merge", index, "green")}${downloadMenu(index, "下载合并数据")}</div>`;
+      }
+      return `<div class="source-actions">${miniButton("填写信息", "internal-fill", index, "primary")}${miniButton("导入模板", "download-template", index)}${downloadMenu(index, "下载数据")}</div>`;
+    }
+
+    function renderCreateValidationSummary() {
+      const rows = createRows();
+      const requiredRows = rows.filter(row => row.required === "必填");
+      const optionalRows = rows.filter(row => row.required !== "必填");
+      const avg = list => Math.round(list.reduce((sum, row) => sum + row.completeness, 0) / Math.max(list.length, 1));
+      const requiredPct = avg(requiredRows);
+      const optionalPct = avg(optionalRows);
+      const optionalDisplay = optionalRows.length ? `${optionalPct}%` : "无可选数据";
+      const riskyRows = rows.filter(row => row.completeness < 80 || /缺失|待|未接入|失败|需|人工补充|仍有/.test(row.status));
+      const missing = riskyRows.map(row => row.type).join("、") || "暂无关键缺失";
+      const impact = riskyRows.map(row => row.impact).slice(0, 3).join("；") || "当前数据可支撑主要结论";
+      const canGenerate = requiredPct < 70
+        ? "不可生成"
+        : riskyRows.some(row => row.required === "必填")
+          ? "可生成，但相关结论标记为“依据不足”"
+          : "可生成";
+      $("createValidationSummary").innerHTML = `
+        <h3>数据校验总结</h3>
+        <div class="validation-grid">
+          <div class="validation-item"><label>必填数据完整度</label><strong>${requiredPct}%</strong></div>
+          <div class="validation-item"><label>可选数据完整度</label><strong>${optionalDisplay}</strong></div>
+          <div class="validation-item"><label>缺失数据</label><strong>${missing}</strong></div>
+          <div class="validation-item"><label>影响结论</label><strong>${impact}</strong></div>
+          <div class="validation-item"><label>是否可生成报告</label><strong>${canGenerate}</strong></div>
+        </div>
+      `;
+    }
+
+    function setActiveRow(index) {
+      activeDataRow = createRows()[Number(index)];
+      return activeDataRow;
+    }
+
+    function openModal(title, body, footer) {
+      $("modalTitle").textContent = title;
+      $("modalBody").innerHTML = body;
+      $("modalFooter").innerHTML = footer;
+      $("configModal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+      $("configModal").classList.add("hidden");
+      activeDataRow = null;
+    }
+
+    function refreshActiveRow(status, completeness) {
+      if (!activeDataRow) return;
+      activeDataRow.status = status;
+      activeDataRow.completeness = Math.max(activeDataRow.completeness, completeness);
+      renderCreateTable();
+    }
+
+    function openUploadModal(row) {
+      openModal(
+        `上传【${row.type}】`,
+        `
+          <section class="modal-section">
+            <h4>上传步骤</h4>
+            <ol class="step-list">
+              <li>1. 下载标准模板</li>
+              <li>2. 上传 Excel / CSV</li>
+              <li>3. 字段映射</li>
+              <li>4. 数据预览</li>
+              <li>5. 字段校验</li>
+              <li>6. 确认使用</li>
+            </ol>
+          </section>
+          <section class="modal-section">
+            <h4>当前状态</h4>
+            <p>数据类型：${row.type}｜来源平台：${row.source}｜状态：${row.status}</p>
+          </section>
+        `,
+        `
+          <button class="action-btn" data-modal-action="download-template">下载模板</button>
+          <button class="action-btn" data-modal-action="choose-file">选择文件</button>
+          <button class="action-btn" data-modal-action="mapping">字段映射</button>
+          <button class="action-btn" data-modal-action="preview">查看预览</button>
+          <button class="action-btn" data-modal-action="error-report">下载错误报告</button>
+          <button class="action-btn primary" data-modal-action="confirm-upload">确认使用</button>
+        `
+      );
+    }
+
+    function openCrawlModal(row) {
+      const isMarketRadar = $("createReportType").value === "market";
+      const crawlObjects = isMarketRadar
+        ? ["种子关键词", "ASIN池", "Best Seller榜单范围", "New Releases", "Movers & Shakers", "时间周期"]
+        : ["类目节点", "关键词", "ASIN", "商品链接", "品牌", "时间范围"];
+      const crawlScopes = isMarketRadar
+        ? ["关键词反查", "Listing卖点抓取", "主图/A+抓取", "标题", "五点", "价格", "评分", "评论数", "销量", "评论", "变体信息"]
+        : ["标题", "五点", "A+", "主图", "价格", "评分", "评论数", "销量", "评论", "关键词流量", "变体信息"];
+      const crawlCounts = isMarketRadar
+        ? ["Top 20", "Top 50", "Top 100", "Top 200", "自定义"]
+        : ["Top 20", "Top 50", "Top 100", "自定义"];
+      openModal(
+        `配置【${row.type}】系统抓取`,
+        `
+          <section class="modal-section">
+            <h4>抓取对象</h4>
+            <div class="check-grid">${crawlObjects.map(x => `<span class="check-chip">${x}</span>`).join("")}</div>
+          </section>
+          <section class="modal-section">
+            <h4>抓取范围</h4>
+            <div class="check-grid">${crawlScopes.map(x => `<span class="check-chip">${x}</span>`).join("")}</div>
+          </section>
+          <section class="modal-section">
+            <h4>抓取数量</h4>
+            <div class="check-grid">${crawlCounts.map(x => `<span class="check-chip">${x}</span>`).join("")}</div>
+          </section>
+          <section class="modal-section">
+            <h4>抓取后处理</h4>
+            <div class="check-grid">${["自动字段映射", "自动去重", "自动校验", "生成数据预览"].map(x => `<span class="check-chip">${x}</span>`).join("")}</div>
+          </section>
+        `,
+        `
+          <button class="action-btn" data-modal-action="save-crawl">保存抓取配置</button>
+          <button class="action-btn primary" data-modal-action="start-crawl">开始抓取</button>
+          <button class="action-btn" data-modal-action="crawl-progress">查看抓取进度</button>
+          <button class="action-btn" data-modal-action="restart-crawl">重新抓取</button>
+          <button class="action-btn" data-modal-action="download-crawl">下载抓取结果</button>
+          <button class="action-btn" data-modal-action="manual-supplement">手动补充</button>
+        `
+      );
+    }
+
+    function openMappingModal(row) {
+      openModal(
+        `字段映射｜${row.type}`,
+        `
+          <section class="modal-section">
+            <h4>字段映射</h4>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>系统标准字段</th><th>上传文件字段</th><th>是否必填</th><th>识别状态</th></tr></thead>
+                <tbody>
+                  <tr><td>销售额</td><td>Sales Amount</td><td>必填</td><td><span class="pill green">已识别</span></td></tr>
+                  <tr><td>销量</td><td>Units Sold</td><td>必填</td><td><span class="pill green">已识别</span></td></tr>
+                  <tr><td>价格</td><td>Price</td><td>必填</td><td><span class="pill green">已识别</span></td></tr>
+                  <tr><td>评分</td><td>Rating</td><td>必填</td><td><span class="pill amber">缺失</span></td></tr>
+                  <tr><td>评论数</td><td>Review Count</td><td>必填</td><td><span class="pill green">已识别</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        `,
+        `
+          <button class="action-btn" data-modal-action="auto-match">自动匹配字段</button>
+          <button class="action-btn primary" data-modal-action="save-mapping">保存映射</button>
+          <button class="action-btn" data-modal-action="missing-report">下载缺失字段报告</button>
+        `
+      );
+    }
+
+    function openLinkModal(row) {
+      const isInternal = methodKind(row.method) === "internal";
+      openModal(
+        isInternal ? `填写【${row.type}】` : `关联【${row.type}】`,
+        `
+          <section class="modal-section">
+            <h4>${isInternal ? "内部填写信息" : "系统关联配置"}</h4>
+            <p>数据类型：${row.type}｜来源平台：${row.source}｜时间范围：${row.range}｜当前状态：${row.status}</p>
+          </section>
+          <section class="modal-section">
+            <h4>影响说明</h4>
+            <p>${row.impact}</p>
+          </section>
+        `,
+        isInternal
+          ? `<button class="action-btn primary" data-modal-action="confirm-internal">填写信息</button><button class="action-btn" data-modal-action="download-template">导入模板</button><button class="action-btn" data-modal-action="download-data">下载数据</button>`
+          : `<button class="action-btn primary" data-modal-action="confirm-link">关联数据</button><button class="action-btn" data-modal-action="view-link">查看关联</button><button class="action-btn" data-modal-action="confirm-link">重新关联</button><button class="action-btn" data-modal-action="download-data">下载数据</button>`
+      );
+    }
+
+    function renderPlatformArchitecture() {
+      const layers = [
+        ["数据输入层", platformArchitecture.inputLayer],
+        ["业务分析层", platformArchitecture.businessModules.map(m => `${m.name}：${m.desc}`)],
+        ["横向底层模块", platformArchitecture.horizontalModules.map(m => m.name)],
+        ["结果流转层", platformArchitecture.outputLayer]
+      ];
+      $("platformArchitecture").innerHTML = `
+        <section class="architecture-block">
+          <h2>商品企划 AI 工具整体架构</h2>
+          <div class="architecture-grid">
+            ${layers.map(([title, items]) => `
+              <article class="architecture-layer">
+                <h3>${title}</h3>
+                <ul>${items.map(item => `<li>${item}</li>`).join("")}</ul>
+              </article>
+            `).join("")}
+          </div>
+        </section>
+      `;
+      $("horizontalModuleCards").innerHTML = `
+        <section class="architecture-block">
+          <h2>横向底层模块说明</h2>
+          <div class="horizontal-module-grid">
+            ${platformArchitecture.horizontalModules.map(module => `
+              <article class="horizontal-module-card">
+                <h3>${module.name}</h3>
+                <p>${module.desc}</p>
+                <div class="table-wrap">
+                  <table>
+                    <thead><tr>${module.columns.map(col => `<th>${col}</th>`).join("")}</tr></thead>
+                    <tbody>${module.rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody>
+                  </table>
+                </div>
+                <div class="module-value">${module.value}</div>
+              </article>
+            `).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderReportFoundation() {
+      const current = report();
+      const cards = [current.knowledgeReuse, current.validationStatus].filter(Boolean);
+      $("reportFoundation").innerHTML = cards.map(card => `
+        <article class="foundation-card">
+          <h3>${card.title}</h3>
+          <ul>${card.items.map(item => `<li>${item}</li>`).join("")}</ul>
+        </article>
+      `).join("");
+    }
+
+    function renderMeta() {
+      const task = report().task;
+      $("reportTitle").textContent = task.title;
+      $("coreConclusion").textContent = task.coreConclusion;
+      $("reportPurpose").textContent = task.finalUse;
+      $("reportGrade").textContent = task.grade;
+      const metaItems = [
+        ["分析类型", task.reportType === "market" ? "AI市场机会雷达" : task.reportType === "category" ? "AI类目机会研究" : "AI竞品分析与产品定义输出"],
+        ["站点", task.site],
+        ["品牌", task.brand],
+        ["对象", task.object],
+        ["数据周期", task.dateRange],
+        ["数据更新时间", task.generatedAt],
+        ["完整度", task.dataCompleteness],
+        ["生成状态", confirmed ? "企划已确认" : task.status]
+      ];
+      const carriedPill = carriedContext && carriedContext.targetReport === currentReport
+        ? `<span class="pill carried">已带入上一步结论：${carriedContext.selectedItem}</span>`
+        : "";
+      $("reportMeta").innerHTML = carriedPill + metaItems.map(([k, v]) => `<span class="pill ${k === "生成状态" ? (confirmed ? "green" : "amber") : ""}">${k}：${v}</span>`).join("");
+    }
+
+    function renderMetrics() {
+      $("metricsGrid").innerHTML = report().metrics.map(([label, value, note]) => `
+        <div class="metric-card"><label>${label}</label><strong>${value}</strong><span>${note}</span></div>
+      `).join("");
+    }
+
+    function renderOverview() {
+      const o = report().overview;
+      const carriedInput = carriedContext && carriedContext.targetReport === currentReport
+        ? [`${carriedContext.selectedItem}（承接自上一模块，推荐理由：${carriedContext.reason}）`]
+        : [];
+      const cards = [
+        ["输入数据", [...carriedInput, ...o.inputs]],
+        ["AI输出", o.outputs],
+        ["核心结论", o.conclusions],
+        ["下一步", o.next]
+      ];
+      $("overviewGrid").innerHTML = cards.map(([title, items], index) => `
+        <article class="overview-card overview-${index + 1}"><h3>${title}</h3><ul>${items.map(x => `<li>${x}</li>`).join("")}</ul></article>
+      `).join("");
+    }
+
+    function renderDataQuality() {
+      const task = report().task;
+      const missing = report().dataSources.filter(row => /缺失|依据不足|未接入|部分/.test(row[6] + row[7]));
+      const validation = report().validationStatus?.items || [];
+      const evidence = validation.find(item => item.includes("证据链完整度"))?.split("：")[1] || "需复核";
+      const confirm = validation.find(item => item.includes("人工确认状态"))?.split("：")[1] || (confirmed ? "企划已确认" : "待企划确认");
+      const missingText = missing.length ? missing.map(x => x[0]).join("、") : "核心数据已校验";
+      const impactText = missing.length ? missing.map(x => x[7]).join("；") : "可进入企划确认";
+      $("dataQuality").innerHTML = `
+        <div class="quality-number"><b>${task.dataCompleteness}</b></div>
+        <div>
+          <h3>数据可信度卡</h3>
+          <p>AI只输出企划草稿，最终结论仍需业务确认。缺失数据会在相关结论中降低置信度。</p>
+          <div class="quality-grid">
+            <div class="quality-item"><label>数据完整度</label><strong>${task.dataCompleteness}</strong></div>
+            <div class="quality-item"><label>证据链完整度</label><strong>${evidence}</strong></div>
+            <div class="quality-item"><label>缺失数据</label><strong>${missingText}</strong></div>
+            <div class="quality-item"><label>影响结论</label><strong>${impactText}</strong></div>
+            <div class="quality-item"><label>人工确认状态</label><strong>${confirmed ? "企划已确认" : confirm}</strong></div>
+          </div>
+        </div>
+      `;
+    }
+
+    function isHighlightHeader(header) {
+      return /推荐等级|下一步|我方启发|产品启发|当前结论|状态|企划判断|处理建议|具体表现|定位判断|对标价值/.test(header || "");
+    }
+
+    function badgeFor(value, header = "") {
+      const text = String(value).trim();
+      const grade = text.match(/^(A-|A|B\+|B-|B|C\+|C)/);
+      if (/推荐等级/.test(header) && grade) {
+        const cls = /^A/.test(grade[1]) ? "grade-strong" : "grade";
+        return `<span class="report-badge ${cls}">${grade[1]}</span>${text.length > grade[1].length ? `<span class="badge-tail">${text.slice(grade[1].length)}</span>` : ""}`;
+      }
+      if (/^(A-|A|B\+|B-|B)$/.test(text)) {
+        return `<span class="report-badge ${/^A/.test(text) ? "grade-strong" : "grade"}">${text}</span>`;
+      }
+      if (/^(高|中高|中|低)$/.test(text) || /风险|适配|对标价值|竞争风险/.test(header)) {
+        const isRisk = /风险/.test(header);
+        if (text === "高" || text === "中高") return `<span class="report-badge ${isRisk ? "risk-high" : "risk-low"}">${text}</span>`;
+        if (text === "中") return `<span class="report-badge risk-mid">${text}</span>`;
+        if (text === "低") return `<span class="report-badge ${isRisk ? "risk-low" : "risk-high"}">${text}</span>`;
+      }
+      if (/^(待确认|待人工确认|待推进|待成本确认|待设计确认|待打样验证|需补充转化数据|需重点验证|建议规避|依据不足|部分缺失)$/.test(text)) {
+        return `<span class="report-badge status-warn">${text}</span>`;
+      }
+      if (/^(已校验|已初筛|必须保留|已上传|已关联|字段校验通过|企划已确认)$/.test(text)) {
+        return `<span class="report-badge status-ok">${text}</span>`;
+      }
+      if (/^(AI草稿|待补充|未接入|需人工复核)$/.test(text)) {
+        return `<span class="report-badge status">${text}</span>`;
+      }
+      return value;
+    }
+
+    function decorateHtmlTables(html) {
+      if (!String(html).includes("<table")) return html;
+      const template = document.createElement("template");
+      template.innerHTML = html;
+      template.content.querySelectorAll("table").forEach(table => {
+        table.classList.add("report-inner-table");
+        const headers = Array.from(table.querySelectorAll("thead th")).map(th => th.textContent.trim());
+        headers.forEach((header, index) => {
+          if (isHighlightHeader(header)) {
+            table.querySelectorAll(`tr > :nth-child(${index + 1})`).forEach(cell => cell.classList.add("highlight-column"));
+          }
+        });
+        table.querySelectorAll("tbody tr").forEach(row => {
+          Array.from(row.children).forEach((cell, index) => {
+            const header = headers[index] || "";
+            if (!cell.querySelector("table")) {
+              cell.innerHTML = badgeFor(cell.innerHTML, header);
+            }
+          });
+        });
+      });
+      return template.innerHTML;
+    }
+
+    function decorateCell(cell, header = "") {
+      const value = String(cell);
+      if (value.includes("<table")) return decorateHtmlTables(value);
+      return badgeFor(value, header);
+    }
+
+    function renderTable(target, headers, rows) {
+      $(target).innerHTML = `
+        <thead><tr>${headers.map(h => `<th class="${isHighlightHeader(h) ? "highlight-column" : ""}">${h}</th>`).join("")}</tr></thead>
+        <tbody>${rows.map(row => `<tr>${row.map((cell, index) => {
+          const header = headers[index] || "";
+          const decorated = target === "dataSourceTable" && index === 6 ? `<span class="pill ${statusClass(cell)}">${cell}</span>` : decorateCell(cell, header);
+          return `<td class="${isHighlightHeader(header) ? "highlight-column" : ""}">${decorated}</td>`;
+        }).join("")}</tr>`).join("")}</tbody>
+      `;
+    }
+
+    function renderDataSources() {
+      renderTable("dataSourceTable", ["数据类型", "获取方式", "来源平台", "时间范围", "样本量", "完整度", "校验状态", "影响说明"], report().dataSources);
+    }
+
+    function renderToc() {
+      $("tocGrid").innerHTML = report().sections.map((s, index) => `
+        <a href="#section-${index + 1}"><span>${String(index + 1).padStart(2, "0")}</span>${s.title}</a>
+      `).join("");
+    }
+
+    function getSectionInsights(section) {
+      const library = {
+        market: {
+          "市场机会总览": [
+            ["细分机会优先", "大类是入口，真正变化来自功能/结构/场景/痛点组合。", "green"],
+            ["多源交叉判断", "关键词、榜单、Listing、VOC必须共同指向。", "purple"],
+            ["AI只做雷达", "输出候选方向，企划再确认是否进入类目研究。", "orange"]
+          ],
+          "大类机会池": [
+            ["Women’s Shapewear", "体量高，适合继续下钻细分机会。", "green"],
+            ["Men’s Swimwear", "2-in-1 内衬泳裤有季节窗口。", "orange"],
+            ["高风险项", "尺码、退货、低价内卷需要提前规避。", "red"]
+          ],
+          "细分机会雷达": [
+            ["强信号机会", "shapewear with built in bra 推荐等级 A。", "green"],
+            ["VOC缺口明确", "胸部不稳、卷边、尺码容错仍未被做透。", "orange"],
+            ["下一步", "优先进入AI类目机会研究。", "purple"]
+          ],
+          "关键词需求结构": [
+            ["结构词重要", "built in bra / compression liner 是需求组合核心。", "green"],
+            ["痛点词可转开发", "lower belly / roll up / support 指向产品结构。", "orange"],
+            ["场景词辅助转化", "everyday / under dress / vacation 可用于Listing表达。", "purple"]
+          ],
+          "Best Seller榜单趋势": [
+            ["看上升ASIN", "新上榜和排名上升更能暴露短期机会。", "green"],
+            ["Listing频次", "卖点重复出现说明市场已开始教育。", "purple"],
+            ["A+需复核", "部分视觉内容仍需要人工确认。", "orange"]
+          ],
+          "风险与品牌适配": [
+            ["适配最高", "塑身上衣方向和现有供应链最匹配。", "green"],
+            ["供应链需补", "泳装和户外防晒需确认面料与版型能力。", "orange"],
+            ["不追热词", "只看关键词热度容易误判。", "red"]
+          ],
+          "推荐进入类目/机会点": [
+            ["P1方向", "shapewear with built in bra。", "green"],
+            ["P2候选", "lower belly control / compression liner。", "purple"],
+            ["补数要求", "ASIN反查、A+截图、退货数据。", "orange"]
+          ]
+        },
+        category: {
+          "市场概况": [
+            ["基本盘成立", "Top100规模和价格带支持继续研究。", "green"],
+            ["不做基础款", "泛塑身基础款竞争强。", "red"],
+            ["风险前置", "尺码、退货、闷热是必控项。", "orange"]
+          ],
+          "VOC人群场景洞察": [
+            ["核心人群", "大胸/丰满女性、产后腰腹松弛人群。", "green"],
+            ["核心场景", "日常内穿、轻外穿、通勤叠搭。", "purple"],
+            ["主要痛点", "胸部不稳、卷边、尺码不准。", "red"]
+          ],
+          "好评基线与差评痛点": [
+            ["产品基线N", "强支撑、防卷边、尺码容错、舒适弹性。", "green"],
+            ["高退货风险", "尺码不准和穿脱困难会直接影响退货。", "red"],
+            ["开发重点", "把高频差评转成打样验证项。", "orange"]
+          ],
+          "爆品与新品分析": [
+            ["爆品基线", "腰腹塑形、基础色、前后对比。", "green"],
+            ["新品趋势", "外穿化、Cami化、舒适日常化。", "purple"],
+            ["视觉缺口", "外穿安全感和结构解释仍不足。", "orange"]
+          ],
+          "关键词趋势分析": [
+            ["核心入口词", "built in bra / tummy control / shapewear tank。", "green"],
+            ["规避词", "cheap / dupe / extreme waist training。", "red"],
+            ["表达方向", "胸部方案 + 腰腹控制 + 日常外穿。", "purple"]
+          ],
+          "机会点池": [
+            ["推荐机会点", "大胸友好型包胸塑腰带。", "green"],
+            ["备选机会", "外穿型塑身Cami、日常舒适型塑身上衣。", "purple"],
+            ["进入下钻", "选择对标ASIN进入竞品分析。", "orange"]
+          ],
+          "推荐机会点与下一步竞品分析": [
+            ["优先下钻", "大胸友好型包胸塑腰带。", "green"],
+            ["补充数据", "竞品关键词流量、A+视觉、工艺成本。", "orange"],
+            ["输出方向", "进入产品定义雏形。", "purple"]
+          ]
+        },
+        competitor: {
+          "竞品概览": [
+            ["对标价值高", "Brand A / C 可作为功能标杆。", "green"],
+            ["价格带清晰", "$29-$36 是可参考主区间。", "purple"],
+            ["不打低价", "中价功能差异更适合Loday。", "orange"]
+          ],
+          "Listing与视觉拆解": [
+            ["前台卖法", "塑形结果和腰腹控制是主线。", "green"],
+            ["表达不足", "胸部结构、下腹覆盖、尺码容错不够直观。", "orange"],
+            ["我方视觉", "胸腹兼容 + 外穿不显痕 + 下腹覆盖。", "purple"]
+          ],
+          "产品结构拆解": [
+            ["胸部支撑是基线", "已由历史VOC验证，可复用。", "green"],
+            ["下摆防卷边", "需要作为打样必验项。", "orange"],
+            ["尺码容错", "直接影响退货和评分。", "red"]
+          ],
+          "VOC洞察": [
+            ["好评驱动", "塑形有效、支撑稳定、舒适日常。", "green"],
+            ["差评痛点", "尺码不准、卷边滑落、胸部不稳。", "red"],
+            ["购买驱动", "免文胸、腰腹平整、长时间可穿。", "purple"]
+          ],
+          "关键词流量分析": [
+            ["核心入口", "built in bra / tummy control / shapewear cami。", "green"],
+            ["未充分承接", "lower belly / roll up / size issue。", "orange"],
+            ["规避方向", "cheap / extreme compression。", "red"]
+          ],
+          "我方切入判断": [
+            ["产品基线N", "胸部稳定支撑、腰腹控制、防卷边、尺码容错。", "green"],
+            ["差异化+1", "胸腹兼容、分区压缩、外穿不显痕。", "purple"],
+            ["主动规避", "极限强压缩、复杂开合、低透气厚面料。", "red"],
+            ["下一步", "补关键词流量、确认成本、进入打样评审。", "orange"]
+          ]
+        }
+      };
+      return (section.keyInsights || library[currentReport]?.[section.title] || []).map(item =>
+        Array.isArray(item) ? { title: item[0], text: item[1], tone: item[2] || "" } : item
+      );
+    }
+
+    function renderInsightCards(section) {
+      const insights = getSectionInsights(section);
+      if (!insights.length) return "";
+      return `<div class="insight-card-grid">${insights.map(item => `
+        <article class="insight-card ${item.tone || ""}">
+          <b>${item.title}</b>
+          <p>${item.text}</p>
+        </article>
+      `).join("")}</div>`;
+    }
+
+    function renderTags(items) {
+      return `<div class="summary-tags">${items.map(item => `<span class="summary-tag">${item}</span>`).join("")}</div>`;
+    }
+
+    function renderProductDefinitionSummary(section) {
+      if (currentReport !== "competitor" || section.title !== "我方切入判断") return "";
+      return `
+        <div class="product-definition-summary">
+          <div class="summary-head">
+            <div>
+              <h3>产品定义书摘要</h3>
+              <p>AI输出草稿，企划确认后进入产品定义评审和打样沟通。</p>
+            </div>
+            <div class="summary-grade">B+</div>
+          </div>
+          <div class="summary-grid">
+            <div class="summary-item"><label>产品方向</label>${renderTags(["大胸友好型包胸塑腰带"])}</div>
+            <div class="summary-item"><label>产品基线N</label>${renderTags(["胸部稳定支撑", "腰腹控制", "防卷边", "尺码容错", "透气舒适"])}</div>
+            <div class="summary-item"><label>差异化+1</label>${renderTags(["胸腹兼容", "分区压缩", "外穿不显痕"])}</div>
+            <div class="summary-item"><label>主动规避</label>${renderTags(["极限强压缩", "复杂开合", "低透气厚面料", "低价基础款"])}</div>
+            <div class="summary-item next"><label>下一步</label>${renderTags(["补充关键词流量", "确认供应链成本", "进入打样评审"])}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSectionTable(table) {
+      if (table.headers.length === 2 && table.headers[0] === "子表") {
+        return `<div class="subtable-stack">${table.rows.map(([title, content]) => `
+          <article class="subtable-block">
+            <div class="subtable-title">${title}<span>详细证据</span></div>
+            <div class="subtable-body">${decorateHtmlTables(content)}</div>
+          </article>
+        `).join("")}</div>`;
+      }
+      return `<div class="table-wrap"><table>
+        <thead><tr>${table.headers.map(h => `<th class="${isHighlightHeader(h) ? "highlight-column" : ""}">${h}</th>`).join("")}</tr></thead>
+        <tbody>${table.rows.map(row => `<tr>${row.map((cell, index) => {
+          const header = table.headers[index] || "";
+          return `<td class="${isHighlightHeader(header) ? "highlight-column" : ""}">${decorateCell(cell, header)}</td>`;
+        }).join("")}</tr>`).join("")}</tbody>
+      </table></div>`;
+    }
+
+    function renderSectionContent(section) {
+      let html = "";
+      if (section.coreFinding) {
+        html += `<div class="conclusion-card"><span>本章核心结论</span><strong>${section.coreFinding}</strong></div>`;
+      }
+      html += renderProductDefinitionSummary(section);
+      html += renderInsightCards(section);
+      if (section.reusedKnowledge) {
+        html += `<div class="knowledge-reuse-box">✓ 知识库复用：${section.reusedKnowledge}</div>`;
+      }
+      if (section.body) {
+        html += `<div class="cols-2">${section.body.map(b => `<div class="text-block"><h4>${b.h}</h4><p>${b.p}</p></div>`).join("")}</div>`;
+      }
+      if (section.table) {
+        html += renderSectionTable(section.table);
+      }
+      if (section.evidence) {
+        const insufficient = /依据不足|需补充/.test(section.evidence);
+        html += `<div class="evidence-box ${insufficient ? "insufficient" : ""}"><strong>依据来源：</strong>${section.evidence}${insufficient ? "｜依据不足，需补充数据" : ""}</div>`;
+      }
+      return html;
+    }
+
+    function renderSections() {
+      $("sections").innerHTML = report().sections.map((section, index) => `
+        <section class="section" id="section-${index + 1}">
+          <div class="section-title">
+            <div class="section-num">${String(index + 1).padStart(2, "0")}</div>
+            <div>
+              <h2>${section.title}</h2>
+            </div>
+          </div>
+          <div class="section-content">${renderSectionContent(section)}</div>
+        </section>
+      `).join("");
+    }
+
+    function renderCreateTable() {
+      const type = $("createReportType").value;
+      const labels = {
+        market: "输入大类 / 关键词 / 目标方向",
+        category: "输入类目名称 / 细分类目 / 类目节点",
+        competitor: "输入单个ASIN / 多个ASIN / 竞品链接"
+      };
+      $("objectLabel").textContent = labels[type];
+      const headers = ["数据类型", "是否必填", "获取方式", "来源平台", "时间范围", "样本量", "完整度", "状态", "操作"];
+      $("createDataTable").className = "create-source-table";
+      $("createDataTable").innerHTML = `
+        <thead><tr>${headers.map(h => `<th>${h}</th>`).join("")}</tr></thead>
+        <tbody>${createRows().map((row, index) => `
+          <tr>
+            <td>${row.type}</td>
+            <td><span class="pill ${row.required === "必填" ? "red" : "blue"}">${row.required}</span></td>
+            <td>${row.method}</td>
+            <td>${row.source}</td>
+            <td>${row.range}</td>
+            <td>${row.sample}</td>
+            <td>${row.completeness}%</td>
+            <td><span class="pill ${statusClass(row.status)}">${row.status}</span><div class="small-note">影响：${row.impact}</div></td>
+            <td>${renderSourceActions(row, index)}</td>
+          </tr>
+        `).join("")}</tbody>
+      `;
+      renderCreateValidationSummary();
+    }
+
+    function setView(view) {
+      currentView = view;
+      $("createPage").classList.toggle("active", view === "create");
+      $("reportPage").classList.toggle("hidden", view !== "report");
+      $("showCreate").classList.toggle("active", view === "create");
+      $("showReport").classList.toggle("active", view === "report");
+    }
+
+    function exportReport() {
+      const task = report().task;
+      const text = [
+        `# ${task.title}`,
+        ``,
+        `分析类型：${task.reportType}`,
+        `品牌：${task.brand}`,
+        `站点：${task.site}`,
+        `对象：${task.object}`,
+        `数据完整度：${task.dataCompleteness}`,
+        `状态：${confirmed ? "企划已确认" : task.status}`,
+        ``,
+        `## 一句话核心判断`,
+        task.coreConclusion,
+        ``,
+        `## 数据来源`,
+        ...report().dataSources.map(r => `- ${r[0]}｜${r[1]}｜${r[2]}｜${r[5]}｜${r[6]}｜${r[7]}`),
+        ``,
+        `## 章节`,
+        ...report().sections.map((s, i) => `${i + 1}. ${s.title}：${s.coreFinding}`),
+        ``,
+        `## 下一步`,
+        task.nextAction
+      ].join("\\n");
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${task.title}.md`;
+      a.click();
+      URL.revokeObjectURL(url);
+      toast("已导出报告");
+    }
+
+    function confirmReport() {
+      confirmed = true;
+      render();
+      toast("企划已确认，报告可入库");
+    }
+
+    function render() {
+      renderPlatformArchitecture();
+      renderMeta();
+      renderMetrics();
+      renderOverview();
+      renderDataQuality();
+      renderReportFoundation();
+      renderDataSources();
+      renderToc();
+      renderSections();
+      renderCreateTable();
+    }
+
+    $("showCreate").addEventListener("click", () => setView("create"));
+    $("showReport").addEventListener("click", () => setView("report"));
+    $("backFromCreate").addEventListener("click", () => setView("report"));
+    document.querySelectorAll(".mode-card").forEach(card => {
+      card.addEventListener("click", () => {
+        currentCreateMode = card.dataset.mode;
+        document.querySelectorAll(".mode-card").forEach(item => item.classList.toggle("active", item === card));
+        renderCreateTable();
+        const modeName = currentCreateMode === "manual" ? "手动导入" : currentCreateMode === "auto" ? "系统自动抓取" : "混合模式";
+        toast(`已切换默认策略：${modeName}`);
+      });
+    });
+    $("createDataTable").addEventListener("click", event => {
+      const button = event.target.closest("[data-action]");
+      if (!button) return;
+      const row = setActiveRow(button.dataset.rowIndex);
+      const action = button.dataset.action;
+      if (action === "upload") openUploadModal(row);
+      if (action === "crawl-config" || action === "crawl-start") openCrawlModal(row);
+      if (action === "mapping") openMappingModal(row);
+      if (action === "link-data" || action === "view-link" || action === "relink-data" || action === "internal-fill") openLinkModal(row);
+      if (action === "validate-merge") {
+        row.status = "重新校验通过，已生成合并数据";
+        row.completeness = Math.max(row.completeness, 88);
+        renderCreateTable();
+        toast("已重新校验合并数据");
+      }
+      if (action === "crawl-progress") toast(`${row.type}：抓取进度已更新`);
+      if (action === "download-template") toast(`已准备下载【${row.type}】标准模板`);
+      if (action === "download") toast(`已准备${button.dataset.downloadType}：${row.type}`);
+    });
+    $("modalClose").addEventListener("click", closeModal);
+    $("configModal").addEventListener("click", event => {
+      if (event.target === $("configModal")) closeModal();
+    });
+    $("modalFooter").addEventListener("click", event => {
+      const button = event.target.closest("[data-modal-action]");
+      if (!button) return;
+      const action = button.dataset.modalAction;
+      if (/download|preview|progress|report|choose|match|save-crawl|restart|manual/.test(action)) {
+        toast(button.textContent.trim());
+      }
+      if (action === "mapping") openMappingModal(activeDataRow);
+      if (action === "confirm-upload") {
+        refreshActiveRow("已上传，字段校验通过", 90);
+        closeModal();
+        toast("上传完成，字段校验通过");
+      }
+      if (action === "start-crawl") {
+        const mixed = activeDataRow && methodKind(activeDataRow.method) === "mixed";
+        refreshActiveRow(mixed ? "抓取成功，已合并人工补充数据" : "抓取成功，已生成数据预览", mixed ? 88 : 90);
+        closeModal();
+        toast("系统抓取完成");
+      }
+      if (action === "save-mapping") {
+        refreshActiveRow("字段校验通过", 90);
+        closeModal();
+        toast("字段映射已保存");
+      }
+      if (action === "confirm-link") {
+        refreshActiveRow("已关联，数据样本已同步", 95);
+        closeModal();
+        toast("系统数据已关联");
+      }
+      if (action === "confirm-internal") {
+        refreshActiveRow("已填写，待开发/供应链确认", 75);
+        closeModal();
+        toast("内部信息已填写");
+      }
+    });
+    $("startReport").addEventListener("click", () => {
+      const nextReport = $("createReportType").value;
+      currentReport = nextReport;
+      if (carriedContext && carriedContext.targetReport !== currentReport) {
+        carriedContext = null;
+      }
+      confirmed = false;
+      render();
+      setView("report");
+      toast("已生成对应分析报告");
+    });
+    $("createReportType").addEventListener("change", renderCreateTable);
+    ["exportTop", "exportReport", "exportBottom"].forEach(id => $(id).addEventListener("click", exportReport));
+    ["confirmTop", "confirmReport", "confirmBottom"].forEach(id => $(id).addEventListener("click", confirmReport));
+    ["regenTop", "regenReport"].forEach(id => $(id).addEventListener("click", () => toast("已模拟重新生成AI草稿")));
+    ["editTop", "editReport", "editBottom"].forEach(id => $(id).addEventListener("click", () => toast("已进入结论编辑状态")));
+    $("nextBottom").addEventListener("click", () => {
+      const carryOut = report().task.carryOut;
+      if (!carryOut) {
+        toast(report().task.nextAction);
+        return;
+      }
+      carriedContext = carryOut;
+      currentReport = carryOut.targetReport;
+      confirmed = false;
+      render();
+      setView("report");
+      const targetName = currentReport === "category" ? "AI类目机会研究" : "AI竞品分析与产品定义输出";
+      toast(`已带入【${carryOut.selectedItem}】机会方向，进入${targetName}`);
+    });
+
+    render();
+    setView("report");
+  </script>
+</body>
+</html>
